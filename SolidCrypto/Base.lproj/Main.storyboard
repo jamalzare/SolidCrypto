@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1Ni-Ew-Mqx">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="GPL-CK-srF">
+            <objects>
+                <navigationController id="1Ni-Ew-Mqx" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wiX-yt-arU">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="w21-en-GmF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X4w-zg-Ay5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-308" y="9"/>
+        </scene>
+        <!--Trades View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="TradesViewController" customModule="SolidCrypto" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSp-Qn-QLV">
+                                <rect key="frame" x="16" y="119" width="361" height="45"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Oeg-Mg-bAu">
+                                        <rect key="frame" x="4" y="4" width="353" height="37"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xta-YK-hI3" customClass="Button" customModule="SolidCrypto" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="115" height="37"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Trade 1">
+                                                    <color key="titleColor" name="AccentColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapButtonsWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D15-vl-Siy"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ns-Ue-Ics" customClass="Button" customModule="SolidCrypto" customModuleProvider="target">
+                                                <rect key="frame" x="119" y="0.0" width="115" height="37"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Trade 2">
+                                                    <color key="titleColor" name="appBlue"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapButtonsWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pLe-We-icP"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ln-nS-swi" customClass="Button" customModule="SolidCrypto" customModuleProvider="target">
+                                                <rect key="frame" x="238" y="0.0" width="115" height="37"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Trade 3"/>
+                                                <connections>
+                                                    <action selector="didTapButtonsWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KaB-Of-rv4"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Oeg-Mg-bAu" secondAttribute="trailing" constant="4" id="3zH-bY-M95"/>
+                                    <constraint firstAttribute="height" constant="45" id="BcY-CV-bGN"/>
+                                    <constraint firstItem="Oeg-Mg-bAu" firstAttribute="top" secondItem="kSp-Qn-QLV" secondAttribute="top" constant="4" id="OZm-w9-a1b"/>
+                                    <constraint firstAttribute="bottom" secondItem="Oeg-Mg-bAu" secondAttribute="bottom" constant="4" id="T9H-bl-ZHa"/>
+                                    <constraint firstItem="Oeg-Mg-bAu" firstAttribute="leading" secondItem="kSp-Qn-QLV" secondAttribute="leading" constant="4" id="g3d-25-eO6"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xX2-K4-zo4">
+                                <rect key="frame" x="0.0" y="164" width="393" height="654"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aUg-D1-CcW">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fgH-8i-TT1">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="7v2-13-DVB">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xX2-K4-zo4" secondAttribute="bottom" id="40G-W5-eaL"/>
+                            <constraint firstItem="xX2-K4-zo4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7j2-8Q-YHJ"/>
+                            <constraint firstItem="kSp-Qn-QLV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="JsS-WS-pdE"/>
+                            <constraint firstAttribute="trailing" secondItem="kSp-Qn-QLV" secondAttribute="trailing" constant="16" id="KO0-mD-xAT"/>
+                            <constraint firstItem="xX2-K4-zo4" firstAttribute="top" secondItem="kSp-Qn-QLV" secondAttribute="bottom" id="MxH-dm-GoJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xX2-K4-zo4" secondAttribute="trailing" id="Vts-hh-nRe"/>
+                            <constraint firstItem="kSp-Qn-QLV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="c13-Pd-siu"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="DJw-cs-1VJ"/>
+                    <connections>
+                        <outlet property="buttonsView" destination="kSp-Qn-QLV" id="x5P-K0-ItO"/>
+                        <outlet property="collectionView" destination="xX2-K4-zo4" id="nCt-fN-ymW"/>
+                        <outlet property="trade1Button" destination="xta-YK-hI3" id="jXH-YJ-B9k"/>
+                        <outlet property="trade2Button" destination="0Ns-Ue-Ics" id="j8C-bS-eQz"/>
+                        <outlet property="trade3Button" destination="2Ln-nS-swi" id="dm2-bO-qBb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="421" y="4"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="appBlue">
+            <color red="0.30980392156862746" green="0.50196078431372548" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

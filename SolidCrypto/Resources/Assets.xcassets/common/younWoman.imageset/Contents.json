@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "casual-life-3d-young-woman-in-sunglasses-sitting-with-hands-crossed 2.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "casual-life-3d-young-woman-in-sunglasses-sitting-with-hands-crossed 2@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "casual-life-3d-young-woman-in-sunglasses-sitting-with-hands-crossed 2@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

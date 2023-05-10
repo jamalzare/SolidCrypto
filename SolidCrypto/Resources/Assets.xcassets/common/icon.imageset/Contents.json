@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "👚 Size=Giant, Color=Green.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "👚 Size=Giant, Color=Green@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "👚 Size=Giant, Color=Green@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
