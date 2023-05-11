@@ -58,27 +58,31 @@ class TradesViewController: UIViewController {
         guard let tag = (sender as? UIView)?.tag else { return }
         let index = IndexPath(item: 0, section: tag)
         
-        if tag == 0 {
+      change(tab: tag)
+        print(index)
+//        collectionView.layer.borderWidth = 2
+//        collectionView.layer.borderColor = UIColor.red.cgColor
+        pageCell?.collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+    }
+    
+    func change(tab: Int) {
+        if tab == 0 {
             trade1Button.unSelectedStyle = false
             trade2Button.unSelectedStyle = true
             trade3Button.unSelectedStyle = true
         }
         
-        if tag == 1 {
+        if tab == 1 {
             trade2Button.unSelectedStyle = false
             trade1Button.unSelectedStyle = true
             trade3Button.unSelectedStyle = true
         }
         
-        if tag == 2 {
+        if tab == 2 {
             trade3Button.unSelectedStyle = false
             trade1Button.unSelectedStyle = true
             trade2Button.unSelectedStyle = true
         }
-        print(index)
-//        collectionView.layer.borderWidth = 2
-//        collectionView.layer.borderColor = UIColor.red.cgColor
-        pageCell?.collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
     }
     
 }
@@ -101,6 +105,7 @@ extension TradesViewController: UICollectionViewDataSource, UICollectionViewDele
         let cell: PageCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.delegate = self
 //        cell.layer.borderWidth = 1
+        cell.pageCellDelegate = self
         cell.frame = CGRect(origin: CGPoint(x: cell.frame.minX, y: 0), size: cell.frame.size)
         self.pageCell = cell
         return cell
@@ -129,7 +134,12 @@ extension TradesViewController: UICollectionViewDataSource, UICollectionViewDele
     
 }
 
-extension TradesViewController: TradeCellDelegate {
+extension TradesViewController: TradeCellDelegate, PageCellDelegate {
+    
+    func didChange(tab: Int) {
+        change(tab: tab)
+    }
+    
     
     func didTapStartButton() {
         

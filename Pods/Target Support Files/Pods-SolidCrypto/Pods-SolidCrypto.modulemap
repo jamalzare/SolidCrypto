@@ -1,0 +1,6 @@
+framework module Pods_SolidCrypto {
+  umbrella header "Pods-SolidCrypto-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -24,6 +24,7 @@ class TradeCell: UICollectionViewCell {
     @IBOutlet weak var clearButton: UIButton!
     
     weak var delegate: TradeCellDelegate?
+    private var enabledList: KDropDownList?
     
     override func awakeFromNib() {
         setup()
@@ -37,7 +38,7 @@ class TradeCell: UICollectionViewCell {
         coinsList.reload()
         
         amountTextFiled.placeholder = "Choose Amount"
-        amountTextFiled.keyboardType = .numberPad
+        amountTextFiled.keyboardType = .decimalPad
         
         tradeList.title = "Choose Trade"
         tradeList.delegate = self
@@ -47,6 +48,9 @@ class TradeCell: UICollectionViewCell {
         lineChartView.rightAxis.enabled = false
         lineChartView.layer.cornerRadius = 8
         setData()
+        
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(didTap))
+//        addGestureRecognizer(tap)
     }
 
     @IBAction func didTapStartButton() {
@@ -70,6 +74,10 @@ class TradeCell: UICollectionViewCell {
         lineChartView.xAxis.valueFormatter = ChartIndexAxisValueFormatter()
         lineChartView.xAxis.labelPosition = .bottom
         lineChartView.leftAxis.valueFormatter = ChartLeftIndexAxisValueFormatter()
+    }
+    
+    @objc func didTap() {
+        endEditing(true)
     }
 }
 
@@ -98,7 +106,11 @@ extension TradeCell: KDropDownListDelegate {
     }
     
     func willOpen(_ dropDownList: KDropDownList) {
-        
+        if enabledList != dropDownList {
+            enabledList?.dismiss()
+        }
+        enabledList = dropDownList
+        endEditing(true)
     }
     
     func willDismiss(_ dropDownList: KDropDownList) {

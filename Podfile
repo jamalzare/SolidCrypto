@@ -7,4 +7,5 @@ target 'SolidCrypto' do
 
   # Pods for SolidCrypto
   pod 'Charts'
+  pod 'IQKeyboardManagerSwift'
 end
