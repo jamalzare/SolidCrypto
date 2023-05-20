@@ -13,6 +13,12 @@
 		892165192A18ABD400A3F3B9 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892165182A18ABD400A3F3B9 /* APIService.swift */; };
 		8921651C2A18AD8D00A3F3B9 /* CodeStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8921651B2A18AD8D00A3F3B9 /* CodeStrings.swift */; };
 		8921651E2A18ADE700A3F3B9 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8921651D2A18ADE700A3F3B9 /* App.swift */; };
+		892165202A18AFE600A3F3B9 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8921651F2A18AFE600A3F3B9 /* Login.swift */; };
+		892165222A18B06A00A3F3B9 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892165212A18B06A00A3F3B9 /* Balance.swift */; };
+		892165242A18B12400A3F3B9 /* GetCoins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892165232A18B12400A3F3B9 /* GetCoins.swift */; };
+		892165262A18B1DF00A3F3B9 /* GetTrades.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892165252A18B1DF00A3F3B9 /* GetTrades.swift */; };
+		892165282A18B2D100A3F3B9 /* Investment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892165272A18B2D100A3F3B9 /* Investment.swift */; };
+		8921652A2A18B3CA00A3F3B9 /* GetInvestment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892165292A18B3CA00A3F3B9 /* GetInvestment.swift */; };
 		894035312A0BC5C8008A5D78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894035302A0BC5C8008A5D78 /* AppDelegate.swift */; };
 		894035332A0BC5C8008A5D78 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894035322A0BC5C8008A5D78 /* SceneDelegate.swift */; };
 		894035352A0BC5C8008A5D78 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894035342A0BC5C8008A5D78 /* ViewController.swift */; };
@@ -71,6 +77,12 @@
 		892165182A18ABD400A3F3B9 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		8921651B2A18AD8D00A3F3B9 /* CodeStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeStrings.swift; sourceTree = "<group>"; };
 		8921651D2A18ADE700A3F3B9 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		8921651F2A18AFE600A3F3B9 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		892165212A18B06A00A3F3B9 /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
+		892165232A18B12400A3F3B9 /* GetCoins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoins.swift; sourceTree = "<group>"; };
+		892165252A18B1DF00A3F3B9 /* GetTrades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTrades.swift; sourceTree = "<group>"; };
+		892165272A18B2D100A3F3B9 /* Investment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Investment.swift; sourceTree = "<group>"; };
+		892165292A18B3CA00A3F3B9 /* GetInvestment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInvestment.swift; sourceTree = "<group>"; };
 		8940352D2A0BC5C8008A5D78 /* SolidCrypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SolidCrypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		894035302A0BC5C8008A5D78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		894035322A0BC5C8008A5D78 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -252,7 +264,13 @@
 		894035972A0C3225008A5D78 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8921651F2A18AFE600A3F3B9 /* Login.swift */,
+				892165212A18B06A00A3F3B9 /* Balance.swift */,
 				894035982A0C3230008A5D78 /* Coin.swift */,
+				892165232A18B12400A3F3B9 /* GetCoins.swift */,
+				892165252A18B1DF00A3F3B9 /* GetTrades.swift */,
+				892165272A18B2D100A3F3B9 /* Investment.swift */,
+				892165292A18B3CA00A3F3B9 /* GetInvestment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -429,11 +447,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				892165202A18AFE600A3F3B9 /* Login.swift in Sources */,
 				894035952A0BEBFD008A5D78 /* RadioButton.swift in Sources */,
 				8940354F2A0BE564008A5D78 /* Images.swift in Sources */,
 				8940358A2A0BE5F6008A5D78 /* UIColor+Hex.swift in Sources */,
 				892165152A18ABBE00A3F3B9 /* APIClient.swift in Sources */,
+				892165262A18B1DF00A3F3B9 /* GetTrades.swift in Sources */,
 				8940359B2A0C341A008A5D78 /* TextField.swift in Sources */,
+				892165242A18B12400A3F3B9 /* GetCoins.swift in Sources */,
 				8940354C2A0BE4EF008A5D78 /* TextStyle.swift in Sources */,
 				8940354A2A0BD992008A5D78 /* Extension.swift in Sources */,
 				894035352A0BC5C8008A5D78 /* ViewController.swift in Sources */,
@@ -443,12 +464,15 @@
 				894035962A0BEBFD008A5D78 /* CheckBox.swift in Sources */,
 				8940359F2A0C3C1F008A5D78 /* PageCell.swift in Sources */,
 				8921651E2A18ADE700A3F3B9 /* App.swift in Sources */,
+				892165282A18B2D100A3F3B9 /* Investment.swift in Sources */,
 				8921651C2A18AD8D00A3F3B9 /* CodeStrings.swift in Sources */,
 				894035472A0BC71B008A5D78 /* TradeCell.swift in Sources */,
 				892165172A18ABC800A3F3B9 /* APIRequest.swift in Sources */,
+				892165222A18B06A00A3F3B9 /* Balance.swift in Sources */,
 				894035902A0BE859008A5D78 /* Button.swift in Sources */,
 				892165192A18ABD400A3F3B9 /* APIService.swift in Sources */,
 				894035332A0BC5C8008A5D78 /* SceneDelegate.swift in Sources */,
+				8921652A2A18B3CA00A3F3B9 /* GetInvestment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
