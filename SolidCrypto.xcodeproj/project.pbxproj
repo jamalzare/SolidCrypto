@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		6D1015E8A754BFF0D7B95751 /* Pods_SolidCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 202D95E5853746E695CCC1FF /* Pods_SolidCrypto.framework */; };
+		892165152A18ABBE00A3F3B9 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892165142A18ABBE00A3F3B9 /* APIClient.swift */; };
+		892165172A18ABC800A3F3B9 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892165162A18ABC800A3F3B9 /* APIRequest.swift */; };
+		892165192A18ABD400A3F3B9 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892165182A18ABD400A3F3B9 /* APIService.swift */; };
+		8921651C2A18AD8D00A3F3B9 /* CodeStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8921651B2A18AD8D00A3F3B9 /* CodeStrings.swift */; };
+		8921651E2A18ADE700A3F3B9 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8921651D2A18ADE700A3F3B9 /* App.swift */; };
 		894035312A0BC5C8008A5D78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894035302A0BC5C8008A5D78 /* AppDelegate.swift */; };
 		894035332A0BC5C8008A5D78 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894035322A0BC5C8008A5D78 /* SceneDelegate.swift */; };
 		894035352A0BC5C8008A5D78 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894035342A0BC5C8008A5D78 /* ViewController.swift */; };
@@ -61,6 +66,11 @@
 
 /* Begin PBXFileReference section */
 		202D95E5853746E695CCC1FF /* Pods_SolidCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SolidCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		892165142A18ABBE00A3F3B9 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		892165162A18ABC800A3F3B9 /* APIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		892165182A18ABD400A3F3B9 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		8921651B2A18AD8D00A3F3B9 /* CodeStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeStrings.swift; sourceTree = "<group>"; };
+		8921651D2A18ADE700A3F3B9 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		8940352D2A0BC5C8008A5D78 /* SolidCrypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SolidCrypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		894035302A0BC5C8008A5D78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		894035322A0BC5C8008A5D78 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +138,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		892165132A18ABAC00A3F3B9 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				892165162A18ABC800A3F3B9 /* APIRequest.swift */,
+				892165142A18ABBE00A3F3B9 /* APIClient.swift */,
+				892165182A18ABD400A3F3B9 /* APIService.swift */,
+				8921651B2A18AD8D00A3F3B9 /* CodeStrings.swift */,
+				8921651D2A18ADE700A3F3B9 /* App.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		894035242A0BC5C8008A5D78 = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +171,7 @@
 		8940352F2A0BC5C8008A5D78 /* SolidCrypto */ = {
 			isa = PBXGroup;
 			children = (
+				892165132A18ABAC00A3F3B9 /* Network */,
 				894035972A0C3225008A5D78 /* Model */,
 				8940354D2A0BE54C008A5D78 /* Resources */,
 				894035302A0BC5C8008A5D78 /* AppDelegate.swift */,
@@ -409,6 +432,7 @@
 				894035952A0BEBFD008A5D78 /* RadioButton.swift in Sources */,
 				8940354F2A0BE564008A5D78 /* Images.swift in Sources */,
 				8940358A2A0BE5F6008A5D78 /* UIColor+Hex.swift in Sources */,
+				892165152A18ABBE00A3F3B9 /* APIClient.swift in Sources */,
 				8940359B2A0C341A008A5D78 /* TextField.swift in Sources */,
 				8940354C2A0BE4EF008A5D78 /* TextStyle.swift in Sources */,
 				8940354A2A0BD992008A5D78 /* Extension.swift in Sources */,
@@ -418,8 +442,12 @@
 				894035992A0C3230008A5D78 /* Coin.swift in Sources */,
 				894035962A0BEBFD008A5D78 /* CheckBox.swift in Sources */,
 				8940359F2A0C3C1F008A5D78 /* PageCell.swift in Sources */,
+				8921651E2A18ADE700A3F3B9 /* App.swift in Sources */,
+				8921651C2A18AD8D00A3F3B9 /* CodeStrings.swift in Sources */,
 				894035472A0BC71B008A5D78 /* TradeCell.swift in Sources */,
+				892165172A18ABC800A3F3B9 /* APIRequest.swift in Sources */,
 				894035902A0BE859008A5D78 /* Button.swift in Sources */,
+				892165192A18ABD400A3F3B9 /* APIService.swift in Sources */,
 				894035332A0BC5C8008A5D78 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
