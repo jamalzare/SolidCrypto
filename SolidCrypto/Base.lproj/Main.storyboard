@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1Ni-Ew-Mqx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5uU-3y-wEd">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -29,7 +29,7 @@
         <!--Trades View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="TradesViewController" customModule="SolidCrypto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TradesViewController" id="BYZ-38-t0r" customClass="TradesViewController" customModule="SolidCrypto" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -126,13 +126,132 @@
             </objects>
             <point key="canvasLocation" x="421" y="4"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="OBz-k4-1ga">
+            <objects>
+                <navigationController id="5uU-3y-wEd" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="S5j-C7-1ce">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ubB-rC-xLy" kind="relationship" relationship="rootViewController" id="l95-l9-PnY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DHS-y0-u1J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-309" y="696"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="vGp-bN-Bqp">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" id="ubB-rC-xLy" customClass="LoginViewController" customModule="SolidCrypto" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jrp-cw-xac">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="req-2v-mFB">
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZT-Kl-bML" customClass="TextField" customModule="SolidCrypto" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="32" width="361" height="54"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="54" id="Fz2-e8-Wyl"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v7U-RR-hlu" customClass="TextField" customModule="SolidCrypto" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="118" width="361" height="54"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="54" id="OrD-Bg-p1P"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0J-rc-QLP" customClass="Button" customModule="SolidCrypto" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="204" width="361" height="58"/>
+                                        <color key="backgroundColor" name="theme"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="58" id="N15-2m-6mv"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Login">
+                                            <color key="titleColor" name="appBlackText"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapLoginButtonWithSender:" destination="ubB-rC-xLy" eventType="touchUpInside" id="bgr-Ij-9uc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uve-wl-ThK" customClass="Button" customModule="SolidCrypto" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="294" width="361" height="58"/>
+                                        <color key="backgroundColor" name="theme"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="58" id="z15-vk-GTq"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Test Login">
+                                            <color key="titleColor" name="appBlackText"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapTestButtonWithSender:" destination="ubB-rC-xLy" eventType="touchUpInside" id="LS5-FO-xZL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Uve-wl-ThK" firstAttribute="top" secondItem="a0J-rc-QLP" secondAttribute="bottom" constant="32" id="0yN-QX-WQI"/>
+                                    <constraint firstItem="v7U-RR-hlu" firstAttribute="top" secondItem="dZT-Kl-bML" secondAttribute="bottom" constant="32" id="6sC-Lv-YxS"/>
+                                    <constraint firstAttribute="trailing" secondItem="a0J-rc-QLP" secondAttribute="trailing" constant="16" id="BLg-wP-185"/>
+                                    <constraint firstItem="dZT-Kl-bML" firstAttribute="top" secondItem="req-2v-mFB" secondAttribute="top" constant="32" id="Z4H-5V-70p"/>
+                                    <constraint firstAttribute="trailing" secondItem="Uve-wl-ThK" secondAttribute="trailing" constant="16" id="ZeP-Tl-zeF"/>
+                                    <constraint firstItem="dZT-Kl-bML" firstAttribute="leading" secondItem="req-2v-mFB" secondAttribute="leading" constant="16" id="a3V-b8-JER"/>
+                                    <constraint firstItem="a0J-rc-QLP" firstAttribute="top" secondItem="v7U-RR-hlu" secondAttribute="bottom" constant="32" id="cMr-Lz-OeK"/>
+                                    <constraint firstAttribute="trailing" secondItem="a0J-rc-QLP" secondAttribute="trailing" constant="16" id="ddF-wa-m8a"/>
+                                    <constraint firstItem="a0J-rc-QLP" firstAttribute="leading" secondItem="req-2v-mFB" secondAttribute="leading" constant="16" id="iOs-JO-Tls"/>
+                                    <constraint firstAttribute="trailing" secondItem="dZT-Kl-bML" secondAttribute="trailing" constant="16" id="k8o-cv-7GF"/>
+                                    <constraint firstAttribute="trailing" secondItem="v7U-RR-hlu" secondAttribute="trailing" constant="16" id="mFF-2o-0z3"/>
+                                    <constraint firstItem="Uve-wl-ThK" firstAttribute="leading" secondItem="req-2v-mFB" secondAttribute="leading" constant="16" id="r5M-Ei-F98"/>
+                                    <constraint firstItem="a0J-rc-QLP" firstAttribute="leading" secondItem="req-2v-mFB" secondAttribute="leading" constant="16" id="sZX-oB-3oJ"/>
+                                    <constraint firstItem="v7U-RR-hlu" firstAttribute="leading" secondItem="req-2v-mFB" secondAttribute="leading" constant="16" id="u1Q-Id-9av"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="zQ5-Ai-9rC"/>
+                        <color key="backgroundColor" name="lightGrayText"/>
+                        <constraints>
+                            <constraint firstItem="zQ5-Ai-9rC" firstAttribute="bottom" secondItem="req-2v-mFB" secondAttribute="bottom" id="aPm-sm-2C9"/>
+                            <constraint firstItem="req-2v-mFB" firstAttribute="top" secondItem="zQ5-Ai-9rC" secondAttribute="top" id="cWU-Bk-ipX"/>
+                            <constraint firstAttribute="trailing" secondItem="req-2v-mFB" secondAttribute="trailing" id="dug-yZ-c9Q"/>
+                            <constraint firstItem="req-2v-mFB" firstAttribute="leading" secondItem="zQ5-Ai-9rC" secondAttribute="leading" id="y1d-rg-A9S"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="vAM-TA-69n"/>
+                    <connections>
+                        <outlet property="loginButton" destination="a0J-rc-QLP" id="3OX-9E-nT5"/>
+                        <outlet property="passwordTextField" destination="v7U-RR-hlu" id="X9J-uZ-VY3"/>
+                        <outlet property="testButton" destination="Uve-wl-ThK" id="QkJ-4e-964"/>
+                        <outlet property="usernameTextField" destination="dZT-Kl-bML" id="nQ9-Ea-2VM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xbG-xr-l22" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="421" y="696"/>
+        </scene>
     </scenes>
     <resources>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="appBlackText">
+            <color red="0.098039215686274508" green="0.12549019607843137" blue="0.2196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="appBlue">
             <color red="0.30980392156862746" green="0.50196078431372548" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="lightGrayText">
+            <color red="0.77254901960784317" green="0.80784313725490198" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="theme">
+            <color red="0.019607843137254902" green="0.85098039215686272" blue="0.53725490196078429" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

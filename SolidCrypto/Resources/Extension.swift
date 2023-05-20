@@ -398,6 +398,72 @@ extension UIViewController {
         }
         
     }
+    
+    func presentAlert(title: String, message: String, compeletion: @escaping()-> Void = {}) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: {_ in
+            compeletion()
+        }))
+        
+        present(alert, animated: true, completion: nil)
+    }
+}
+
+extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).capitalized + dropFirst()
+    }
+}
+
+enum Storyboard: String {
+    case splash
+    case main
+    
+    var filename: String {
+        return rawValue.capitalizingFirstLetter()
+    }
+}
+
+protocol StoryboardIdentifiable {
+    static var storyboardIdentifier: String { get }
+}
+
+extension StoryboardIdentifiable where Self: UIViewController {
+    static var storyboardIdentifier: String {
+        return String(describing: self)
+    }
+}
+
+extension UIViewController: StoryboardIdentifiable { }
+
+extension UIStoryboard {
+    
+    // MARK: - Convenience Initializers
+    
+    
+    convenience init(storyboard: Storyboard, bundle: Bundle? = nil) {
+        self.init(name: storyboard.filename, bundle: bundle)
+    }
+    
+    
+    // MARK: - Class Functions
+    
+    class func storyboard(_ storyboard: Storyboard, bundle: Bundle? = nil) -> UIStoryboard {
+        return UIStoryboard(name: storyboard.filename, bundle: bundle)
+    }
+    
+    
+    // MARK: - View Controller Instantiation from Generics
+    
+    func instantiateViewController<T: UIViewController>() -> T {
+        guard let viewController = self.instantiateViewController(withIdentifier: T.storyboardIdentifier) as? T else {
+            fatalError("Couldn't instantiate view controller with identifier \(T.storyboardIdentifier) ")
+        }
+        
+        return viewController
+    }
 }
 
 extension UICollectionViewCell {
@@ -494,22 +560,22 @@ extension UITableView {
         self.register(cell.self, forCellReuseIdentifier: cell.identifier)
     }
     
-//    public final func register<T: UITableViewCell>(cellType: T.Type)
-//        where T: UITableViewCell {
-//        register(cellType.nib, forCellReuseIdentifier: cellType.reuseIdentifier)
-//    }
-
-//    public final func dequeueReusableCell<T: UITableViewCell>(for indexPath: IndexPath, cellType: T.Type = T.self) -> T
-//        where T: UITableViewCell {
-//        guard let cell = dequeueReusableCell(withIdentifier: cellType.reuseIdentifier, for: indexPath) as? T else {
-//            fatalError(
-//                "Failed to dequeue a cell with identifier \(cellType.reuseIdentifier) matching type \(cellType.self). "
-//                    + "Check that the reuseIdentifier is set properly in your XIB/Storyboard "
-//                    + "and that you registered the cell beforehand"
-//            )
-//        }
-//        return cell
-//    }
+    //    public final func register<T: UITableViewCell>(cellType: T.Type)
+    //        where T: UITableViewCell {
+    //        register(cellType.nib, forCellReuseIdentifier: cellType.reuseIdentifier)
+    //    }
+    
+    //    public final func dequeueReusableCell<T: UITableViewCell>(for indexPath: IndexPath, cellType: T.Type = T.self) -> T
+    //        where T: UITableViewCell {
+    //        guard let cell = dequeueReusableCell(withIdentifier: cellType.reuseIdentifier, for: indexPath) as? T else {
+    //            fatalError(
+    //                "Failed to dequeue a cell with identifier \(cellType.reuseIdentifier) matching type \(cellType.self). "
+    //                    + "Check that the reuseIdentifier is set properly in your XIB/Storyboard "
+    //                    + "and that you registered the cell beforehand"
+    //            )
+    //        }
+    //        return cell
+    //    }
     
     func dequeueCell<T: UITableViewCell>(for indexPath: IndexPath) -> T  {
         
@@ -519,25 +585,25 @@ extension UITableView {
         }
         return cell
     }
-
-//    final func register<T: UITableViewHeaderFooterView>(headerFooterViewType: T.Type)
-//    where T: UITableViewCell {
-//        self.register(headerFooterViewType.nib, forHeaderFooterViewReuseIdentifier:
-//                      headerFooterViewType.reuseIdentifier)
-//    }
-
-//    final func dequeueReusableHeaderFooterView<T: UITableViewHeaderFooterView>(_ viewType: T.Type = T.self) -> T?
-//        where T: UITableViewCell {
-//          guard let view = self.dequeueReusableHeaderFooterView(withIdentifier: viewType.reuseIdentifier) as? T? else {
-//            fatalError(
-//              "Failed to dequeue a header/footer with identifier \(viewType.reuseIdentifier) "
-//                + "matching type \(viewType.self). "
-//                + "Check that the reuseIdentifier is set properly in your XIB/Storyboard "
-//                + "and that you registered the header/footer beforehand"
-//            )
-//          }
-//          return view
-//      }
+    
+    //    final func register<T: UITableViewHeaderFooterView>(headerFooterViewType: T.Type)
+    //    where T: UITableViewCell {
+    //        self.register(headerFooterViewType.nib, forHeaderFooterViewReuseIdentifier:
+    //                      headerFooterViewType.reuseIdentifier)
+    //    }
+    
+    //    final func dequeueReusableHeaderFooterView<T: UITableViewHeaderFooterView>(_ viewType: T.Type = T.self) -> T?
+    //        where T: UITableViewCell {
+    //          guard let view = self.dequeueReusableHeaderFooterView(withIdentifier: viewType.reuseIdentifier) as? T? else {
+    //            fatalError(
+    //              "Failed to dequeue a header/footer with identifier \(viewType.reuseIdentifier) "
+    //                + "matching type \(viewType.self). "
+    //                + "Check that the reuseIdentifier is set properly in your XIB/Storyboard "
+    //                + "and that you registered the header/footer beforehand"
+    //            )
+    //          }
+    //          return view
+    //      }
 }
 
 
