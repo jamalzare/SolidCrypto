@@ -49,8 +49,7 @@ class LoginViewController: UIViewController {
             
             if let model = model {
                 print(model)
-                let vc: TradesViewController = UIStoryboard(storyboard: .main).instantiateViewController()
-                self?.navigationController?.pushViewController(vc, animated: true)
+                self?.goToNextScene()
             }
             else if let error = error {
                 self?.presentAlert(title: "Error", message: "your username and passowrd is wrong\(error.message)")
@@ -59,13 +58,20 @@ class LoginViewController: UIViewController {
         }
     }
     
+    func goToNextScene() {
+        let vc: TradesViewController = UIStoryboard(storyboard: .main).instantiateViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @IBAction func didTapLoginButton(sender: AnyObject) {
-        login(user: usernameTextField.text ?? "",
-              password: passwordTextField.text ?? "")
+//        login(user: usernameTextField.text ?? "",
+//              password: passwordTextField.text ?? "")
+        goToNextScene()
     }
     
     @IBAction func didTapTestButton(sender: AnyObject) {
-        login(user: "user", password: "password")
+//        login(user: "user", password: "password")
+        goToNextScene()
     }
     
     @objc func editingChanged() {
