@@ -38,8 +38,8 @@ class APIService {
         req.start()
     }
     
-    static func getCoins(completion: @escaping (GetCoins?, APIResponseError?) -> ()) {
-        let req = APIRequest<GetCoins>(route: "coins",
+    static func getCoins(completion: @escaping ([String]?, APIResponseError?) -> ()) {
+        let req = APIRequest<[String]>(route: "coins",
                                    method: .get,
                                    parameters: nil)
         
@@ -49,8 +49,8 @@ class APIService {
         req.start()
     }
     
-    static func getTrades(coinCode: String, completion: @escaping (GetTrades?, APIResponseError?) -> ()) {
-        let req = APIRequest<GetTrades>(route: "trades/\(coinCode)",
+    static func getTrades(coinCode: String, completion: @escaping ([Trade]?, APIResponseError?) -> ()) {
+        let req = APIRequest<[Trade]>(route: "trade/\(coinCode)",
                                    method: .get,
                                    parameters: nil)
         
@@ -60,15 +60,15 @@ class APIService {
         req.start()
     }
     
-    static func addInvestment(coinCode: String, amount: Int, tradeId: Int, completion: @escaping (AddInvestment?, APIResponseError?) -> () ) {
+    static func addInvestment(coinCode: String, amount: Double, tradeId: Int, completion: @escaping (AddInvestment?, APIResponseError?) -> () ) {
         
         let params = [
-            "coinCode": coinCode,
+            "coin": coinCode,
             "amount": amount,
             "tradeId": tradeId
         ] as [String : Any]
         
-        let req = APIRequest<AddInvestment>(route: "investments",
+        let req = APIRequest<AddInvestment>(route: "invest",
                                    method: .post,
                                    parameters: params)
         req.identifier = "investments"

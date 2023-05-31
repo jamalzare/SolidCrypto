@@ -9,23 +9,13 @@ import Foundation
 import SystemConfiguration
 
 class Network {
-#if DEV_DEBUG || DEV_RELEASE
-    static let baseUrl: String = "https://wallet-test.paycore.com/"
-#else
-//    static let baseUrl: String = "https://cuzdan.bpn.com.tr/walletcoreservice/"
-    static let baseUrl: String = "https://wallet-test.kliq.com.tr/"
-#endif
+
+    static let baseUrl: String = "https://9f7f-95-70-169-93.ngrok-free.app/"
     
     static func getBasicHeaders() -> [String: String] {
         return [
-            "x-tenant-id": "CodeStrings.tenentId",
-            "x-device-id": "App.deviceId",
-            "x-source-channel": "Mobile",
-            
-            "accept": "text/plain",
-            "Content-Type": "application/json-patch+json",
-            "x-accept-language": "App.appLanguage"
-//            "x-accept-language": "tr-TR"
+            "accept": "*/*",
+            "Content-Type": "application/json",
         ]
     }
 }

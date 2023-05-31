@@ -8,5 +8,5 @@
 import Foundation
 
 struct GetCoins: Decodable {
-    let coins: [Coin]
+    let Response: [String]
 }

@@ -42,7 +42,7 @@ class LoginViewController: UIViewController {
     }
     
     func login(user: String, password: String) {
-        Loading.shared.show(title: "Login...")
+        Loading.shared.show(title: "Loging...")
         
         APIService.login(username: user, password: password) { [weak self] model, error in
             Loading.shared.hide()

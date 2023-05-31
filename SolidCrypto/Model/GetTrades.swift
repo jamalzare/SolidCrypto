@@ -8,8 +8,15 @@
 import Foundation
 
 struct Trade: Decodable {
-    let id: Int
+    let tradeId: Int
     let name: String
+    let upper: Double
+    let lower: Double
+    let margin: Double
+    
+    var displayName: String {
+        return "\(name) \(tradeId)"
+    }
 }
 
 struct GetTrades: Decodable {

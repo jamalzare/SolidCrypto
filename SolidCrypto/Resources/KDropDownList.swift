@@ -76,7 +76,9 @@ class KDropDownList: UIView {
     
     var selectedIndex: Int?
     var isOpen = false
-    var maxHeight: CGFloat = 1500
+    var maxHeight: CGFloat {
+        return itemHeight * 5 + 5
+    }
     weak var owner: UIView?
     
     var itemHeight: CGFloat = 53

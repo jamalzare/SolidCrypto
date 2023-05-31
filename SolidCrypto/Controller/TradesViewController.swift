@@ -7,12 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    
-    
-    
-}
-
+class ViewController: UIViewController {}
 
 class TradesViewController: UIViewController {
     
@@ -32,6 +27,7 @@ class TradesViewController: UIViewController {
         navigationController?.view.backgroundColor = .lightGrayBorder
         setNavigationBar()
         setup()
+        loadCoins()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,6 +101,7 @@ extension TradesViewController: UICollectionViewDataSource, UICollectionViewDele
         let cell: PageCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.delegate = self
 //        cell.layer.borderWidth = 1
+        
         cell.pageCellDelegate = self
         cell.frame = CGRect(origin: CGPoint(x: cell.frame.minX, y: 0), size: cell.frame.size)
         self.pageCell = cell
@@ -135,20 +132,88 @@ extension TradesViewController: UICollectionViewDataSource, UICollectionViewDele
 }
 
 extension TradesViewController: TradeCellDelegate, PageCellDelegate {
-    
-    func didChange(tab: Int) {
-        change(tab: tab)
+   
+    func didTapStartButton(coinCode: String, amount: Double, tradeId: Int) {
+        addInvestment(coinCode: coinCode, amount: amount, tradeId: tradeId)
     }
     
     
-    func didTapStartButton() {
-        
+    func didSelect(coin: String) {
+        loadTrades(coin: coin)
+    }
+    
+    
+    func didChange(tab: Int) {
+        change(tab: tab)
     }
     
     func didTapClearButton() {
         
     }
     
+}
+
+//MARK: APIS
+extension TradesViewController {
+    
+    func loadCoins() {
+        
+        Loading.shared.show(title: "Loging...")
+        
+        APIService.getCoins{ [weak self] model, error in
+            Loading.shared.hide()
+            
+            if let model = model {
+                self?.pageCell?.coins = model
+                self?.collectionView.reloadData()
+                
+            }
+            else if let _ = error {
+                self?.presentAlert(title: "Error", message: "Something went wrong!!")
+            }
+            
+        }
+    }
+    
+    func loadTrades(coin: String) {
+        
+        Loading.shared.show(title: "Loging...")
+        
+        APIService.getTrades(coinCode: coin){ [weak self] model, error in
+            Loading.shared.hide()
+            
+            if let model = model {
+                self?.pageCell?.trades = model
+                self?.collectionView.reloadData()
+                
+            }
+            else if let _ = error {
+                self?.presentAlert(title: "Error", message: "Something went wrong!!")
+            }
+            
+        }
+    }
+    
+    func addInvestment(coinCode: String, amount: Double, tradeId: Int) {
+        
+        Loading.shared.show(title: "Loging...")
+        
+        APIService.addInvestment(coinCode: coinCode, amount: amount, tradeId: tradeId) { [weak self] model, error in
+            Loading.shared.hide()
+            
+            if let model = model {
+//                self?.pageCell?.
+                print(model)
+//                self?.collectionView.reloadData()
+                self?.pageCell?.tradeCell?.descripitonLabel.text = model.description
+                
+            }
+            else if let _ = error {
+                self?.presentAlert(title: "Error", message: "Something went wrong!!")
+            }
+            
+        }
+    }
 }
 
 

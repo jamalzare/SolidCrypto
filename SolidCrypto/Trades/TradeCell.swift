@@ -9,22 +9,35 @@ import UIKit
 import Charts
 
 protocol TradeCellDelegate: AnyObject {
-    func didTapStartButton()
+    func didTapStartButton(coinCode: String, amount: Double, tradeId: Int)
     func didTapClearButton()
+    func didSelect(coin: String)
 }
 
 class TradeCell: UICollectionViewCell {
-
+    
     @IBOutlet weak var coinsList: KDropDownList!
     @IBOutlet weak var amountTextFiled: TextField!
     @IBOutlet weak var tradeList: KDropDownList!
-    @IBOutlet weak var startTrade: UIButton!
+    @IBOutlet weak var startTradeButton: Button!
     @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var descripitonLabel: UILabel!
     @IBOutlet weak var clearButton: UIButton!
     
     weak var delegate: TradeCellDelegate?
     private var enabledList: KDropDownList?
+    
+    var coins: [String]? {
+        didSet {
+            coinsList.reload()
+        }
+    }
+    
+    var trades: [Trade]? {
+        didSet {
+            tradeList.reload()
+        }
+    }
     
     override func awakeFromNib() {
         setup()
@@ -48,17 +61,30 @@ class TradeCell: UICollectionViewCell {
         lineChartView.rightAxis.enabled = false
         lineChartView.layer.cornerRadius = 8
         setData()
-        
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(didTap))
-//        addGestureRecognizer(tap)
+        startTradeButton.isEnabled = false
+        //        let tap = UITapGestureRecognizer(target: self, action: #selector(didTap))
+        //        addGestureRecognizer(tap)
+        amountTextFiled.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
     }
-
+    
     @IBAction func didTapStartButton() {
-        delegate?.didTapStartButton()
+        guard let coinIndex = coinsList.selectedIndex,
+              let coin = coins?[coinIndex],
+              let amount = Double(amountTextFiled.text ?? "") ,
+              let tradeIndex = tradeList.selectedIndex,
+              let trade = trades?[tradeIndex].tradeId else {
+            return    
+        }
+        delegate?.didTapStartButton(coinCode: coin, amount: amount, tradeId: trade)
     }
     
     @IBAction func didTapClearButton() {
+        coinsList.clearSelection()
+        tradeList.clearSelection()
+        amountTextFiled.preText = ""
+        enabledList?.dismiss()
         delegate?.didTapClearButton()
+        endEditing(true)
     }
     
     func setData() {
@@ -79,6 +105,21 @@ class TradeCell: UICollectionViewCell {
     @objc func didTap() {
         endEditing(true)
     }
+    
+    @objc func editingChanged() {
+        setButtonActivation()
+    }
+    
+    func setButtonActivation() {
+
+        if let _ = coinsList.selectedIndex,
+           Double(amountTextFiled.text ?? "") ?? 0 > 0,
+           let _ = tradeList.selectedIndex {
+            startTradeButton.isEnabled = true
+            return
+        }
+        startTradeButton.isEnabled = false
+    }
 }
 
 extension TradeCell: KDropDownListDelegate {
@@ -88,21 +129,30 @@ extension TradeCell: KDropDownListDelegate {
     
     func numberOfItems(in dropDownList: KDropDownList) -> Int {
         if dropDownList == coinsList {
-            return MockData().coinsList.count
+            //            return MockData().coinsList.count
+            tradeList.clearSelection()
+            setButtonActivation()
+            return coins?.count ?? 0
         }
-        return MockData().Trades.count
+        return trades?.count ?? 0
     }
     
     func KDropDownList(_ dropDownList: KDropDownList, titleFor index: Int) -> String {
         if dropDownList == coinsList {
-            return MockData().coinsList[index].name
+            //            return MockData().coinsList[index].name
+            return coins?[index] ?? ""
         }
         
-        return MockData().Trades[index].name
+        return trades?[index].displayName ?? ""
     }
     
     func KDropDownList(_ dropDownList: KDropDownList, didSelect index: Int) {
-            
+        if dropDownList == coinsList, let coin = coins?[index] {
+            //            loadTrades(coin: coin)
+            delegate?.didSelect(coin: coin)
+        }
+        
+        setButtonActivation()
     }
     
     func willOpen(_ dropDownList: KDropDownList) {
@@ -124,6 +174,5 @@ extension TradeCell: KDropDownListDelegate {
     func KDropDownList(_ dropDownList: KDropDownList, shouldSelect index: Int) -> Bool {
         return false
     }
-    
     
 }

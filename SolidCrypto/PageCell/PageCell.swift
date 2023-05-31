@@ -13,6 +13,20 @@ protocol PageCellDelegate: AnyObject {
 
 class PageCell: UICollectionViewCell {
     
+    var tradeCell: TradeCell?
+    
+    var coins: [String]? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
+    var trades: [Trade]? {
+        didSet {
+            tradeCell?.trades = trades
+        }
+    }
+    
     @IBOutlet weak var collectionView: UICollectionView!
     weak var delegate: TradeCellDelegate?
     weak var pageCellDelegate: PageCellDelegate?
@@ -47,8 +61,10 @@ extension PageCell: UICollectionViewDataSource, UICollectionViewDelegate, UIColl
         //        if indexPath.section == 0 {
         let cell: TradeCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.delegate = delegate
+        cell.coins = coins
         //                cell.layer.borderWidth = 1
         cell.frame = CGRect(origin: CGPoint(x: cell.frame.minX, y: 0), size: cell.frame.size)
+        self.tradeCell = cell
         return cell
         //        }
     }

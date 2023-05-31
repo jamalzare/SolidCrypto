@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -58,14 +59,14 @@
                                     <constraint firstAttribute="height" constant="200" id="znN-yv-TsD"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6sc-gf-Zwm">
-                                <rect key="frame" x="16" y="524" width="390" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6sc-gf-Zwm">
+                                <rect key="frame" x="16" y="524" width="390" height="20.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5OT-Ni-8yb" customClass="LightButton" customModule="SolidCrypto" customModuleProvider="target">
-                                <rect key="frame" x="16" y="561" width="390" height="58"/>
+                                <rect key="frame" x="16" y="560.33333333333337" width="390" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="k0B-4e-Dq7"/>
                                 </constraints>
@@ -117,7 +118,7 @@
                 <outlet property="coinsList" destination="odD-Ww-hEj" id="VFb-Yj-QmF"/>
                 <outlet property="descripitonLabel" destination="6sc-gf-Zwm" id="ThX-Aa-MMP"/>
                 <outlet property="lineChartView" destination="jta-vi-cFc" id="QYv-7L-9cg"/>
-                <outlet property="startTrade" destination="bK7-oR-XPj" id="1RS-yM-1Uf"/>
+                <outlet property="startTradeButton" destination="bK7-oR-XPj" id="1RS-yM-1Uf"/>
                 <outlet property="tradeList" destination="KEA-WZ-Iql" id="XoZ-cv-WWM"/>
             </connections>
             <point key="canvasLocation" x="259.5419847328244" y="277.11267605633805"/>
