@@ -111,8 +111,8 @@ extension TradesViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var height: CGFloat = collectionView.bounds.height
-        if height < 630 {
-            height = 630
+        if height < 650 {
+            height = 650
         }
         return CGSize(width: collectionView.bounds.width, height: height)
     }
@@ -175,6 +175,26 @@ extension TradesViewController {
         }
     }
     
+    func loadStatistics(coin: String) {
+        
+        Loading.shared.show(title: "Loging...")
+        
+        APIService.getStatistics(coin: coin){ [weak self] model, error in
+            Loading.shared.hide()
+            
+            if let model = model {
+                print(model)
+//                self?.collectionView.reloadData()
+                self?.pageCell?.tradeCell?.setData(with: model)
+                
+            }
+            else if let _ = error {
+                self?.presentAlert(title: "Error", message: "Something went wrong!!")
+            }
+            
+        }
+    }
+    
     func loadTrades(coin: String) {
         
         Loading.shared.show(title: "Loging...")
@@ -185,6 +205,7 @@ extension TradesViewController {
             if let model = model {
                 self?.pageCell?.trades = model
                 self?.collectionView.reloadData()
+                self?.loadStatistics(coin: coin)
                 
             }
             else if let _ = error {

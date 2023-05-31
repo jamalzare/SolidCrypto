@@ -60,7 +60,7 @@ class TradeCell: UICollectionViewCell {
         lineChartView.backgroundColor = .white
         lineChartView.rightAxis.enabled = false
         lineChartView.layer.cornerRadius = 8
-        setData()
+//        setData()/
         startTradeButton.isEnabled = false
         //        let tap = UITapGestureRecognizer(target: self, action: #selector(didTap))
         //        addGestureRecognizer(tap)
@@ -97,9 +97,29 @@ class TradeCell: UICollectionViewCell {
         let data = LineChartData(dataSet: set1)
         data.setDrawValues(false)
         lineChartView.data = data
-        lineChartView.xAxis.valueFormatter = ChartIndexAxisValueFormatter()
+//        lineChartView.xAxis.valueFormatter = ChartIndexAxisValueFormatter()
         lineChartView.xAxis.labelPosition = .bottom
-        lineChartView.leftAxis.valueFormatter = ChartLeftIndexAxisValueFormatter()
+//        lineChartView.leftAxis.valueFormatter = ChartLeftIndexAxisValueFormatter()
+    }
+    
+    func setData(with numbers:[Double]) {
+        var numberData: [ChartDataEntry] = []
+        for (index, value) in numbers.enumerated() {
+            numberData.append(ChartDataEntry(x: Double(index), y: value))
+        }
+        
+        let set1 = LineChartDataSet(entries: numberData, label: "")
+        set1.drawCirclesEnabled = false
+        set1.mode = .cubicBezier
+        set1.lineWidth = 3
+        set1.setColor(.systemGreen)
+        
+        let data = LineChartData(dataSet: set1)
+        data.setDrawValues(false)
+        lineChartView.data = data
+//        lineChartView.xAxis.valueFormatter = ChartIndexAxisValueFormatter()
+        lineChartView.xAxis.labelPosition = .bottom
+//        lineChartView.leftAxis.valueFormatter = ChartLeftIndexAxisValueFormatter()
     }
     
     @objc func didTap() {

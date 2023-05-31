@@ -29,8 +29,8 @@ class APIService {
     
     static func getBalance(completion: @escaping (Balance?, APIResponseError?) -> ()) {
         let req = APIRequest<Balance>(route: "balance",
-                                   method: .get,
-                                   parameters: nil)
+                                      method: .get,
+                                      parameters: nil)
         
         req.identifier = "balance"
         req.log = loggingEnabled
@@ -40,8 +40,8 @@ class APIService {
     
     static func getCoins(completion: @escaping ([String]?, APIResponseError?) -> ()) {
         let req = APIRequest<[String]>(route: "coins",
-                                   method: .get,
-                                   parameters: nil)
+                                       method: .get,
+                                       parameters: nil)
         
         req.identifier = "coins"
         req.log = loggingEnabled
@@ -51,8 +51,8 @@ class APIService {
     
     static func getTrades(coinCode: String, completion: @escaping ([Trade]?, APIResponseError?) -> ()) {
         let req = APIRequest<[Trade]>(route: "trade/\(coinCode)",
-                                   method: .get,
-                                   parameters: nil)
+                                      method: .get,
+                                      parameters: nil)
         
         req.identifier = "trades"
         req.log = loggingEnabled
@@ -69,8 +69,8 @@ class APIService {
         ] as [String : Any]
         
         let req = APIRequest<AddInvestment>(route: "invest",
-                                   method: .post,
-                                   parameters: params)
+                                            method: .post,
+                                            parameters: params)
         req.identifier = "investments"
         req.log = loggingEnabled
         req.completion = completion
@@ -79,10 +79,21 @@ class APIService {
     
     static func getInvestments(completion: @escaping (GetInvestment?, APIResponseError?) -> ()) {
         let req = APIRequest<GetInvestment>(route: "investments",
-                                   method: .get,
-                                   parameters: nil)
+                                            method: .get,
+                                            parameters: nil)
         
         req.identifier = "investments"
+        req.log = loggingEnabled
+        req.completion = completion
+        req.start()
+    }
+    
+    static func getStatistics(coin: String, completion: @escaping ([Double]?, APIResponseError?) -> ()) {
+        let req = APIRequest<[Double]>(route: "\(coin)",
+                                       method: .get,
+                                       parameters: nil,
+                                       baseUrl: "http://54.75.26.59:8080/history/")
+        req.identifier = "coins"
         req.log = loggingEnabled
         req.completion = completion
         req.start()
