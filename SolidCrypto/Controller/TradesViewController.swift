@@ -186,19 +186,21 @@ extension TradesViewController {
     
     func loadStatistics(coin: String) {
         
-        Loading.shared.show(title: "Loging...")
+//        Loading.shared.show(title: "Loging...")
         
         APIService.getStatistics(coin: coin){ [weak self] model, error in
-            Loading.shared.hide()
+//            Loading.shared.hide()
+            
+            self?.loop()
             
             if let model = model {
-                print(model)
+                
 //                self?.collectionView.reloadData()
                 self?.pageCell?.tradeCell?.setData(with: model)
                 
             }
             else if let _ = error {
-                self?.presentAlert(title: "Error", message: "Something went wrong!!")
+//                self?.presentAlert(title: "Error", message: "Something went wrong!!")
             }
             
         }
@@ -251,9 +253,11 @@ extension TradesViewController {
     
     func loop() {
         currentSeconds += 1
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [unowned self] in
-            self.title = "bingo \(currentSeconds)"
-            self.loop()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
+            self?.title = "bingo \(self?.currentSeconds)"
+//            self.loop()
+            print("contune")
+            self?.loadStatistics(coin: "BNBUSDT")
         }
     }
 }

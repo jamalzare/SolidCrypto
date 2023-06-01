@@ -120,6 +120,7 @@ class TradeCell: UICollectionViewCell {
         lineChartView.data = data
 //        lineChartView.xAxis.valueFormatter = ChartIndexAxisValueFormatter()
         lineChartView.xAxis.labelPosition = .bottom
+//        lineChartView.animate(xAxisDuration: 1)
 //        lineChartView.leftAxis.valueFormatter = ChartLeftIndexAxisValueFormatter()
     }
     
