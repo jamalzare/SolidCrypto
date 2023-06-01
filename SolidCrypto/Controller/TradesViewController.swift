@@ -18,7 +18,7 @@ class TradesViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var pageCell: PageCell?
-    private var otpTimer: Timer?
+    
     var currentSeconds = 0
     
     override func viewDidLoad() {
@@ -44,7 +44,6 @@ class TradesViewController: UIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        otpTimer?.invalidate()
     }
     
     private func setup() {
@@ -247,33 +246,8 @@ extension TradesViewController {
     }
 }
 
-//MARK: Timer
+//MARK: Loops
 extension TradesViewController {
-    func startTimer() {
-        
-        otpTimer?.invalidate()
-        
-        currentSeconds = 0
-        setTimerLabel()
-        
-        
-        otpTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {[weak self] timer in
-            guard let self = self else { return }
-            
-            self.currentSeconds  += 1
-            self.setTimerLabel()
-            self.loop()
-            
-        }
-    }
-    
-    func setTimerLabel() {
-//        title = "Total Account \(NSString(format: "%02d:%02d", Int(currentSeconds/60), currentSeconds % 60) as String)"
-        
-        if currentSeconds % 5 == 0 {
-//            title = "bingo"
-        }
-    }
     
     func loop() {
         currentSeconds += 1
