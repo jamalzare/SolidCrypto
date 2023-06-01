@@ -18,6 +18,8 @@ class TradesViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var pageCell: PageCell?
+    private var otpTimer: Timer?
+    var currentSeconds = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +32,19 @@ class TradesViewController: UIViewController {
         loadCoins()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        startTimer()
+        loop()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        otpTimer?.invalidate()
     }
     
     private func setup() {
@@ -235,4 +247,39 @@ extension TradesViewController {
     }
 }
 
-
+//MARK: Timer
+extension TradesViewController {
+    func startTimer() {
+        
+        otpTimer?.invalidate()
+        
+        currentSeconds = 0
+        setTimerLabel()
+        
+        
+        otpTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {[weak self] timer in
+            guard let self = self else { return }
+            
+            self.currentSeconds  += 1
+            self.setTimerLabel()
+            self.loop()
+            
+        }
+    }
+    
+    func setTimerLabel() {
+//        title = "Total Account \(NSString(format: "%02d:%02d", Int(currentSeconds/60), currentSeconds % 60) as String)"
+        
+        if currentSeconds % 5 == 0 {
+//            title = "bingo"
+        }
+    }
+    
+    func loop() {
+        currentSeconds += 1
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [unowned self] in
+            self.title = "bingo \(currentSeconds)"
+            self.loop()
+        }
+    }
+}
