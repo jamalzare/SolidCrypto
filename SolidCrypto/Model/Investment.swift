@@ -21,6 +21,7 @@ struct AddInvestment: Decodable {
     let entryTime: String
     let terminationTime: String
     let resultDiff: Double
+    
     var description: String {
         return "Investment with entry value: \(entryVal), wining limit: \(winLimit) and lose limit: \(loseLimit) is \(status)."
     }

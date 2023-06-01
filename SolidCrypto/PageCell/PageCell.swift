@@ -58,15 +58,12 @@ extension PageCell: UICollectionViewDataSource, UICollectionViewDelegate, UIColl
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        //        if indexPath.section == 0 {
         let cell: TradeCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.delegate = delegate
         cell.coins = coins
-        //                cell.layer.borderWidth = 1
         cell.frame = CGRect(origin: CGPoint(x: cell.frame.minX, y: 0), size: cell.frame.size)
         self.tradeCell = cell
         return cell
-        //        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -93,6 +90,7 @@ extension PageCell: UICollectionViewDataSource, UICollectionViewDelegate, UIColl
         tab = index
         print(tab)
         pageCellDelegate?.didChange(tab: tab)
+        tradeCell = collectionView.cellForItem(at: IndexPath(item: tab, section: 0)) as? TradeCell
         
     }
     

@@ -45,8 +45,6 @@ class TradesViewController: UIViewController {
         trade1Button.unSelectedStyle = false
         trade2Button.unSelectedStyle = true
         trade3Button.unSelectedStyle = true
-        //        collectionView.contentInset.top = 16
-        //        collectionView.contentInset.bottom = 16
     }
     
     @IBAction func didTapButtons(sender: AnyObject) {

@@ -75,6 +75,7 @@ class TradeCell: UICollectionViewCell {
               let trade = trades?[tradeIndex].tradeId else {
             return    
         }
+        endEditing(true)
         delegate?.didTapStartButton(coinCode: coin, amount: amount, tradeId: trade)
     }
     
