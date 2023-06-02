@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+var bigMe: Me?
+
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -76,8 +78,27 @@ class LoginViewController: UIViewController {
             if let model = model {
                 print(model)
                 UserDefaults.standard.setValue(model.token, forKey: "token")
+                self?.getMeData()
+            }
+            else if let error = error {
+                
+                self?.presentAlert(title: "Error", message: "your username and passowrd is wrong: \(error.message)")
+            }
+            
+        }
+    }
+    
+    func getMeData() {
+        Loading.shared.show(title: "Loging...")
+        
+        APIService.me() { [weak self] model, error in
+            Loading.shared.hide()
+            
+            if let model = model {
+                bigMe = model
                 self?.goToNextScene()
             }
+            
             else if let error = error {
                 self?.presentAlert(title: "Error", message: "your username and passowrd is wrong: \(error.message)")
             }

@@ -99,9 +99,9 @@ class APIService {
     
     static func getInvestmentStatus(investmentId: Int, completion: @escaping (AddInvestment?, APIResponseError?) -> ()) {
         let req = APIRequest<AddInvestment>(route: "status/\(investmentId)",
-                                      method: .get,
-                                      parameters: nil,
-                                      hasToken: true)
+                                            method: .get,
+                                            parameters: nil,
+                                            hasToken: true)
         
         req.identifier = "status"
         req.log = loggingEnabled
@@ -128,6 +128,18 @@ class APIService {
                                             hasToken: true)
         
         req.identifier = "delete investments"
+        req.log = loggingEnabled
+        req.completion = completion
+        req.start()
+    }
+    
+    static func me(completion: @escaping (Me?, APIResponseError?) -> ()) {
+        let req = APIRequest<Me>(route: "me",
+                                 method: .get,
+                                 parameters: nil,
+                                 hasToken: true)
+        
+        req.identifier = "me"
         req.log = loggingEnabled
         req.completion = completion
         req.start()

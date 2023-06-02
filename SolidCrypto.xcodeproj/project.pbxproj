@@ -70,6 +70,7 @@
 		8940359B2A0C341A008A5D78 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8940359A2A0C341A008A5D78 /* TextField.swift */; };
 		8940359F2A0C3C1F008A5D78 /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8940359D2A0C3C1F008A5D78 /* PageCell.swift */; };
 		894035A02A0C3C1F008A5D78 /* PageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8940359E2A0C3C1F008A5D78 /* PageCell.xib */; };
+		89E92C5E2A2A471A005447CF /* Me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E92C5D2A2A471A005447CF /* Me.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +139,7 @@
 		8940359A2A0C341A008A5D78 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		8940359D2A0C3C1F008A5D78 /* PageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
 		8940359E2A0C3C1F008A5D78 /* PageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PageCell.xib; sourceTree = "<group>"; };
+		89E92C5D2A2A471A005447CF /* Me.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Me.swift; sourceTree = "<group>"; };
 		91C0B548E674CD3D612D9D18 /* Pods-SolidCrypto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidCrypto.release.xcconfig"; path = "Target Support Files/Pods-SolidCrypto/Pods-SolidCrypto.release.xcconfig"; sourceTree = "<group>"; };
 		A160A5A12137CC4DD0580E00 /* Pods-SolidCrypto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidCrypto.debug.xcconfig"; path = "Target Support Files/Pods-SolidCrypto/Pods-SolidCrypto.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -285,6 +287,7 @@
 				892165252A18B1DF00A3F3B9 /* GetTrades.swift */,
 				892165272A18B2D100A3F3B9 /* Investment.swift */,
 				892165292A18B3CA00A3F3B9 /* GetInvestment.swift */,
+				89E92C5D2A2A471A005447CF /* Me.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				8940359B2A0C341A008A5D78 /* TextField.swift in Sources */,
 				892165242A18B12400A3F3B9 /* GetCoins.swift in Sources */,
 				8940354C2A0BE4EF008A5D78 /* TextStyle.swift in Sources */,
+				89E92C5E2A2A471A005447CF /* Me.swift in Sources */,
 				8940354A2A0BD992008A5D78 /* Extension.swift in Sources */,
 				894035352A0BC5C8008A5D78 /* TradesViewController.swift in Sources */,
 				894035312A0BC5C8008A5D78 /* AppDelegate.swift in Sources */,
@@ -636,7 +640,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 88MUA8FE52;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SolidCrypto/Info.plist;
@@ -669,7 +673,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 88MUA8FE52;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SolidCrypto/Info.plist;
