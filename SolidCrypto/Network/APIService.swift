@@ -78,9 +78,10 @@ class APIService {
         req.start()
     }
     
-    static func addInvestment(coinCode: String, amount: Double, tradeId: Int, completion: @escaping (AddInvestment?, APIResponseError?) -> () ) {
+    static func addInvestment(slot: String, coinCode: String, amount: Double, tradeId: Int, completion: @escaping (AddInvestment?, APIResponseError?) -> () ) {
         
         let params = [
+            "slot": slot,
             "coin": coinCode,
             "amount": amount,
             "tradeId": tradeId
@@ -96,6 +97,18 @@ class APIService {
         req.start()
     }
     
+    static func getInvestmentStatus(investmentId: Int, completion: @escaping (AddInvestment?, APIResponseError?) -> ()) {
+        let req = APIRequest<AddInvestment>(route: "status/\(investmentId)",
+                                      method: .get,
+                                      parameters: nil,
+                                      hasToken: true)
+        
+        req.identifier = "status"
+        req.log = loggingEnabled
+        req.completion = completion
+        req.start()
+    }
+    
     static func getInvestments(completion: @escaping (GetInvestment?, APIResponseError?) -> ()) {
         let req = APIRequest<GetInvestment>(route: "investments",
                                             method: .get,
@@ -103,6 +116,18 @@ class APIService {
                                             hasToken: true)
         
         req.identifier = "investments"
+        req.log = loggingEnabled
+        req.completion = completion
+        req.start()
+    }
+    
+    static func deleteInvestments(slot: String, completion: @escaping (GetInvestment?, APIResponseError?) -> ()) {
+        let req = APIRequest<GetInvestment>(route: "invest?slot=\(slot)",
+                                            method: .delete,
+                                            parameters: nil,
+                                            hasToken: true)
+        
+        req.identifier = "delete investments"
         req.log = loggingEnabled
         req.completion = completion
         req.start()

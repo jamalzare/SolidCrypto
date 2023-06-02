@@ -9,7 +9,7 @@ import UIKit
 import Charts
 
 protocol TradeCellDelegate: AnyObject {
-    func didTapStartButton(coinCode: String, amount: Double, tradeId: Int)
+    func didTapStartButton(slot: String, coinCode: String, amount: Double, tradeId: Int)
     func didTapClearButton()
     func didSelect(coin: String)
 }
@@ -26,13 +26,6 @@ class TradeCell: UICollectionViewCell {
     
     weak var delegate: TradeCellDelegate?
     private var enabledList: KDropDownList?
-    
-    var selectedCoin: String? {
-        if let index = coinsList.selectedIndex {
-            return coins?[index]
-        }
-        return nil
-    }
     
     var coins: [String]? {
         didSet {
@@ -67,7 +60,7 @@ class TradeCell: UICollectionViewCell {
         lineChartView.backgroundColor = .white
         lineChartView.rightAxis.enabled = false
         lineChartView.layer.cornerRadius = 8
-//        setData()/
+        //        setData()/
         startTradeButton.isEnabled = false
         //        let tap = UITapGestureRecognizer(target: self, action: #selector(didTap))
         //        addGestureRecognizer(tap)
@@ -80,10 +73,10 @@ class TradeCell: UICollectionViewCell {
               let amount = Double(amountTextFiled.text ?? "") ,
               let tradeIndex = tradeList.selectedIndex,
               let trade = trades?[tradeIndex].tradeId else {
-            return    
+            return
         }
         endEditing(true)
-        delegate?.didTapStartButton(coinCode: coin, amount: amount, tradeId: trade)
+        delegate?.didTapStartButton(slot: "SLOT_ONE", coinCode: coin, amount: amount, tradeId: trade)
     }
     
     @IBAction func didTapClearButton() {
@@ -105,9 +98,9 @@ class TradeCell: UICollectionViewCell {
         let data = LineChartData(dataSet: set1)
         data.setDrawValues(false)
         lineChartView.data = data
-//        lineChartView.xAxis.valueFormatter = ChartIndexAxisValueFormatter()
+        //        lineChartView.xAxis.valueFormatter = ChartIndexAxisValueFormatter()
         lineChartView.xAxis.labelPosition = .bottom
-//        lineChartView.leftAxis.valueFormatter = ChartLeftIndexAxisValueFormatter()
+        //        lineChartView.leftAxis.valueFormatter = ChartLeftIndexAxisValueFormatter()
     }
     
     func setData(with numbers:[Double]) {
@@ -125,10 +118,10 @@ class TradeCell: UICollectionViewCell {
         let data = LineChartData(dataSet: set1)
         data.setDrawValues(false)
         lineChartView.data = data
-//        lineChartView.xAxis.valueFormatter = ChartIndexAxisValueFormatter()
+        //        lineChartView.xAxis.valueFormatter = ChartIndexAxisValueFormatter()
         lineChartView.xAxis.labelPosition = .bottom
-//        lineChartView.animate(xAxisDuration: 1)
-//        lineChartView.leftAxis.valueFormatter = ChartLeftIndexAxisValueFormatter()
+        //        lineChartView.animate(xAxisDuration: 1)
+        //        lineChartView.leftAxis.valueFormatter = ChartLeftIndexAxisValueFormatter()
     }
     
     @objc func didTap() {
@@ -140,7 +133,7 @@ class TradeCell: UICollectionViewCell {
     }
     
     func setButtonActivation() {
-
+        
         if let _ = coinsList.selectedIndex,
            Double(amountTextFiled.text ?? "") ?? 0 > 0,
            let _ = tradeList.selectedIndex {
@@ -168,7 +161,6 @@ extension TradeCell: KDropDownListDelegate {
     
     func KDropDownList(_ dropDownList: KDropDownList, titleFor index: Int) -> String {
         if dropDownList == coinsList {
-            //            return MockData().coinsList[index].name
             return coins?[index] ?? ""
         }
         
@@ -179,6 +171,10 @@ extension TradeCell: KDropDownListDelegate {
         if dropDownList == coinsList, let coin = coins?[index] {
             //            loadTrades(coin: coin)
             delegate?.didSelect(coin: coin)
+        }
+        
+        if dropDownList == tradeList, let _ = trades?[index].tradeId {
+            
         }
         
         setButtonActivation()

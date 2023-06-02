@@ -11,32 +11,35 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="GPL-CK-srF">
+        <!--Tab Bar Controller-->
+        <scene sceneID="dEU-Ra-6kX">
             <objects>
-                <navigationController id="1Ni-Ew-Mqx" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wiX-yt-arU">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                <tabBarController storyboardIdentifier="UITabBarController" id="z9n-0F-cRk" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eTU-Oi-Vi2">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="w21-en-GmF"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="vid-Kn-QPr"/>
+                        <segue destination="tuQ-bO-WKm" kind="relationship" relationship="viewControllers" id="ymW-3r-pPO"/>
+                        <segue destination="7KA-bi-2Sa" kind="relationship" relationship="viewControllers" id="eSh-5V-5y8"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="X4w-zg-Ay5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kDC-Xq-qAk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-308" y="9"/>
+            <point key="canvasLocation" x="-647" y="-220"/>
         </scene>
-        <!--Trades View Controller-->
+        <!--Item-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="TradesViewController" id="BYZ-38-t0r" customClass="TradesViewController" customModule="SolidCrypto" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TradesViewController" id="BYZ-38-t0r" customClass="Trade1ViewController" customModule="SolidCrypto" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSp-Qn-QLV">
-                                <rect key="frame" x="16" y="119" width="361" height="45"/>
+                                <rect key="frame" x="16" y="75" width="361" height="45"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Oeg-Mg-bAu">
                                         <rect key="frame" x="4" y="4" width="353" height="37"/>
@@ -82,7 +85,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xX2-K4-zo4">
-                                <rect key="frame" x="0.0" y="164" width="393" height="654"/>
+                                <rect key="frame" x="0.0" y="120" width="393" height="649"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aUg-D1-CcW">
                                     <size key="itemSize" width="128" height="128"/>
@@ -114,6 +117,7 @@
                             <constraint firstItem="kSp-Qn-QLV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="c13-Pd-siu"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="hgR-00-zLd"/>
                     <navigationItem key="navigationItem" id="DJw-cs-1VJ"/>
                     <connections>
                         <outlet property="buttonsView" destination="kSp-Qn-QLV" id="x5P-K0-ItO"/>
@@ -125,7 +129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="421" y="4"/>
+            <point key="canvasLocation" x="349" y="-677"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OBz-k4-1ga">
@@ -141,7 +145,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DHS-y0-u1J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-309" y="696"/>
+            <point key="canvasLocation" x="-784" y="1380"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="vGp-bN-Bqp">
@@ -254,7 +258,209 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xbG-xr-l22" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="421" y="696"/>
+            <point key="canvasLocation" x="378" y="1380"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="UZE-a9-Fdq">
+            <objects>
+                <viewController storyboardIdentifier="Trade2ViewController" id="tuQ-bO-WKm" customClass="Trade2ViewController" customModule="SolidCrypto" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BrF-f1-jmT">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b4w-Aw-WRA">
+                                <rect key="frame" x="16" y="75" width="361" height="45"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="MkH-SK-UKt">
+                                        <rect key="frame" x="4" y="4" width="353" height="37"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLt-0Z-NIS" customClass="Button" customModule="SolidCrypto" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="115" height="37"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Trade 1">
+                                                    <color key="titleColor" name="AccentColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapButtonsWithSender:" destination="tuQ-bO-WKm" eventType="touchUpInside" id="ohz-yB-gbo"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pGT-uy-EBR" customClass="Button" customModule="SolidCrypto" customModuleProvider="target">
+                                                <rect key="frame" x="119" y="0.0" width="115" height="37"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Trade 2">
+                                                    <color key="titleColor" name="appBlue"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapButtonsWithSender:" destination="tuQ-bO-WKm" eventType="touchUpInside" id="2hK-cQ-wZ2"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4WO-NR-S8K" customClass="Button" customModule="SolidCrypto" customModuleProvider="target">
+                                                <rect key="frame" x="238" y="0.0" width="115" height="37"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Trade 3"/>
+                                                <connections>
+                                                    <action selector="didTapButtonsWithSender:" destination="tuQ-bO-WKm" eventType="touchUpInside" id="p0g-iy-xXX"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="MkH-SK-UKt" secondAttribute="trailing" constant="4" id="Ak3-pI-jso"/>
+                                    <constraint firstAttribute="bottom" secondItem="MkH-SK-UKt" secondAttribute="bottom" constant="4" id="DDT-nN-W7X"/>
+                                    <constraint firstItem="MkH-SK-UKt" firstAttribute="leading" secondItem="b4w-Aw-WRA" secondAttribute="leading" constant="4" id="DOV-Ef-Tfu"/>
+                                    <constraint firstItem="MkH-SK-UKt" firstAttribute="top" secondItem="b4w-Aw-WRA" secondAttribute="top" constant="4" id="HKO-2H-2uZ"/>
+                                    <constraint firstAttribute="height" constant="45" id="Oak-Ui-OD7"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="B9C-f6-PiX">
+                                <rect key="frame" x="0.0" y="120" width="393" height="649"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LRx-zj-384">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7zS-WB-EE3">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ofB-Rm-Mrl">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qHj-Lj-0jU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="B9C-f6-PiX" firstAttribute="leading" secondItem="qHj-Lj-0jU" secondAttribute="leading" id="Dvu-KA-Cz1"/>
+                            <constraint firstItem="B9C-f6-PiX" firstAttribute="top" secondItem="b4w-Aw-WRA" secondAttribute="bottom" id="Gv2-Aa-sla"/>
+                            <constraint firstItem="b4w-Aw-WRA" firstAttribute="leading" secondItem="BrF-f1-jmT" secondAttribute="leading" constant="16" id="Q2O-S1-PHT"/>
+                            <constraint firstAttribute="trailing" secondItem="b4w-Aw-WRA" secondAttribute="trailing" constant="16" id="RAI-gs-v9J"/>
+                            <constraint firstItem="qHj-Lj-0jU" firstAttribute="bottom" secondItem="B9C-f6-PiX" secondAttribute="bottom" id="RAs-Nh-f8B"/>
+                            <constraint firstItem="qHj-Lj-0jU" firstAttribute="trailing" secondItem="B9C-f6-PiX" secondAttribute="trailing" id="ytN-E8-EVD"/>
+                            <constraint firstItem="b4w-Aw-WRA" firstAttribute="top" secondItem="qHj-Lj-0jU" secondAttribute="top" constant="16" id="zJv-OB-Ycv"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="zOs-HH-456"/>
+                    <navigationItem key="navigationItem" id="CHy-Yw-P7R"/>
+                    <connections>
+                        <outlet property="buttonsView" destination="b4w-Aw-WRA" id="Cuh-dG-zby"/>
+                        <outlet property="collectionView" destination="B9C-f6-PiX" id="nMm-g0-YbZ"/>
+                        <outlet property="trade1Button" destination="TLt-0Z-NIS" id="lp6-RI-u3g"/>
+                        <outlet property="trade2Button" destination="pGT-uy-EBR" id="Iur-7J-01v"/>
+                        <outlet property="trade3Button" destination="4WO-NR-S8K" id="ZfS-qa-6ck"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pK2-r7-nZB" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="378" y="-22"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="1E1-EF-vbF">
+            <objects>
+                <viewController storyboardIdentifier="Trade3ViewController" id="7KA-bi-2Sa" customClass="Trade3ViewController" customModule="SolidCrypto" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KXG-RM-Rpq">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2zz-cd-uX5">
+                                <rect key="frame" x="16" y="75" width="361" height="45"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="vYh-EU-uIH">
+                                        <rect key="frame" x="4" y="4" width="353" height="37"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kwa-Rf-ZMM" customClass="Button" customModule="SolidCrypto" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="115" height="37"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Trade 1">
+                                                    <color key="titleColor" name="AccentColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapButtonsWithSender:" destination="7KA-bi-2Sa" eventType="touchUpInside" id="UTT-3V-Bo2"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XKZ-WQ-A0r" customClass="Button" customModule="SolidCrypto" customModuleProvider="target">
+                                                <rect key="frame" x="119" y="0.0" width="115" height="37"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Trade 2">
+                                                    <color key="titleColor" name="appBlue"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapButtonsWithSender:" destination="7KA-bi-2Sa" eventType="touchUpInside" id="o9I-Or-RCR"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uUY-hD-N0l" customClass="Button" customModule="SolidCrypto" customModuleProvider="target">
+                                                <rect key="frame" x="238" y="0.0" width="115" height="37"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Trade 3"/>
+                                                <connections>
+                                                    <action selector="didTapButtonsWithSender:" destination="7KA-bi-2Sa" eventType="touchUpInside" id="Co7-jS-pmR"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="2X9-CL-OTI"/>
+                                    <constraint firstAttribute="trailing" secondItem="vYh-EU-uIH" secondAttribute="trailing" constant="4" id="WMK-aQ-nCz"/>
+                                    <constraint firstItem="vYh-EU-uIH" firstAttribute="leading" secondItem="2zz-cd-uX5" secondAttribute="leading" constant="4" id="kez-l6-ris"/>
+                                    <constraint firstItem="vYh-EU-uIH" firstAttribute="top" secondItem="2zz-cd-uX5" secondAttribute="top" constant="4" id="lZe-Zn-E2F"/>
+                                    <constraint firstAttribute="bottom" secondItem="vYh-EU-uIH" secondAttribute="bottom" constant="4" id="rnK-e9-tsN"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Clr-Il-FWZ">
+                                <rect key="frame" x="0.0" y="120" width="393" height="649"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="W5E-sb-8pc">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="LBO-ZP-quv">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Qgz-Pj-wQZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="EsP-pt-xf5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="EsP-pt-xf5" firstAttribute="bottom" secondItem="Clr-Il-FWZ" secondAttribute="bottom" id="1jf-Ca-YNW"/>
+                            <constraint firstItem="2zz-cd-uX5" firstAttribute="top" secondItem="EsP-pt-xf5" secondAttribute="top" constant="16" id="64M-NL-yXu"/>
+                            <constraint firstItem="Clr-Il-FWZ" firstAttribute="top" secondItem="2zz-cd-uX5" secondAttribute="bottom" id="Aye-QN-kKw"/>
+                            <constraint firstItem="Clr-Il-FWZ" firstAttribute="leading" secondItem="EsP-pt-xf5" secondAttribute="leading" id="V3s-jt-lGR"/>
+                            <constraint firstAttribute="trailing" secondItem="2zz-cd-uX5" secondAttribute="trailing" constant="16" id="pqc-wP-eCh"/>
+                            <constraint firstItem="EsP-pt-xf5" firstAttribute="trailing" secondItem="Clr-Il-FWZ" secondAttribute="trailing" id="w6k-9C-zIG"/>
+                            <constraint firstItem="2zz-cd-uX5" firstAttribute="leading" secondItem="KXG-RM-Rpq" secondAttribute="leading" constant="16" id="yDL-9m-zrH"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="eZz-bh-Jcx"/>
+                    <navigationItem key="navigationItem" id="g08-JJ-hKA"/>
+                    <connections>
+                        <outlet property="buttonsView" destination="2zz-cd-uX5" id="uJG-UC-kPf"/>
+                        <outlet property="collectionView" destination="Clr-Il-FWZ" id="CEn-Mb-8dj"/>
+                        <outlet property="trade1Button" destination="kwa-Rf-ZMM" id="zo5-6G-Ih5"/>
+                        <outlet property="trade2Button" destination="XKZ-WQ-A0r" id="Lzg-AP-3bt"/>
+                        <outlet property="trade3Button" destination="uUY-hD-N0l" id="ZUs-fe-dKP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="46l-jR-SPD" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="378" y="635"/>
         </scene>
     </scenes>
     <resources>

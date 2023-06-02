@@ -86,7 +86,7 @@ class LoginViewController: UIViewController {
     }
     
     func goToNextScene() {
-        let vc: TradesViewController = UIStoryboard(storyboard: .main).instantiateViewController()
+        let vc: UITabBarController = UIStoryboard(storyboard: .main).instantiateViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
     

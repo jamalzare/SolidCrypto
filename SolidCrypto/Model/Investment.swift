@@ -13,7 +13,6 @@ struct AddInvestment: Decodable {
     let tradeId: Int
     let coinCode: String
     let amount: Double
-    let status: String
     let entryVal: Double
     let winLimit: Double
     let loseLimit: Double
@@ -21,8 +20,11 @@ struct AddInvestment: Decodable {
     let entryTime: String
     let terminationTime: String
     let resultDiff: Double
+    let succeeded: Bool
+    let finished: Bool
     
     var description: String {
-        return "Investment with entry value: \(entryVal), wining limit: \(winLimit) and lose limit: \(loseLimit) is \(status)."
+        return "Investment with entry value: \(entryVal), success state is \(succeeded) and finish state is \(finished)."
     }
+    
 }

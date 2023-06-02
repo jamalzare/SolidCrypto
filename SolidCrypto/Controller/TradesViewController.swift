@@ -9,7 +9,39 @@ import UIKit
 
 class ViewController: UIViewController {}
 
+class Trade1ViewController: TradesViewController {
+    override var index: Int {
+        return 0
+    }
+}
+class Trade2ViewController: TradesViewController {
+    override var index: Int {
+        return 1
+    }
+    
+    override var slot: String {
+        return "SLOT_TWO"
+    }
+}
+class Trade3ViewController: TradesViewController {
+    override var index: Int {
+        return 2
+    }
+    
+    override var slot: String {
+        return "SLOT_THREE"
+    }
+}
+
 class TradesViewController: UIViewController {
+    
+    var index: Int {
+        return 0
+    }
+    
+    var slot: String {
+       return "SLOT_ONE"
+    }
     
     @IBOutlet weak var buttonsView: UIView!
     @IBOutlet weak var trade1Button: Button!
@@ -18,8 +50,9 @@ class TradesViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var pageCell: PageCell?
-    
     var currentSeconds = 0
+    var selectedCoint: String?
+    var investment: AddInvestment?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +63,8 @@ class TradesViewController: UIViewController {
         setNavigationBar()
         setup()
         loadCoins()
+        tabBarController?.title = "Totals"
+//        tabBarController?.tabBar.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,7 +74,7 @@ class TradesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+            change(tab: index)
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -62,11 +97,10 @@ class TradesViewController: UIViewController {
         guard let tag = (sender as? UIView)?.tag else { return }
         let index = IndexPath(item: tag, section: 0)
         
-      change(tab: tag)
+        change(tab: tag)
         print(index)
-//        collectionView.layer.borderWidth = 2
-//        collectionView.layer.borderColor = UIColor.red.cgColor
-        pageCell?.collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+        tabBarController?.selectedIndex = tag
+        
     }
     
     func change(tab: Int) {
@@ -105,10 +139,8 @@ extension TradesViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        //        if indexPath.section == 0 {
         let cell: PageCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.delegate = self
-//        cell.layer.borderWidth = 1
         
         cell.pageCellDelegate = self
         cell.frame = CGRect(origin: CGPoint(x: cell.frame.minX, y: 0), size: cell.frame.size)
@@ -141,12 +173,13 @@ extension TradesViewController: UICollectionViewDataSource, UICollectionViewDele
 
 extension TradesViewController: TradeCellDelegate, PageCellDelegate {
    
-    func didTapStartButton(coinCode: String, amount: Double, tradeId: Int) {
-        addInvestment(coinCode: coinCode, amount: amount, tradeId: tradeId)
+    func didTapStartButton(slot: String, coinCode: String, amount: Double, tradeId: Int) {
+        addInvestment(slot: slot, coinCode: coinCode, amount: amount, tradeId: tradeId)
     }
     
     
     func didSelect(coin: String) {
+        selectedCoint = coin
         loadTrades(coin: coin)
         loadStatistics(coin: coin)
     }
@@ -158,7 +191,7 @@ extension TradesViewController: TradeCellDelegate, PageCellDelegate {
     }
     
     func didTapClearButton() {
-        loadStatistics(coin: "BNBUSDT")
+        deleteInvestment()
     }
     
 }
@@ -185,28 +218,6 @@ extension TradesViewController {
         }
     }
     
-    func loadStatistics(coin: String) {
-        
-//        Loading.shared.show(title: "Loging...")
-        
-        APIService.getStatistics(coin: coin){ [weak self] model, error in
-//            Loading.shared.hide()
-            
-            self?.updateCoinDiagram()
-            
-            if let model = model {
-                
-//                self?.collectionView.reloadData()
-                self?.pageCell?.currentCell?.setData(with: model)
-                
-            }
-            else if let _ = error {
-//                self?.presentAlert(title: "Error", message: "Something went wrong!!")
-            }
-            
-        }
-    }
-    
     func loadTrades(coin: String) {
         
         Loading.shared.show(title: "Loging...")
@@ -227,18 +238,21 @@ extension TradesViewController {
         }
     }
     
-    func addInvestment(coinCode: String, amount: Double, tradeId: Int) {
+    func addInvestment(slot: String,coinCode: String, amount: Double, tradeId: Int) {
         
         Loading.shared.show(title: "Loging...")
         
-        APIService.addInvestment(coinCode: coinCode, amount: amount, tradeId: tradeId) { [weak self] model, error in
+        APIService.addInvestment(slot: self.slot,
+                                 coinCode: coinCode,
+                                 amount: amount,
+                                 tradeId: tradeId) { [weak self] model, error in
             Loading.shared.hide()
             
             if let model = model {
-//                self?.pageCell?.
                 print(model)
-//                self?.collectionView.reloadData()
-                self?.pageCell?.currentCell?.descripitonLabel.text = model.description
+                self?.investment = model
+                self?.pageCell?.tradeCell?.descripitonLabel.text = model.description
+                self?.updateInvestment()
                 
             }
             else if let _ = error {
@@ -252,16 +266,70 @@ extension TradesViewController {
 //MARK: Loops
 extension TradesViewController {
     
+    func loadStatistics(coin: String) {
+        
+        APIService.getStatistics(coin: coin){ [weak self] model, error in
+            
+            self?.updateCoinDiagram()
+            
+            if let model = model {
+                self?.pageCell?.tradeCell?.setData(with: model)
+            }
+            else if let _ = error {
+            }
+            
+        }
+    }
+    
     func updateCoinDiagram() {
         currentSeconds += 1
-        let times = "\(currentSeconds)"
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
-            self?.title = "Total Account timer:\(times)"
-            print("contune")
-//            guard let coin = self?.pageCell?.currentCell?.selectedCoin else { return }
-            let coin = self?.pageCell?.currentCell?.selectedCoin ?? ""
+
+            guard let coin = self?.selectedCoint else {
+                return
+            }
             self?.loadStatistics(coin: coin)
+            print(coin)
+        }
+    }
+    
+    func deleteInvestment() {
+        Loading.shared.show(title: "Loging...")
+        
+        APIService.deleteInvestments(slot: self.slot) { [weak self] model, error in
+            Loading.shared.hide()
+            
+            if let _ = model {
+                self?.investment = nil
+                self?.pageCell?.tradeCell?.descripitonLabel.text = "your investment has been deleted."
+            }
+            else if let _ = error {
+                self?.presentAlert(title: "Error", message: "Something went wrong!!")
+            }
+            
+        }
+    }
+    
+    func checkInvestStatus() {
+        guard let investment = self.investment else { return }
+        APIService.getInvestmentStatus(investmentId: investment.investmentId) { [weak self] model, error in
+            
+            self?.updateInvestment()
+            if let model = model {
+                self?.investment = model
+                self?.pageCell?.tradeCell?.descripitonLabel.text = model.description
+            }
+            else if let _ = error {
+            }
+            
+        }
+    }
+    
+    func updateInvestment() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
+            guard let _ = self?.investment else { return }
+            self?.checkInvestStatus()
         }
     }
 }
