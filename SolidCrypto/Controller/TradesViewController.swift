@@ -253,9 +253,9 @@ extension TradesViewController {
     
     func loop() {
         currentSeconds += 1
+        let times = "\(currentSeconds)"
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
-            self?.title = "bingo \(self?.currentSeconds)"
-//            self.loop()
+            self?.title = "Total Account timer:\(times)"
             print("contune")
             self?.loadStatistics(coin: "BNBUSDT")
         }
