@@ -175,33 +175,50 @@
                                             <constraint firstAttribute="height" constant="58" id="N15-2m-6mv"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Signup">
+                                            <color key="titleColor" name="appBlackText"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapSignButtonWithSender:" destination="ubB-rC-xLy" eventType="touchUpInside" id="sWm-fR-kOs"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uve-wl-ThK" customClass="Button" customModule="SolidCrypto" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="284" width="361" height="58"/>
+                                        <color key="backgroundColor" name="theme"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="58" id="z15-vk-GTq"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Login">
                                             <color key="titleColor" name="appBlackText"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapLoginButtonWithSender:" destination="ubB-rC-xLy" eventType="touchUpInside" id="bgr-Ij-9uc"/>
+                                            <action selector="didTapLoginButtonWithSender:" destination="ubB-rC-xLy" eventType="touchUpInside" id="UbF-Uc-eLm"/>
+                                            <action selector="didTapTestButtonWithSender:" destination="ubB-rC-xLy" eventType="touchUpInside" id="LS5-FO-xZL"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uve-wl-ThK" customClass="Button" customModule="SolidCrypto" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="294" width="361" height="58"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaV-nT-cCo" customClass="Button" customModule="SolidCrypto" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="374" width="361" height="58"/>
                                         <color key="backgroundColor" name="theme"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="58" id="z15-vk-GTq"/>
+                                            <constraint firstAttribute="height" constant="58" id="UaD-t1-LRL"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Test Login">
                                             <color key="titleColor" name="appBlackText"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapTestButtonWithSender:" destination="ubB-rC-xLy" eventType="touchUpInside" id="LS5-FO-xZL"/>
+                                            <action selector="didTapTestButtonWithSender:" destination="ubB-rC-xLy" eventType="touchUpInside" id="N4M-bY-f3z"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="Uve-wl-ThK" firstAttribute="top" secondItem="a0J-rc-QLP" secondAttribute="bottom" constant="32" id="0yN-QX-WQI"/>
+                                    <constraint firstItem="Uve-wl-ThK" firstAttribute="top" secondItem="a0J-rc-QLP" secondAttribute="bottom" constant="22" id="0yN-QX-WQI"/>
+                                    <constraint firstItem="IaV-nT-cCo" firstAttribute="leading" secondItem="req-2v-mFB" secondAttribute="leading" constant="16" id="4Hw-oQ-tTH"/>
                                     <constraint firstItem="v7U-RR-hlu" firstAttribute="top" secondItem="dZT-Kl-bML" secondAttribute="bottom" constant="32" id="6sC-Lv-YxS"/>
                                     <constraint firstAttribute="trailing" secondItem="a0J-rc-QLP" secondAttribute="trailing" constant="16" id="BLg-wP-185"/>
+                                    <constraint firstItem="IaV-nT-cCo" firstAttribute="top" secondItem="Uve-wl-ThK" secondAttribute="bottom" constant="32" id="GTo-sF-UjT"/>
                                     <constraint firstItem="dZT-Kl-bML" firstAttribute="top" secondItem="req-2v-mFB" secondAttribute="top" constant="32" id="Z4H-5V-70p"/>
                                     <constraint firstAttribute="trailing" secondItem="Uve-wl-ThK" secondAttribute="trailing" constant="16" id="ZeP-Tl-zeF"/>
                                     <constraint firstItem="dZT-Kl-bML" firstAttribute="leading" secondItem="req-2v-mFB" secondAttribute="leading" constant="16" id="a3V-b8-JER"/>
@@ -210,6 +227,7 @@
                                     <constraint firstItem="a0J-rc-QLP" firstAttribute="leading" secondItem="req-2v-mFB" secondAttribute="leading" constant="16" id="iOs-JO-Tls"/>
                                     <constraint firstAttribute="trailing" secondItem="dZT-Kl-bML" secondAttribute="trailing" constant="16" id="k8o-cv-7GF"/>
                                     <constraint firstAttribute="trailing" secondItem="v7U-RR-hlu" secondAttribute="trailing" constant="16" id="mFF-2o-0z3"/>
+                                    <constraint firstAttribute="trailing" secondItem="IaV-nT-cCo" secondAttribute="trailing" constant="16" id="oS4-Lt-7Rk"/>
                                     <constraint firstItem="Uve-wl-ThK" firstAttribute="leading" secondItem="req-2v-mFB" secondAttribute="leading" constant="16" id="r5M-Ei-F98"/>
                                     <constraint firstItem="a0J-rc-QLP" firstAttribute="leading" secondItem="req-2v-mFB" secondAttribute="leading" constant="16" id="sZX-oB-3oJ"/>
                                     <constraint firstItem="v7U-RR-hlu" firstAttribute="leading" secondItem="req-2v-mFB" secondAttribute="leading" constant="16" id="u1Q-Id-9av"/>
@@ -227,9 +245,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="vAM-TA-69n"/>
                     <connections>
-                        <outlet property="loginButton" destination="a0J-rc-QLP" id="3OX-9E-nT5"/>
+                        <outlet property="loginButton" destination="Uve-wl-ThK" id="4Dr-4T-NcK"/>
                         <outlet property="passwordTextField" destination="v7U-RR-hlu" id="X9J-uZ-VY3"/>
-                        <outlet property="testButton" destination="Uve-wl-ThK" id="QkJ-4e-964"/>
+                        <outlet property="signupButton" destination="a0J-rc-QLP" id="fjO-Sj-fZW"/>
+                        <outlet property="testButton" destination="IaV-nT-cCo" id="FbJ-Ri-GXL"/>
                         <outlet property="usernameTextField" destination="dZT-Kl-bML" id="nQ9-Ea-2VM"/>
                     </connections>
                 </viewController>

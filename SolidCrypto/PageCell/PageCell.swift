@@ -27,6 +27,10 @@ class PageCell: UICollectionViewCell {
         }
     }
     
+    var currentCell: TradeCell? {
+        return collectionView.visibleCells[0] as? TradeCell
+    }
+    
     @IBOutlet weak var collectionView: UICollectionView!
     weak var delegate: TradeCellDelegate?
     weak var pageCellDelegate: PageCellDelegate?
@@ -49,11 +53,11 @@ class PageCell: UICollectionViewCell {
 extension PageCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -90,8 +94,9 @@ extension PageCell: UICollectionViewDataSource, UICollectionViewDelegate, UIColl
         tab = index
         print(tab)
         pageCellDelegate?.didChange(tab: tab)
-        tradeCell = collectionView.cellForItem(at: IndexPath(item: tab, section: 0)) as? TradeCell
         
     }
+    
+
     
 }

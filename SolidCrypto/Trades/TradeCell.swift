@@ -27,6 +27,13 @@ class TradeCell: UICollectionViewCell {
     weak var delegate: TradeCellDelegate?
     private var enabledList: KDropDownList?
     
+    var selectedCoin: String? {
+        if let index = coinsList.selectedIndex {
+            return coins?[index]
+        }
+        return nil
+    }
+    
     var coins: [String]? {
         didSet {
             coinsList.reload()

@@ -11,10 +11,26 @@ class APIService {
     
     static var loggingEnabled = true
     
+    static func signup(username: String, password: String, completion: @escaping (Login?, APIResponseError?) -> () ) {
+        
+        let params = [
+            "email": username,
+            "password": password,
+        ]
+        
+        let req = APIRequest<Login>(route: "sign-up",
+                                    method: .post,
+                                    parameters: params)
+        req.identifier = "sign-up"
+        req.log = loggingEnabled
+        req.completion = completion
+        req.start()
+    }
+    
     static func login(username: String, password: String, completion: @escaping (Login?, APIResponseError?) -> () ) {
         
         let params = [
-            "username": username,
+            "email": username,
             "password": password,
         ]
         
@@ -41,7 +57,8 @@ class APIService {
     static func getCoins(completion: @escaping ([String]?, APIResponseError?) -> ()) {
         let req = APIRequest<[String]>(route: "coins",
                                        method: .get,
-                                       parameters: nil)
+                                       parameters: nil,
+                                       hasToken: true)
         
         req.identifier = "coins"
         req.log = loggingEnabled
@@ -52,7 +69,8 @@ class APIService {
     static func getTrades(coinCode: String, completion: @escaping ([Trade]?, APIResponseError?) -> ()) {
         let req = APIRequest<[Trade]>(route: "trade/\(coinCode)",
                                       method: .get,
-                                      parameters: nil)
+                                      parameters: nil,
+                                      hasToken: true)
         
         req.identifier = "trades"
         req.log = loggingEnabled
@@ -70,7 +88,8 @@ class APIService {
         
         let req = APIRequest<AddInvestment>(route: "invest",
                                             method: .post,
-                                            parameters: params)
+                                            parameters: params,
+                                            hasToken: true)
         req.identifier = "investments"
         req.log = loggingEnabled
         req.completion = completion
@@ -80,7 +99,8 @@ class APIService {
     static func getInvestments(completion: @escaping (GetInvestment?, APIResponseError?) -> ()) {
         let req = APIRequest<GetInvestment>(route: "investments",
                                             method: .get,
-                                            parameters: nil)
+                                            parameters: nil,
+                                            hasToken: true)
         
         req.identifier = "investments"
         req.log = loggingEnabled

@@ -15,7 +15,7 @@ struct Trade: Decodable {
     let margin: Double
     
     var displayName: String {
-        return "\(name) \(tradeId)"
+        return "\(name)"
     }
 }
 

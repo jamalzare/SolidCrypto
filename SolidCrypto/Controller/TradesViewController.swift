@@ -34,8 +34,7 @@ class TradesViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        startTimer()
-        loop()
+//        loop()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,7 +60,7 @@ class TradesViewController: UIViewController {
     @IBAction func didTapButtons(sender: AnyObject) {
         
         guard let tag = (sender as? UIView)?.tag else { return }
-        let index = IndexPath(item: 0, section: tag)
+        let index = IndexPath(item: tag, section: 0)
         
       change(tab: tag)
         print(index)
@@ -149,15 +148,17 @@ extension TradesViewController: TradeCellDelegate, PageCellDelegate {
     
     func didSelect(coin: String) {
         loadTrades(coin: coin)
+        loadStatistics(coin: coin)
     }
     
     
     func didChange(tab: Int) {
         change(tab: tab)
+        view.endEditing(true)
     }
     
     func didTapClearButton() {
-        
+        loadStatistics(coin: "BNBUSDT")
     }
     
 }
@@ -191,12 +192,12 @@ extension TradesViewController {
         APIService.getStatistics(coin: coin){ [weak self] model, error in
 //            Loading.shared.hide()
             
-            self?.loop()
+            self?.updateCoinDiagram()
             
             if let model = model {
                 
 //                self?.collectionView.reloadData()
-                self?.pageCell?.tradeCell?.setData(with: model)
+                self?.pageCell?.currentCell?.setData(with: model)
                 
             }
             else if let _ = error {
@@ -216,7 +217,7 @@ extension TradesViewController {
             if let model = model {
                 self?.pageCell?.trades = model
                 self?.collectionView.reloadData()
-                self?.loadStatistics(coin: coin)
+//                self?.loadStatistics(coin: coin)
                 
             }
             else if let _ = error {
@@ -237,7 +238,7 @@ extension TradesViewController {
 //                self?.pageCell?.
                 print(model)
 //                self?.collectionView.reloadData()
-                self?.pageCell?.tradeCell?.descripitonLabel.text = model.description
+                self?.pageCell?.currentCell?.descripitonLabel.text = model.description
                 
             }
             else if let _ = error {
@@ -251,13 +252,16 @@ extension TradesViewController {
 //MARK: Loops
 extension TradesViewController {
     
-    func loop() {
+    func updateCoinDiagram() {
         currentSeconds += 1
         let times = "\(currentSeconds)"
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
             self?.title = "Total Account timer:\(times)"
             print("contune")
-            self?.loadStatistics(coin: "BNBUSDT")
+//            guard let coin = self?.pageCell?.currentCell?.selectedCoin else { return }
+            let coin = self?.pageCell?.currentCell?.selectedCoin ?? ""
+            self?.loadStatistics(coin: coin)
         }
     }
 }

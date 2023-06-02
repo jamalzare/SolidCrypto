@@ -10,12 +10,12 @@ import SystemConfiguration
 
 class Network {
 
-    static let baseUrl: String = "https://9f7f-95-70-169-93.ngrok-free.app/"
+    static let baseUrl: String = "https://a2ae-95-70-169-93.ngrok-free.app/"
     
     static func getBasicHeaders() -> [String: String] {
         return [
             "accept": "*/*",
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
         ]
     }
 }
@@ -154,8 +154,8 @@ class APIRequest<T: Decodable> {
     
     func setToken() {
         if hasToken {
-//            let token = Persistence.accessToken ?? ""
-//            self.headers?[CodeStrings.authorization] = "\(CodeStrings.bearer) \(token)"
+            let token = UserDefaults.standard.string(forKey: "token") ?? ""
+            self.headers?[CodeStrings.authorization] = "\(CodeStrings.bearer) \(token)"
         }
         urlRequest = createURLRequest()
     }

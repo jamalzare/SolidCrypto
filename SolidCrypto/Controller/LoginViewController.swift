@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var usernameTextField: TextField!
     @IBOutlet weak var passwordTextField: TextField!
+    @IBOutlet weak var signupButton: Button!
     @IBOutlet weak var loginButton: Button!
     @IBOutlet weak var testButton: Button!
     
@@ -34,11 +35,36 @@ class LoginViewController: UIViewController {
         title = "Welcome"
         setNavigationBar()
         loginButton.unSelectedStyle = false
+        signupButton.unSelectedStyle = false
         usernameTextField.placeholder = "User Name"
         passwordTextField.placeholder = "Password"
         usernameTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         loginButton.isEnabled = false
+        signupButton.isEnabled = false
+    }
+    
+    func clearTextFields() {
+        usernameTextField.preText = ""
+        passwordTextField.preText = ""
+    }
+    
+    func signup(user: String, password: String) {
+        Loading.shared.show(title: "Loging...")
+        
+        APIService.signup(username: user, password: password) { [weak self] model, error in
+            Loading.shared.hide()
+            
+            if let model = model {
+                print(model)
+                UserDefaults.standard.setValue(model.token, forKey: "token")
+                self?.goToNextScene()
+            }
+            else if let error = error {
+                self?.presentAlert(title: "Error", message: "Something went wrong: \(error.message)")
+            }
+            
+        }
     }
     
     func login(user: String, password: String) {
@@ -49,10 +75,11 @@ class LoginViewController: UIViewController {
             
             if let model = model {
                 print(model)
+                UserDefaults.standard.setValue(model.token, forKey: "token")
                 self?.goToNextScene()
             }
             else if let error = error {
-                self?.presentAlert(title: "Error", message: "your username and passowrd is wrong\(error.message)")
+                self?.presentAlert(title: "Error", message: "your username and passowrd is wrong: \(error.message)")
             }
             
         }
@@ -63,21 +90,29 @@ class LoginViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @IBAction func didTapLoginButton(sender: AnyObject) {
-//        login(user: usernameTextField.text ?? "",
-//              password: passwordTextField.text ?? "")
-        goToNextScene()
+    @IBAction func didTapSignButton(sender: AnyObject) {
+        signup(user: usernameTextField.text ?? "",
+              password: passwordTextField.text ?? "")
+        view.endEditing(true)
     }
     
+    @IBAction func didTapLoginButton(sender: AnyObject) {
+        login(user: usernameTextField.text ?? "",
+              password: passwordTextField.text ?? "")
+        view.endEditing(true)
+    }
+    
+    
     @IBAction func didTapTestButton(sender: AnyObject) {
-//        login(user: "user", password: "password")
-        goToNextScene()
+        login(user: "jamal.zare@solidict.com", password: "j1234")
+        view.endEditing(true)
     }
     
     @objc func editingChanged() {
         let username = usernameTextField.pureTextCount > 0
         let password = passwordTextField.pureTextCount > 0
         loginButton.isEnabled = username && password
+        signupButton.isEnabled = loginButton.isEnabled
     }
 }
 

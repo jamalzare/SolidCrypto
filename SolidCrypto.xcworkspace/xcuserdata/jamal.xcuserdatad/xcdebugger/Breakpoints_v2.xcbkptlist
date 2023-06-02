@@ -23,16 +23,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3C20C200-93AF-48BC-BB1C-E77099403409"
-            shouldBeEnabled = "Yes"
+            uuid = "A1B9BC58-3961-422B-8438-B952A5E71D6D"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SolidCrypto/Network/APIClient.swift"
+            filePath = "SolidCrypto/Controller/TradesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "handleRespone(request:data:response:error:)"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
+            landmarkName = "loadStatistics(coin:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
