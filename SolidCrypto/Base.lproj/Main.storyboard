@@ -183,7 +183,7 @@
                                             <color key="titleColor" name="appBlackText"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapSignButtonWithSender:" destination="ubB-rC-xLy" eventType="touchUpInside" id="sWm-fR-kOs"/>
+                                            <action selector="didTapSignButtonWithSender:" destination="ubB-rC-xLy" eventType="touchUpInside" id="vlJ-Vu-jje"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uve-wl-ThK" customClass="Button" customModule="SolidCrypto" customModuleProvider="target">
@@ -197,8 +197,7 @@
                                             <color key="titleColor" name="appBlackText"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapLoginButtonWithSender:" destination="ubB-rC-xLy" eventType="touchUpInside" id="UbF-Uc-eLm"/>
-                                            <action selector="didTapTestButtonWithSender:" destination="ubB-rC-xLy" eventType="touchUpInside" id="LS5-FO-xZL"/>
+                                            <action selector="didTapLoginButtonWithSender:" destination="ubB-rC-xLy" eventType="touchUpInside" id="k1m-fQ-F0l"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaV-nT-cCo" customClass="Button" customModule="SolidCrypto" customModuleProvider="target">
@@ -212,7 +211,7 @@
                                             <color key="titleColor" name="appBlackText"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapTestButtonWithSender:" destination="ubB-rC-xLy" eventType="touchUpInside" id="N4M-bY-f3z"/>
+                                            <action selector="didTapTestButtonWithSender:" destination="ubB-rC-xLy" eventType="touchUpInside" id="Pcf-k8-yjV"/>
                                         </connections>
                                     </button>
                                 </subviews>

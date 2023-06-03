@@ -12,7 +12,6 @@ var bigMe: Me?
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var usernameTextField: TextField!
     @IBOutlet weak var passwordTextField: TextField!
     @IBOutlet weak var signupButton: Button!
@@ -52,7 +51,7 @@ class LoginViewController: UIViewController {
     }
     
     func signup(user: String, password: String) {
-        Loading.shared.show(title: "Loging...")
+        Loading.shared.show(title: "Loading...")
         
         APIService.signup(username: user, password: password) { [weak self] model, error in
             Loading.shared.hide()
@@ -70,7 +69,7 @@ class LoginViewController: UIViewController {
     }
     
     func login(user: String, password: String) {
-        Loading.shared.show(title: "Loging...")
+        Loading.shared.show(title: "Loading...")
         
         APIService.login(username: user, password: password) { [weak self] model, error in
             Loading.shared.hide()
@@ -89,7 +88,7 @@ class LoginViewController: UIViewController {
     }
     
     func getMeData() {
-        Loading.shared.show(title: "Loging...")
+        Loading.shared.show(title: "Loading...")
         
         APIService.me() { [weak self] model, error in
             Loading.shared.hide()

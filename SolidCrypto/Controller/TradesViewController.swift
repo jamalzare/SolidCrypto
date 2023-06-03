@@ -224,7 +224,7 @@ extension TradesViewController {
     
     func loadCoins() {
         
-        Loading.shared.show(title: "Loging...")
+        Loading.shared.show(title: "Loading...")
         
         APIService.getCoins{ [weak self] model, error in
             Loading.shared.hide()
@@ -243,7 +243,7 @@ extension TradesViewController {
     
     func loadTrades(coin: String) {
         
-        Loading.shared.show(title: "Loging...")
+        Loading.shared.show(title: "Loading...")
         
         APIService.getTrades(coinCode: coin){ [weak self] model, error in
             Loading.shared.hide()
@@ -263,7 +263,7 @@ extension TradesViewController {
     
     func addInvestment(slot: String,coinCode: String, amount: Double, tradeId: Int) {
         
-        Loading.shared.show(title: "Loging...")
+        Loading.shared.show(title: "Loading...")
         
         APIService.addInvestment(slot: self.slot,
                                  coinCode: coinCode,
@@ -317,7 +317,7 @@ extension TradesViewController {
     }
     
     func deleteInvestment() {
-        Loading.shared.show(title: "Loging...")
+        Loading.shared.show(title: "Loading...")
         
         APIService.deleteInvestments(slot: self.slot) { [weak self] model, error in
             Loading.shared.hide()
