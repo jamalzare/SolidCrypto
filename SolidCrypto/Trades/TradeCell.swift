@@ -27,6 +27,22 @@ class TradeCell: UICollectionViewCell {
     weak var delegate: TradeCellDelegate?
     private var enabledList: KDropDownList?
     
+    var selectedCoin: String? {
+        didSet {
+            if selectedCoin != nil {
+                coinsList.setSelectedItem()
+            }
+        }
+    }
+    
+    var selectedTradeId: Int? {
+        didSet {
+            if selectedTradeId != nil {
+                tradeList.setSelectedItem()
+            }
+        }
+    }
+    
     var coins: [String]? {
         didSet {
             coinsList.reload()
@@ -41,7 +57,6 @@ class TradeCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         setup()
-        
     }
     
     func setup() {
@@ -197,6 +212,14 @@ extension TradeCell: KDropDownListDelegate {
     }
     
     func KDropDownList(_ dropDownList: KDropDownList, shouldSelect index: Int) -> Bool {
+        
+        if dropDownList == coinsList, let selected = selectedCoin {
+            return coins?[index] == selected
+        }
+        
+        if dropDownList == tradeList, let selected = selectedTradeId {
+            return trades?[index].tradeId == selected
+        }
         return false
     }
     

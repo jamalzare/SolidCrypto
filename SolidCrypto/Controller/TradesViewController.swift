@@ -23,10 +23,7 @@ class Trade2ViewController: TradesViewController {
         return "SLOT_TWO"
     }
     
-    override var investmentId: Int?  {
-        if let id = investment?.investmentId {
-            return id
-        }
+    override var slotTradeId: Int?  {
         return bigMe?.tradeSlot2Id
     }
 }
@@ -39,10 +36,7 @@ class Trade3ViewController: TradesViewController {
         return "SLOT_THREE"
     }
     
-    override var investmentId: Int?  {
-        if let id = investment?.investmentId {
-            return id
-        }
+    override var slotTradeId: Int?  {
         return bigMe?.tradeSlot3Id
     }
 }
@@ -57,10 +51,7 @@ class TradesViewController: UIViewController {
         return "SLOT_ONE"
     }
     
-    var investmentId: Int? {
-        if let id = investment?.investmentId {
-            return id
-        }
+    var slotTradeId: Int? {
         return bigMe?.tradeSlotId
     }
     
@@ -77,22 +68,20 @@ class TradesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        view.backgroundColor = .gray
         navigationItem.backButtonTitle = ""
         view.backgroundColor = .lightGrayBorder
         navigationController?.view.backgroundColor = .lightGrayBorder
         setNavigationBar()
         setup()
-        loadCoins()
-        checkInvestStatus(showShowDiagram: true)
         let balance = bigMe?.balance ?? 0
         tabBarController?.title = "Balance: \(balance)"
         tabBarController?.tabBar.isHidden = true
+        
+        loadSlotTrade()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //        loop()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -222,6 +211,28 @@ extension TradesViewController: TradeCellDelegate, PageCellDelegate {
 //MARK: APIS
 extension TradesViewController {
     
+    func loadSlotTrade() {
+        
+        guard let id = slotTradeId else {
+            loadCoins()
+            return
+        }
+        
+        APIService.getInvestmentStatus(investmentId: id) { [weak self] model, error in
+            
+            if let model = model {
+                self?.investment = model
+                self?.pageCell?.tradeCell?.amountTextFiled.preText = "\(model.amount)"
+                self?.pageCell?.tradeCell?.descripitonLabel.text = model.description
+                self?.loadStatistics()
+                self?.loadCoins()
+            }
+            else if let _ = error {
+            }
+            
+        }
+    }
+    
     func loadCoins() {
         
         Loading.shared.show(title: "Loading...")
@@ -233,6 +244,9 @@ extension TradesViewController {
                 self?.pageCell?.coins = model
                 self?.collectionView.reloadData()
                 
+                if let investment = self?.investment {
+                    self?.pageCell?.tradeCell?.selectedCoin = investment.coinCode
+                }
             }
             else if let _ = error {
                 self?.presentAlert(title: "Error", message: "Something went wrong!!")
@@ -251,9 +265,12 @@ extension TradesViewController {
             if let model = model {
                 self?.pageCell?.trades = model
                 self?.collectionView.reloadData()
-                //                self?.loadStatistics(coin: coin)
                 
+                if let investment = self?.investment {
+                    self?.pageCell?.tradeCell?.selectedTradeId = investment.tradeId
+                }
             }
+            
             else if let _ = error {
                 self?.presentAlert(title: "Error", message: "Something went wrong!!")
             }
@@ -261,7 +278,7 @@ extension TradesViewController {
         }
     }
     
-    func addInvestment(slot: String,coinCode: String, amount: Double, tradeId: Int) {
+    func addInvestment(slot: String, coinCode: String, amount: Double, tradeId: Int) {
         
         Loading.shared.show(title: "Loading...")
         
@@ -275,44 +292,12 @@ extension TradesViewController {
                 print(model)
                 self?.investment = model
                 self?.pageCell?.tradeCell?.descripitonLabel.text = model.description
-                self?.updateInvestment()
-                
             }
+            
             else if let _ = error {
                 self?.presentAlert(title: "Error", message: "Something went wrong!!")
             }
             
-        }
-    }
-}
-
-//MARK: Loops
-extension TradesViewController {
-    
-    func loadStatistics() {
-        var coin = investment?.coinCode
-        if let selected = selectedCoint {
-            coin = selected
-        }
-        guard let find = coin else { return }
-        
-        APIService.getStatistics(coin: find){ [weak self] model, error in
-            
-            self?.updateCoinDiagram()
-            
-            if let model = model {
-                self?.pageCell?.tradeCell?.setData(with: model)
-            }
-            else if let _ = error {
-            }
-            
-        }
-    }
-    
-    func updateCoinDiagram() {
-        currentSeconds += 1
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
-            self?.loadStatistics()
         }
     }
     
@@ -331,20 +316,25 @@ extension TradesViewController {
             self?.pageCell?.tradeCell?.descripitonLabel.text = "your investment has been deleted."
         }
     }
+}
+
+//MARK: Loops
+extension TradesViewController {
     
-    func checkInvestStatus(showShowDiagram: Bool = false) {
-        guard let id = self.investmentId else { return }
-        pageCell?.tradeCell?.descripitonLabel.text = "Checking..."
+    func loadStatistics() {
         
-        APIService.getInvestmentStatus(investmentId: id) { [weak self] model, error in
+        var coin = investment?.coinCode
+        if let selected = selectedCoint {
+            coin = selected
+        }
+        guard let find = coin else { return }
+        
+        APIService.getStatistics(coin: find){ [weak self] model, error in
             
-            self?.updateInvestment()
+            self?.timerLoop()
+            
             if let model = model {
-                self?.investment = model
-                self?.pageCell?.tradeCell?.descripitonLabel.text = model.description
-                if showShowDiagram {
-                    self?.loadStatistics()
-                }
+                self?.pageCell?.tradeCell?.setData(with: model)
             }
             else if let _ = error {
             }
@@ -352,10 +342,43 @@ extension TradesViewController {
         }
     }
     
-    func updateInvestment() {
+    func timerLoop() {
+        currentSeconds += 1
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
-            guard let _ = self?.investment else { return }
+            self?.loadStatistics()
             self?.checkInvestStatus()
+            self?.getBalance()
         }
     }
+    
+    func checkInvestStatus() {
+        guard let id = self.investment?.tradeId else { return }
+        pageCell?.tradeCell?.descripitonLabel.text = "Checking..."
+        
+        APIService.getInvestmentStatus(investmentId: id) { [weak self] model, error in
+            
+            if let model = model {
+                self?.investment = model
+                self?.pageCell?.tradeCell?.descripitonLabel.text = model.description
+            }
+            else if let _ = error {
+            }
+            
+        }
+    }
+    
+    func getBalance() {
+        
+        APIService.getBalance() { [weak self] model, error in
+            
+            if let model = model {
+                self?.tabBarController?.title = "Balance: \(model.balance)"
+            }
+            
+            else if let _ = error {
+            }
+            
+        }
+    }
+    
 }
