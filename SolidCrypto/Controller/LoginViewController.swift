@@ -51,6 +51,11 @@ class LoginViewController: UIViewController {
         passwordTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         loginButton.isEnabled = false
         signupButton.isEnabled = false
+        
+#if !DEBUG
+//        signupButton.isHidden = true
+        testButton.isHidden = true
+#endif
     }
     
     func clearTextFields() {

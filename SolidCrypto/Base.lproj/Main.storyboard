@@ -179,11 +179,11 @@
                                             <constraint firstAttribute="height" constant="58" id="N15-2m-6mv"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Signup">
+                                        <state key="normal" title="Login">
                                             <color key="titleColor" name="appBlackText"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapSignButtonWithSender:" destination="ubB-rC-xLy" eventType="touchUpInside" id="vlJ-Vu-jje"/>
+                                            <action selector="didTapLoginButtonWithSender:" destination="ubB-rC-xLy" eventType="touchUpInside" id="Llt-QU-IsY"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uve-wl-ThK" customClass="Button" customModule="SolidCrypto" customModuleProvider="target">
@@ -193,11 +193,11 @@
                                             <constraint firstAttribute="height" constant="58" id="z15-vk-GTq"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Login">
+                                        <state key="normal" title="Signup">
                                             <color key="titleColor" name="appBlackText"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapLoginButtonWithSender:" destination="ubB-rC-xLy" eventType="touchUpInside" id="k1m-fQ-F0l"/>
+                                            <action selector="didTapSignButtonWithSender:" destination="ubB-rC-xLy" eventType="touchUpInside" id="d6S-dk-va9"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaV-nT-cCo" customClass="Button" customModule="SolidCrypto" customModuleProvider="target">
@@ -248,9 +248,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="vAM-TA-69n"/>
                     <connections>
-                        <outlet property="loginButton" destination="Uve-wl-ThK" id="4Dr-4T-NcK"/>
+                        <outlet property="loginButton" destination="a0J-rc-QLP" id="Jff-KL-owF"/>
                         <outlet property="passwordTextField" destination="v7U-RR-hlu" id="X9J-uZ-VY3"/>
-                        <outlet property="signupButton" destination="a0J-rc-QLP" id="fjO-Sj-fZW"/>
+                        <outlet property="signupButton" destination="Uve-wl-ThK" id="V5E-lq-IXI"/>
                         <outlet property="testButton" destination="IaV-nT-cCo" id="FbJ-Ri-GXL"/>
                         <outlet property="usernameTextField" destination="dZT-Kl-bML" id="nQ9-Ea-2VM"/>
                     </connections>
