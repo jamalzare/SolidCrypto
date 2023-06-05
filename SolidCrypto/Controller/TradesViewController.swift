@@ -78,6 +78,7 @@ class TradesViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
         
         loadSlotTrade()
+//        loadCoins()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -241,8 +242,7 @@ extension TradesViewController {
             Loading.shared.hide()
             
             if let model = model {
-                self?.pageCell?.coins = model
-                self?.collectionView.reloadData()
+                self?.pageCell?.tradeCell?.coins = model
                 
                 if let investment = self?.investment {
                     self?.pageCell?.tradeCell?.selectedCoin = investment.coinCode
@@ -263,8 +263,7 @@ extension TradesViewController {
             Loading.shared.hide()
             
             if let model = model {
-                self?.pageCell?.trades = model
-                self?.collectionView.reloadData()
+                self?.pageCell?.tradeCell?.trades = model
                 
                 if let investment = self?.investment {
                     self?.pageCell?.tradeCell?.selectedTradeId = investment.tradeId
@@ -352,7 +351,7 @@ extension TradesViewController {
     }
     
     func checkInvestStatus() {
-        guard let id = self.investment?.tradeId else { return }
+        guard let id = self.investment?.investmentId else { return }
         pageCell?.tradeCell?.descripitonLabel.text = "Checking..."
         
         APIService.getInvestmentStatus(investmentId: id) { [weak self] model, error in
@@ -372,7 +371,7 @@ extension TradesViewController {
         APIService.getBalance() { [weak self] model, error in
             
             if let model = model {
-                self?.tabBarController?.title = "Balance: \(model.balance)"
+                self?.tabBarController?.title = "Balance: \(model)"
             }
             
             else if let _ = error {

@@ -124,7 +124,9 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func didTapTestButton(sender: AnyObject) {
-        login(user: "jamal.zare@solidict.com", password: "j1234")
+//        login(user: "jamal.zare@solidict.com", password: "j1234")
+        login(user: "test3@test.com", password: "t1234")
+        
         view.endEditing(true)
     }
     

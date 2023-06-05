@@ -64,7 +64,7 @@ extension PageCell: UICollectionViewDataSource, UICollectionViewDelegate, UIColl
         
         let cell: TradeCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.delegate = delegate
-        cell.coins = coins
+//        cell.coins = coins
         
         cell.frame = CGRect(origin: CGPoint(x: cell.frame.minX, y: 0), size: cell.frame.size)
         self.tradeCell = cell

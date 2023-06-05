@@ -63,7 +63,7 @@ class TradeCell: UICollectionViewCell {
         
         coinsList.title = "Choose Coin"
         coinsList.delegate = self
-        coinsList.reload()
+//        coinsList.reload()
         
         amountTextFiled.placeholder = "Choose Amount"
         amountTextFiled.keyboardType = .decimalPad

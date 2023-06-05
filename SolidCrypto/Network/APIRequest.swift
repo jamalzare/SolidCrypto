@@ -10,7 +10,7 @@ import SystemConfiguration
 
 class Network {
 
-    static let baseUrl: String = "https://a2ae-95-70-169-93.ngrok-free.app/"
+    static let baseUrl: String = "https://rapidapi.solidict.com/"
     
     static func getBasicHeaders() -> [String: String] {
         return [

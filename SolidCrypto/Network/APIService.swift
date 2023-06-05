@@ -43,10 +43,11 @@ class APIService {
         req.start()
     }
     
-    static func getBalance(completion: @escaping (Balance?, APIResponseError?) -> ()) {
-        let req = APIRequest<Balance>(route: "balance",
+    static func getBalance(completion: @escaping (Int?, APIResponseError?) -> ()) {
+        let req = APIRequest<Int>(route: "balance",
                                       method: .get,
-                                      parameters: nil)
+                                      parameters: nil,
+                                      hasToken: true)
         
         req.identifier = "balance"
         req.log = loggingEnabled
@@ -151,7 +152,7 @@ class APIService {
                                        parameters: nil,
                                        baseUrl: "http://54.75.26.59:8080/history/")
         req.identifier = "coins"
-        req.log = loggingEnabled
+        req.log = false
         req.completion = completion
         req.start()
     }
