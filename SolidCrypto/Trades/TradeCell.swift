@@ -12,6 +12,7 @@ protocol TradeCellDelegate: AnyObject {
     func didTapStartButton(slot: String, coinCode: String, amount: Double, tradeId: Int)
     func didTapClearButton()
     func didSelect(coin: String)
+    func presentAlert(title: String, message: String)
 }
 
 class TradeCell: UICollectionViewCell {
@@ -22,7 +23,7 @@ class TradeCell: UICollectionViewCell {
     @IBOutlet weak var startTradeButton: Button!
     @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var descripitonLabel: UILabel!
-    @IBOutlet weak var clearButton: UIButton!
+    @IBOutlet weak var clearButton: Button!
     
     weak var delegate: TradeCellDelegate?
     private var enabledList: KDropDownList?
@@ -75,10 +76,8 @@ class TradeCell: UICollectionViewCell {
         lineChartView.backgroundColor = .white
         lineChartView.rightAxis.enabled = false
         lineChartView.layer.cornerRadius = 8
-        //        setData()/
-        startTradeButton.isEnabled = false
-        //        let tap = UITapGestureRecognizer(target: self, action: #selector(didTap))
-        //        addGestureRecognizer(tap)
+        startTradeButton.isEnabled = true
+        clearButton.isEnabled = false
         amountTextFiled.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
     }
     
@@ -88,6 +87,8 @@ class TradeCell: UICollectionViewCell {
               let amount = Double(amountTextFiled.text ?? "") ,
               let tradeIndex = tradeList.selectedIndex,
               let trade = trades?[tradeIndex].tradeId else {
+           
+            delegate?.presentAlert(title: "Error", message: "Please enter inputs correctly!!")
             return
         }
         endEditing(true)
@@ -152,10 +153,10 @@ class TradeCell: UICollectionViewCell {
         if let _ = coinsList.selectedIndex,
            Double(amountTextFiled.text ?? "") ?? 0 > 0,
            let _ = tradeList.selectedIndex {
-            startTradeButton.isEnabled = true
+//            startTradeButton.isEnabled = true
             return
         }
-        startTradeButton.isEnabled = false
+//        startTradeButton.isEnabled = false
     }
 }
 

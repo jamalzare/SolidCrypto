@@ -78,7 +78,7 @@ class TradesViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
         
         loadSlotTrade()
-//        loadCoins()
+        //        loadCoins()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -94,7 +94,7 @@ class TradesViewController: UIViewController {
     }
     
     private func setup() {
-//        title = "Total Account"
+        //        title = "Total Account"
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(cellType: PageCell.self)
@@ -146,7 +146,6 @@ extension TradesViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return 1
     }
     
@@ -186,6 +185,10 @@ extension TradesViewController: UICollectionViewDataSource, UICollectionViewDele
 
 extension TradesViewController: TradeCellDelegate, PageCellDelegate {
     
+    func presentAlert(title: String, message: String) {
+        presentAlert(title: title, message: message, compeletion: {})
+    }
+    
     func didTapStartButton(slot: String, coinCode: String, amount: Double, tradeId: Int) {
         addInvestment(slot: slot, coinCode: coinCode, amount: amount, tradeId: tradeId)
     }
@@ -212,6 +215,17 @@ extension TradesViewController: TradeCellDelegate, PageCellDelegate {
 //MARK: APIS
 extension TradesViewController {
     
+    func setButtonsActivation() {
+        
+        if let finished = investment?.finished {
+            pageCell?.tradeCell?.startTradeButton.isEnabled = false
+            pageCell?.tradeCell?.clearButton.isEnabled = finished
+        } else {
+            pageCell?.tradeCell?.startTradeButton.isEnabled = true
+            pageCell?.tradeCell?.clearButton.isEnabled = false
+        }
+    }
+    
     func loadSlotTrade() {
         
         guard let id = slotTradeId else {
@@ -229,6 +243,7 @@ extension TradesViewController {
                 self?.loadStatistics()
                 self?.loadCoins()
                 self?.timerLoop()
+                self?.setButtonsActivation()
             }
             else if let _ = error {
             }
@@ -293,6 +308,7 @@ extension TradesViewController {
                 print(model)
                 self?.investment = model
                 self?.pageCell?.tradeCell?.descripitonLabel.text = model.description
+                self?.setButtonsActivation()
             }
             
             else if let _ = error {
@@ -315,6 +331,7 @@ extension TradesViewController {
             
             self?.investment = nil
             self?.pageCell?.tradeCell?.descripitonLabel.text = "your investment has been deleted."
+            self?.setButtonsActivation()
         }
     }
 }
@@ -359,6 +376,7 @@ extension TradesViewController {
             if let model = model {
                 self?.investment = model
                 self?.pageCell?.tradeCell?.descripitonLabel.text = model.description
+                self?.setButtonsActivation()
             }
             else if let _ = error {
             }

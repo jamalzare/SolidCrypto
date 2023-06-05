@@ -53,7 +53,7 @@ class LoginViewController: UIViewController {
         signupButton.isEnabled = false
         
 #if !DEBUG
-//        signupButton.isHidden = true
+        signupButton.isHidden = true
         testButton.isHidden = true
 #endif
     }
@@ -70,7 +70,6 @@ class LoginViewController: UIViewController {
             Loading.shared.hide()
             
             if let model = model {
-                print(model)
                 UserDefaults.standard.setValue(model.token, forKey: "token")
                 self?.goToNextScene()
             }
@@ -88,7 +87,6 @@ class LoginViewController: UIViewController {
             Loading.shared.hide()
             
             if let model = model {
-                print(model)
                 UserDefaults.standard.setValue(model.token, forKey: "token")
                 self?.getMeData()
             }
@@ -138,7 +136,8 @@ class LoginViewController: UIViewController {
     
     @IBAction func didTapTestButton(sender: AnyObject) {
 //        login(user: "jamal.zare@solidict.com", password: "j1234")
-        login(user: "test3@test.com", password: "t1234")
+//        login(user: "test3@test.com", password: "t1234")
+        login(user: "new@new.com", password: "t1234")
         
         view.endEditing(true)
     }

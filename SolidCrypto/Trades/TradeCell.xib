@@ -65,7 +65,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5OT-Ni-8yb" customClass="LightButton" customModule="SolidCrypto" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5OT-Ni-8yb" customClass="Button" customModule="SolidCrypto" customModuleProvider="target">
                                 <rect key="frame" x="16" y="560.33333333333337" width="390" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="k0B-4e-Dq7"/>
