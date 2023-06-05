@@ -9,7 +9,7 @@ import Foundation
 
 class APIService {
     
-    static var loggingEnabled = true
+    static var loggingEnabled = false
     
     static func signup(username: String, password: String, completion: @escaping (Login?, APIResponseError?) -> () ) {
         

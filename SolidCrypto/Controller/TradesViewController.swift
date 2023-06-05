@@ -228,6 +228,7 @@ extension TradesViewController {
                 self?.pageCell?.tradeCell?.descripitonLabel.text = model.description
                 self?.loadStatistics()
                 self?.loadCoins()
+                self?.timerLoop()
             }
             else if let _ = error {
             }
