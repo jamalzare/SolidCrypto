@@ -29,6 +29,13 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationItem.title = "Welcome"
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tabBarController?.title = "Welcome"
+        title = "Welcome"
         
     }
     
@@ -37,7 +44,8 @@ class LoginViewController: UIViewController {
         setNavigationBar()
         loginButton.unSelectedStyle = false
         signupButton.unSelectedStyle = false
-        usernameTextField.placeholder = "User Name"
+        usernameTextField.placeholder = "Email"
+        usernameTextField.keyboardType = .emailAddress
         passwordTextField.placeholder = "Password"
         usernameTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)

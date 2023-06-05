@@ -94,7 +94,7 @@ class TradesViewController: UIViewController {
     }
     
     private func setup() {
-        title = "Total Account"
+//        title = "Total Account"
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(cellType: PageCell.self)
@@ -216,6 +216,7 @@ extension TradesViewController {
         
         guard let id = slotTradeId else {
             loadCoins()
+            timerLoop()
             return
         }
         
@@ -330,8 +331,6 @@ extension TradesViewController {
         
         APIService.getStatistics(coin: find){ [weak self] model, error in
             
-            self?.timerLoop()
-            
             if let model = model {
                 self?.pageCell?.tradeCell?.setData(with: model)
             }
@@ -369,6 +368,8 @@ extension TradesViewController {
     func getBalance() {
         
         APIService.getBalance() { [weak self] model, error in
+            
+            self?.timerLoop()
             
             if let model = model {
                 self?.tabBarController?.title = "Balance: \(model)"

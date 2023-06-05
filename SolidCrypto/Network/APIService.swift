@@ -43,8 +43,8 @@ class APIService {
         req.start()
     }
     
-    static func getBalance(completion: @escaping (Int?, APIResponseError?) -> ()) {
-        let req = APIRequest<Int>(route: "balance",
+    static func getBalance(completion: @escaping (Double?, APIResponseError?) -> ()) {
+        let req = APIRequest<Double>(route: "balance",
                                       method: .get,
                                       parameters: nil,
                                       hasToken: true)
