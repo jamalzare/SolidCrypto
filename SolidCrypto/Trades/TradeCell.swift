@@ -50,9 +50,12 @@ class TradeCell: UICollectionViewCell {
         didSet {
             if selectedTradeId != nil {
                 tradeList.setSelectedItem()
+                calculatePossibles()
             }
         }
     }
+    
+    var selectedTrade: Trade?
     
     var coins: [String]? {
         didSet {
@@ -71,22 +74,38 @@ class TradeCell: UICollectionViewCell {
             if let investment = investment {
                 entryValueLabel.text = "\(String(format: "%.3f", investment.entryVal))"
                 winLimitLabel.text = "\(String(format: "%.3f", investment.winLimit))"
-                //            possibleEarningLabel.text = "\(String(format: "%.3f", investment.))"
                 loseLimitLabel.text = "\(String(format: "%.3f", investment.loseLimit))"
-                //            possibleLoseLabel.text = "\(String(format: "%.3f", investment.))"
+
+                calculatePossibles()
+                
                 entryTimeLabel.text = "\(investment.displayDate)"
                 investmentTimeLabel.text = "\(investment.duration)"
                 investmentStatusLabel.text = "\(investment.state)"
             } else {
                 entryValueLabel.text = "0"
                 winLimitLabel.text = "0"
-                //            possibleEarningLabel.text = "\(String(format: "%.3f", investment.))"
+                possibleEarningLabel.text = "0"
                 loseLimitLabel.text = "0"
-                //            possibleLoseLabel.text = "\(String(format: "%.3f", investment.))"
+                possibleLoseLabel.text = "0"
                 entryTimeLabel.text = ""
                 investmentTimeLabel.text = ""
                 investmentStatusLabel.text = "Unknow"
             }
+        }
+    }
+    
+    func calculatePossibles() {
+        guard let investment = investment,
+              let trade = selectedTrade
+        else { return }
+        if let win = trade.win {
+            let earning = investment.amount * win/100
+            possibleEarningLabel.text = "\(String(format: "%.3f", earning))"
+        }
+        
+        if let lose = trade.lose {
+            let lose = investment.amount * lose/100
+            possibleLoseLabel.text = "\(String(format: "%.3f", lose))"
         }
     }
     
@@ -288,7 +307,11 @@ extension TradeCell: KDropDownListDelegate {
         }
         
         if dropDownList == tradeList, let selected = selectedTradeId {
-            return trades?[index].tradeId == selected
+            let isSelecteTrade = trades?[index].tradeId == selected
+            if isSelecteTrade {
+                selectedTrade = trades?[index]
+            }
+            return isSelecteTrade
         }
         return false
     }

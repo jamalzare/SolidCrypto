@@ -162,11 +162,7 @@ extension TradesViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var height: CGFloat = collectionView.bounds.height
-        if height < 850 {
-            height = 850
-        }
-        return CGSize(width: collectionView.bounds.width, height: height)
+        return CGSize(width: collectionView.bounds.width, height: 900)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
