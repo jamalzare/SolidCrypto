@@ -22,7 +22,7 @@ class CirlceView: UIView {
                 break
                 
             case .failed:
-                backgroundColor = .red
+                backgroundColor = .appPink
                 break
                 
             case .free:
@@ -51,7 +51,7 @@ class CirlceView: UIView {
     func setup() {
         layer.cornerRadius = frame.width/2
         layer.borderWidth = 1
-        layer.borderColor = UIColor.gray.cgColor
+        layer.borderColor = UIColor.lightGray.cgColor
     }
     
     override func layoutSubviews() {
