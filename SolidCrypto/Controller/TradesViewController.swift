@@ -74,7 +74,7 @@ class TradesViewController: UIViewController {
         setNavigationBar()
         setup()
         let balance = bigMe?.balance ?? 0
-        tabBarController?.title = "Balance: \(balance)"
+        tabBarController?.title = "Balance: \(String(format: "%.3f", balance))"
         tabBarController?.tabBar.isHidden = true
         
         loadSlotTrade()
@@ -220,9 +220,18 @@ extension TradesViewController {
         if let finished = investment?.finished {
             pageCell?.tradeCell?.startTradeButton.isEnabled = false
             pageCell?.tradeCell?.clearButton.isEnabled = finished
+            
+            pageCell?.tradeCell?.coinsList.isUserInteractionEnabled = false
+            pageCell?.tradeCell?.amountTextFiled.isUserInteractionEnabled = false
+            pageCell?.tradeCell?.tradeList.isUserInteractionEnabled = false
+            
         } else {
             pageCell?.tradeCell?.startTradeButton.isEnabled = true
             pageCell?.tradeCell?.clearButton.isEnabled = false
+            
+            pageCell?.tradeCell?.coinsList.isUserInteractionEnabled = true
+            pageCell?.tradeCell?.amountTextFiled.isUserInteractionEnabled = true
+            pageCell?.tradeCell?.tradeList.isUserInteractionEnabled = true
         }
     }
     
@@ -350,7 +359,10 @@ extension TradesViewController {
         APIService.getStatistics(coin: find){ [weak self] model, error in
             
             if let model = model {
-                self?.pageCell?.tradeCell?.setData(with: model)
+                let entry = self?.investment?.entryVal
+                let win = self?.investment?.winLimit
+                let lose = self?.investment?.loseLimit
+                self?.pageCell?.tradeCell?.setData(with: model, entryValue: entry, winLimit: win, loseLimit: lose)
             }
             else if let _ = error {
             }
@@ -391,7 +403,7 @@ extension TradesViewController {
             self?.timerLoop()
             
             if let model = model {
-                self?.tabBarController?.title = "Balance: \(model)"
+                self?.tabBarController?.title = "Balance: \(String(format: "%.3f", model))"
             }
             
             else if let _ = error {

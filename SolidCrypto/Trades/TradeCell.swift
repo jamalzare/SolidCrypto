@@ -119,7 +119,7 @@ class TradeCell: UICollectionViewCell {
         //        lineChartView.leftAxis.valueFormatter = ChartLeftIndexAxisValueFormatter()
     }
     
-    func setData(with numbers:[Double]) {
+    func setData(with numbers:[Double], entryValue: Double? = nil, winLimit: Double? = nil, loseLimit: Double? = nil) {
         var numberData: [ChartDataEntry] = []
         for (index, value) in numbers.enumerated() {
             numberData.append(ChartDataEntry(x: Double(index), y: value))
@@ -136,8 +136,31 @@ class TradeCell: UICollectionViewCell {
         lineChartView.data = data
         //        lineChartView.xAxis.valueFormatter = ChartIndexAxisValueFormatter()
         lineChartView.xAxis.labelPosition = .bottom
-        //        lineChartView.animate(xAxisDuration: 1)
-        //        lineChartView.leftAxis.valueFormatter = ChartLeftIndexAxisValueFormatter()
+        
+        guard let entryValue = entryValue,
+              let winLimit = winLimit,
+              let loseLimit = loseLimit else { return }
+        
+        print(entryValue, winLimit, loseLimit)
+        
+        let entryLimitLine = ChartLimitLine(limit: entryValue, label: "")
+        entryLimitLine.lineColor = .lightGray
+        lineChartView.leftAxis.addLimitLine(entryLimitLine)
+        
+        let winLimitLine = ChartLimitLine(limit: winLimit, label: "")
+        winLimitLine.lineColor = .theme
+        lineChartView.leftAxis.addLimitLine(winLimitLine)
+        
+        let loseLimitLine = ChartLimitLine(limit: loseLimit, label: "")
+        loseLimitLine.lineColor = .appRed
+        lineChartView.leftAxis.addLimitLine(loseLimitLine)
+        
+        
+        let max = numbers.max() ?? winLimit
+        let min = numbers.min() ?? loseLimit
+        lineChartView.leftAxis.axisMaximum = winLimit > max ? winLimit: max
+        lineChartView.leftAxis.axisMinimum = loseLimit < min ? loseLimit: min
+      
     }
     
     @objc func didTap() {
