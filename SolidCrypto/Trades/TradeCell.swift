@@ -75,7 +75,7 @@ class TradeCell: UICollectionViewCell {
                 loseLimitLabel.text = "\(String(format: "%.3f", investment.loseLimit))"
                 //            possibleLoseLabel.text = "\(String(format: "%.3f", investment.))"
                 entryTimeLabel.text = "\(investment.displayDate)"
-                investmentTimeLabel.text = "\(investment.entryTime)"
+                investmentTimeLabel.text = "\(investment.duration)"
                 investmentStatusLabel.text = "\(investment.state)"
             } else {
                 entryValueLabel.text = "0"
