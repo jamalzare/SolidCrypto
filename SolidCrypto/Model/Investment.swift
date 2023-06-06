@@ -17,11 +17,42 @@ struct AddInvestment: Decodable {
     let winLimit: Double
     let loseLimit: Double
     let currentVal: Double
-    let entryTime: String
+    var entryTime: String
     let terminationTime: String
     let resultDiff: Double
     let succeeded: Bool
     let finished: Bool
+    
+    var displayDate: String {
+        
+        let formmater = DateFormatter()
+        formmater.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        let time = String(entryTime.dropLast(7))
+        if let date = formmater.date(from: time) {
+            formmater.dateFormat = "dd/MM/yyyy HH:mm:ss"
+            return formmater.string(from: date)
+        }
+        
+        return ""
+    }
+    
+    var state: String {
+        if !finished {
+            return "ONGOING"
+        }
+        
+        if succeeded {
+            return "SUCCEEDED"
+        }
+        if !succeeded {
+            return "FAILED"
+        }
+        
+        if finished {
+            return "FREE"
+        }
+        return "Unknown"
+    }
     
     var description: String {
         return "Investment with entry value: \(entryVal), success state is \(succeeded) and finish state is \(finished)."

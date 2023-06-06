@@ -22,8 +22,18 @@ class TradeCell: UICollectionViewCell {
     @IBOutlet weak var tradeList: KDropDownList!
     @IBOutlet weak var startTradeButton: Button!
     @IBOutlet weak var lineChartView: LineChartView!
-    @IBOutlet weak var descripitonLabel: UILabel!
     @IBOutlet weak var clearButton: Button!
+    
+    @IBOutlet weak var infoView: UIView!
+    @IBOutlet weak var entryValueLabel: UILabel!
+    @IBOutlet weak var winLimitLabel: UILabel!
+    @IBOutlet weak var possibleEarningLabel: UILabel!
+    @IBOutlet weak var loseLimitLabel: UILabel!
+    @IBOutlet weak var possibleLoseLabel: UILabel!
+    @IBOutlet weak var entryTimeLabel: UILabel!
+    @IBOutlet weak var investmentTimeLabel: UILabel!
+    @IBOutlet weak var investmentStatusLabel: UILabel!
+    @IBOutlet var labesl: [UILabel]!
     
     weak var delegate: TradeCellDelegate?
     private var enabledList: KDropDownList?
@@ -56,6 +66,30 @@ class TradeCell: UICollectionViewCell {
         }
     }
     
+    var investment: AddInvestment? {
+        didSet {
+            if let investment = investment {
+                entryValueLabel.text = "\(String(format: "%.3f", investment.entryVal))"
+                winLimitLabel.text = "\(String(format: "%.3f", investment.winLimit))"
+                //            possibleEarningLabel.text = "\(String(format: "%.3f", investment.))"
+                loseLimitLabel.text = "\(String(format: "%.3f", investment.loseLimit))"
+                //            possibleLoseLabel.text = "\(String(format: "%.3f", investment.))"
+                entryTimeLabel.text = "\(investment.displayDate)"
+                investmentTimeLabel.text = "\(investment.entryTime)"
+                investmentStatusLabel.text = "\(investment.state)"
+            } else {
+                entryValueLabel.text = "0"
+                winLimitLabel.text = "0"
+                //            possibleEarningLabel.text = "\(String(format: "%.3f", investment.))"
+                loseLimitLabel.text = "0"
+                //            possibleLoseLabel.text = "\(String(format: "%.3f", investment.))"
+                entryTimeLabel.text = ""
+                investmentTimeLabel.text = ""
+                investmentStatusLabel.text = "Unknow"
+            }
+        }
+    }
+    
     override func awakeFromNib() {
         setup()
     }
@@ -76,9 +110,16 @@ class TradeCell: UICollectionViewCell {
         lineChartView.backgroundColor = .white
         lineChartView.rightAxis.enabled = false
         lineChartView.layer.cornerRadius = 8
+        infoView.layer.cornerRadius = 8
+        
+        for label in labesl {
+            label.apply(TextStyle(fontStyle: .poppinsMedium, size: 11), color: .appBlackText)
+        }
+        
         startTradeButton.isEnabled = true
         clearButton.isEnabled = false
         amountTextFiled.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
+        self.investment = nil
     }
     
     @IBAction func didTapStartButton() {
@@ -141,25 +182,30 @@ class TradeCell: UICollectionViewCell {
               let winLimit = winLimit,
               let loseLimit = loseLimit else { return }
         
-        print(entryValue, winLimit, loseLimit)
+       // print(entryValue, winLimit, loseLimit)
         
         let entryLimitLine = ChartLimitLine(limit: entryValue, label: "")
         entryLimitLine.lineColor = .lightGray
+        entryLimitLine.lineDashLengths = [8]
+        entryLimitLine.lineWidth = 1
         lineChartView.leftAxis.addLimitLine(entryLimitLine)
         
         let winLimitLine = ChartLimitLine(limit: winLimit, label: "")
         winLimitLine.lineColor = .theme
+        winLimitLine.lineWidth = 1
         lineChartView.leftAxis.addLimitLine(winLimitLine)
         
         let loseLimitLine = ChartLimitLine(limit: loseLimit, label: "")
         loseLimitLine.lineColor = .appRed
+        loseLimitLine.lineWidth = 1
         lineChartView.leftAxis.addLimitLine(loseLimitLine)
-        
         
         let max = numbers.max() ?? winLimit
         let min = numbers.min() ?? loseLimit
-        lineChartView.leftAxis.axisMaximum = winLimit > max ? winLimit: max
-        lineChartView.leftAxis.axisMinimum = loseLimit < min ? loseLimit: min
+        let maximum = winLimit > max ? winLimit: max
+        let minimum = loseLimit < min ? loseLimit: min
+        lineChartView.leftAxis.axisMaximum = maximum //+ (maximum * 0.05)
+        lineChartView.leftAxis.axisMinimum = minimum // - (minimum * 0.05)
       
     }
     

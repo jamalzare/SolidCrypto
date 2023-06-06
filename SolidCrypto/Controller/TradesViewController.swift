@@ -163,8 +163,8 @@ extension TradesViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var height: CGFloat = collectionView.bounds.height
-        if height < 650 {
-            height = 650
+        if height < 850 {
+            height = 850
         }
         return CGSize(width: collectionView.bounds.width, height: height)
     }
@@ -248,7 +248,7 @@ extension TradesViewController {
             if let model = model {
                 self?.investment = model
                 self?.pageCell?.tradeCell?.amountTextFiled.preText = "\(model.amount)"
-                self?.pageCell?.tradeCell?.descripitonLabel.text = model.description
+                self?.pageCell?.tradeCell?.investment = model
                 self?.loadStatistics()
                 self?.loadCoins()
                 self?.timerLoop()
@@ -316,7 +316,7 @@ extension TradesViewController {
             if let model = model {
                 print(model)
                 self?.investment = model
-                self?.pageCell?.tradeCell?.descripitonLabel.text = model.description
+                self?.pageCell?.tradeCell?.investment = model
                 self?.setButtonsActivation()
             }
             
@@ -339,7 +339,7 @@ extension TradesViewController {
             }
             
             self?.investment = nil
-            self?.pageCell?.tradeCell?.descripitonLabel.text = "your investment has been deleted."
+            self?.pageCell?.tradeCell?.investment = nil
             self?.setButtonsActivation()
         }
     }
@@ -381,13 +381,13 @@ extension TradesViewController {
     
     func checkInvestStatus() {
         guard let id = self.investment?.investmentId else { return }
-        pageCell?.tradeCell?.descripitonLabel.text = "Checking..."
+//        pageCell?.tradeCell?.descripitonLabel.text = "Checking..."
         
         APIService.getInvestmentStatus(investmentId: id) { [weak self] model, error in
             
             if let model = model {
                 self?.investment = model
-                self?.pageCell?.tradeCell?.descripitonLabel.text = model.description
+                self?.pageCell?.tradeCell?.investment = model
                 self?.setButtonsActivation()
             }
             else if let _ = error {
