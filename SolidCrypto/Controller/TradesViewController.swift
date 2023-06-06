@@ -239,6 +239,8 @@ extension TradesViewController {
             return
         }
         
+        Loading.shared.show(title: "Loading...")
+        
         APIService.getInvestmentStatus(investmentId: id) { [weak self] model, error in
             
             if let model = model {

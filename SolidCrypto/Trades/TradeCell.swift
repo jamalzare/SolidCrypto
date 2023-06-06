@@ -223,8 +223,11 @@ class TradeCell: UICollectionViewCell {
         let min = numbers.min() ?? loseLimit
         let maximum = winLimit > max ? winLimit: max
         let minimum = loseLimit < min ? loseLimit: min
-        lineChartView.leftAxis.axisMaximum = maximum //+ (maximum * 0.05)
-        lineChartView.leftAxis.axisMinimum = minimum // - (minimum * 0.05)
+        
+        let difrence = (maximum - minimum) * 0.1
+        
+        lineChartView.leftAxis.axisMaximum = maximum + difrence
+        lineChartView.leftAxis.axisMinimum = minimum - difrence
       
     }
     
