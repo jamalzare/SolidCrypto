@@ -99,6 +99,7 @@ class LoginViewController: UIViewController {
     }
     
     func getMeData() {
+        tradesStates = [.free, .free, .free]
         Loading.shared.show(title: "Loading...")
         
         APIService.me() { [weak self] model, error in
@@ -106,6 +107,7 @@ class LoginViewController: UIViewController {
             
             if let model = model {
                 bigMe = model
+                print(model)
                 self?.goToNextScene()
             }
             

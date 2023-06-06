@@ -6,6 +6,15 @@
 //
 
 import Foundation
+import UIKit
+
+enum TradeState: String {
+    
+    case ongoing = "ONGOING"
+    case succeded = "SUCCEEDED"
+    case failed = "FAILED"
+    case free = "FREE"
+}
 
 struct AddInvestment: Decodable {
     
@@ -66,6 +75,22 @@ struct AddInvestment: Decodable {
             return "FREE"
         }
         return "Unknown"
+    }
+    
+    var tradeState: TradeState {
+        
+        if !finished {
+            return .ongoing
+        }
+        
+        if succeeded && finished {
+            return .succeded
+        }
+        if !succeeded && finished {
+            return .failed
+        }
+        
+        return .free
     }
     
     var description: String {

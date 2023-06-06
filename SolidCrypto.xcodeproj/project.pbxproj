@@ -70,6 +70,7 @@
 		8940359B2A0C341A008A5D78 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8940359A2A0C341A008A5D78 /* TextField.swift */; };
 		8940359F2A0C3C1F008A5D78 /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8940359D2A0C3C1F008A5D78 /* PageCell.swift */; };
 		894035A02A0C3C1F008A5D78 /* PageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8940359E2A0C3C1F008A5D78 /* PageCell.xib */; };
+		898B91CA2A2F600C00DD8754 /* CirlceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B91C92A2F600C00DD8754 /* CirlceView.swift */; };
 		89E92C5E2A2A471A005447CF /* Me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E92C5D2A2A471A005447CF /* Me.swift */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +140,7 @@
 		8940359A2A0C341A008A5D78 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		8940359D2A0C3C1F008A5D78 /* PageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
 		8940359E2A0C3C1F008A5D78 /* PageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PageCell.xib; sourceTree = "<group>"; };
+		898B91C92A2F600C00DD8754 /* CirlceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirlceView.swift; sourceTree = "<group>"; };
 		89E92C5D2A2A471A005447CF /* Me.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Me.swift; sourceTree = "<group>"; };
 		91C0B548E674CD3D612D9D18 /* Pods-SolidCrypto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidCrypto.release.xcconfig"; path = "Target Support Files/Pods-SolidCrypto/Pods-SolidCrypto.release.xcconfig"; sourceTree = "<group>"; };
 		A160A5A12137CC4DD0580E00 /* Pods-SolidCrypto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidCrypto.debug.xcconfig"; path = "Target Support Files/Pods-SolidCrypto/Pods-SolidCrypto.debug.xcconfig"; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				8940358F2A0BE859008A5D78 /* Button.swift */,
 				8940359A2A0C341A008A5D78 /* TextField.swift */,
 				8921652E2A1954DB00A3F3B9 /* Loading.swift */,
+				898B91C92A2F600C00DD8754 /* CirlceView.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				8940354A2A0BD992008A5D78 /* Extension.swift in Sources */,
 				894035352A0BC5C8008A5D78 /* TradesViewController.swift in Sources */,
 				894035312A0BC5C8008A5D78 /* AppDelegate.swift in Sources */,
+				898B91CA2A2F600C00DD8754 /* CirlceView.swift in Sources */,
 				894035922A0BEBCE008A5D78 /* KDropDownList.swift in Sources */,
 				894035992A0C3230008A5D78 /* Coin.swift in Sources */,
 				894035962A0BEBFD008A5D78 /* CheckBox.swift in Sources */,

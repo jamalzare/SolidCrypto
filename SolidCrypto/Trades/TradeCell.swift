@@ -80,7 +80,7 @@ class TradeCell: UICollectionViewCell {
                 
                 entryTimeLabel.text = "\(investment.displayDate)"
                 investmentTimeLabel.text = "\(investment.duration)"
-                investmentStatusLabel.text = "\(investment.state)"
+                investmentStatusLabel.text = "\(investment.tradeState.rawValue)"
             } else {
                 entryValueLabel.text = "0"
                 winLimitLabel.text = "0"

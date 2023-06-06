@@ -7,6 +7,8 @@
 
 import UIKit
 
+var tradesStates: [TradeState] = [.free, .free, .free]
+
 class ViewController: UIViewController {}
 
 class Trade1ViewController: TradesViewController {
@@ -61,6 +63,10 @@ class TradesViewController: UIViewController {
     @IBOutlet weak var trade3Button: Button!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var progres1View = CirlceView()
+    var progres2View = CirlceView()
+    var progres3View = CirlceView()
+    
     var pageCell: PageCell?
     var currentSeconds = 0
     var selectedCoint: String?
@@ -78,7 +84,6 @@ class TradesViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
         
         loadSlotTrade()
-        //        loadCoins()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -88,13 +93,13 @@ class TradesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         change(tab: index)
+        setColors()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
     
     private func setup() {
-        //        title = "Total Account"
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(cellType: PageCell.self)
@@ -103,6 +108,15 @@ class TradesViewController: UIViewController {
         trade1Button.unSelectedStyle = false
         trade2Button.unSelectedStyle = true
         trade3Button.unSelectedStyle = true
+        
+        view.addSubview(progres1View)
+        progres1View.align(toView: trade1Button, leading: 5, widthAndHeight: 10, centerY: 0)
+        
+        view.addSubview(progres2View)
+        progres2View.align(toView: trade2Button, leading: 5, widthAndHeight: 10, centerY: 0)
+        
+        view.addSubview(progres3View)
+        progres3View.align(toView: trade3Button, leading: 5, widthAndHeight: 10, centerY: 0)
     }
     
     @IBAction func didTapButtons(sender: AnyObject) {
@@ -134,6 +148,12 @@ class TradesViewController: UIViewController {
             trade1Button.unSelectedStyle = true
             trade2Button.unSelectedStyle = true
         }
+    }
+    
+    func setColors() {
+        progres1View.state = tradesStates[0]
+        progres2View.state = tradesStates[1]
+        progres3View.state = tradesStates[2]
     }
     
 }
@@ -213,9 +233,11 @@ extension TradesViewController {
     
     func setButtonsActivation() {
         
-        if let finished = investment?.finished {
+        if let investment = investment {
+            tradesStates[index] = investment.tradeState
+            
             pageCell?.tradeCell?.startTradeButton.isEnabled = false
-            pageCell?.tradeCell?.clearButton.isEnabled = finished
+            pageCell?.tradeCell?.clearButton.isEnabled = investment.finished
             
             pageCell?.tradeCell?.coinsList.isUserInteractionEnabled = false
             pageCell?.tradeCell?.amountTextFiled.isUserInteractionEnabled = false
@@ -228,7 +250,11 @@ extension TradesViewController {
             pageCell?.tradeCell?.coinsList.isUserInteractionEnabled = true
             pageCell?.tradeCell?.amountTextFiled.isUserInteractionEnabled = true
             pageCell?.tradeCell?.tradeList.isUserInteractionEnabled = true
+            
+            tradesStates[index] = .free
         }
+        
+        setColors()
     }
     
     func loadSlotTrade() {
