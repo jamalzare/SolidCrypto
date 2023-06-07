@@ -242,11 +242,11 @@ extension TradesViewController {
         if let investment = investment {
             tradesStates[index] = investment.tradeState
             
-//            pageCell?.tradeCell?.startTradeButton.isEnabled = false
+            pageCell?.tradeCell?.startTradeButton.isEnabled = false
             pageCell?.tradeCell?.clearButton.isEnabled = investment.finished
             
             pageCell?.tradeCell?.coinsList.isUserInteractionEnabled = false
-//            pageCell?.tradeCell?.amountTextFiled.isUserInteractionEnabled = false
+            pageCell?.tradeCell?.amountTextFiled.isUserInteractionEnabled = false
             pageCell?.tradeCell?.tradeList.isUserInteractionEnabled = false
             
         } else {
