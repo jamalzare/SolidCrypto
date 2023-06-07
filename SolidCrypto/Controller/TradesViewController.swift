@@ -211,7 +211,7 @@ extension TradesViewController: TradeCellDelegate, PageCellDelegate {
         presentAlert(title: title, message: message, compeletion: {})
     }
     
-    func didTapStartButton(slot: String, coinCode: String, amount: Double, tradeId: Int) {
+    func didTapStartButton(slot: String, coinCode: String, amount: Decimal, tradeId: Int) {
         addInvestment(slot: slot, coinCode: coinCode, amount: amount, tradeId: tradeId)
     }
     
@@ -242,11 +242,11 @@ extension TradesViewController {
         if let investment = investment {
             tradesStates[index] = investment.tradeState
             
-            pageCell?.tradeCell?.startTradeButton.isEnabled = false
+//            pageCell?.tradeCell?.startTradeButton.isEnabled = false
             pageCell?.tradeCell?.clearButton.isEnabled = investment.finished
             
             pageCell?.tradeCell?.coinsList.isUserInteractionEnabled = false
-            pageCell?.tradeCell?.amountTextFiled.isUserInteractionEnabled = false
+//            pageCell?.tradeCell?.amountTextFiled.isUserInteractionEnabled = false
             pageCell?.tradeCell?.tradeList.isUserInteractionEnabled = false
             
         } else {
@@ -336,7 +336,7 @@ extension TradesViewController {
         }
     }
     
-    func addInvestment(slot: String, coinCode: String, amount: Double, tradeId: Int) {
+    func addInvestment(slot: String, coinCode: String, amount: Decimal, tradeId: Int) {
         
         Loading.shared.show(title: "Loading...")
         

@@ -9,7 +9,7 @@ import UIKit
 import Charts
 
 protocol TradeCellDelegate: AnyObject {
-    func didTapStartButton(slot: String, coinCode: String, amount: Double, tradeId: Int)
+    func didTapStartButton(slot: String, coinCode: String, amount: Decimal, tradeId: Int)
     func didTapClearButton()
     func didSelect(coin: String)
     func presentAlert(title: String, message: String)
@@ -117,10 +117,9 @@ class TradeCell: UICollectionViewCell {
         
         coinsList.title = "Choose Coin"
         coinsList.delegate = self
-        //        coinsList.reload()
         
         amountTextFiled.placeholder = "Choose Amount"
-        amountTextFiled.keyboardType = .decimalPad
+        amountTextFiled.keyboardType = .numberPad
         
         tradeList.title = "Choose Trade"
         tradeList.delegate = self
@@ -145,7 +144,7 @@ class TradeCell: UICollectionViewCell {
     @IBAction func didTapStartButton() {
         guard let coinIndex = coinsList.selectedIndex,
               let coin = coins?[coinIndex],
-              let amount = Double(amountTextFiled.text ?? "") ,
+              let amount = (amountTextFiled.text ?? "").currencyToDouble(),
               let tradeIndex = tradeList.selectedIndex,
               let trade = trades?[tradeIndex].tradeId else {
             
@@ -358,6 +357,21 @@ extension String {
         
         return formatter.string(from: number)!
     }
+    
+    func currencyToDouble() -> Decimal? {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currencyAccounting
+        formatter.currencySymbol = ""
+//        formatter.maximumFractionDigits = 2
+//        formatter.roundingMode = .ceiling
+        
+        if let number = formatter.number(from: self) {
+            let amount = number.decimalValue
+            return amount
+        }
+        
+        return nil
+    }
 }
 
 extension Double {
@@ -365,3 +379,4 @@ extension Double {
         return String(format: "%.2f", self).currencyInputFormatting()
     }
 }
+

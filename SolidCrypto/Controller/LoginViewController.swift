@@ -20,15 +20,14 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationItem.backButtonTitle = ""
         view.backgroundColor = .lightGrayBorder
         navigationController?.view.backgroundColor = .lightGrayBorder
         setup()
         
-        if let _ = UserDefaults.standard.string(forKey: "token") {
-//            getMeData()
-            goToNextScene()
+        if let token = UserDefaults.standard.string(forKey: "token"), token.count > 1 {
+            getMeData()
         }
     }
     
@@ -88,6 +87,8 @@ class LoginViewController: UIViewController {
     func login(user: String, password: String) {
         Loading.shared.show(title: "Loading...")
         
+        UserDefaults.standard.setValue("", forKey: "token")
+        
         APIService.login(username: user, password: password) { [weak self] model, error in
             Loading.shared.hide()
             
@@ -108,18 +109,81 @@ class LoginViewController: UIViewController {
         Loading.shared.show(title: "Loading...")
         
         APIService.me() { [weak self] model, error in
-            Loading.shared.hide()
+//            Loading.shared.hide()
             
             if let model = model {
                 bigMe = model
                 print(model)
-                self?.goToNextScene()
+                self?.loadTrade1()
             }
             
             else if let error = error {
                 self?.presentAlert(title: "Error", message: "your username and passowrd is wrong: \(error.message)")
             }
             
+        }
+    }
+    
+    func loadTrade1() {
+        
+        guard let id = bigMe?.tradeSlotId  else {
+            loadTrade2()
+            return
+        }
+        
+//        Loading.shared.show(title: "Loading...")
+        
+        APIService.getInvestmentStatus(investmentId: id) { [weak self] model, error in
+//            Loading.shared.hide()
+            
+            if let model = model {
+                tradesStates[0] = model.tradeState
+            }
+            else if let _ = error {
+            }
+            self?.loadTrade2()
+        }
+    }
+    
+    func loadTrade2() {
+        
+        guard let id = bigMe?.tradeSlot2Id  else {
+            loadTrade3()
+            return
+        }
+        
+//        Loading.shared.show(title: "Loading...")
+        
+        APIService.getInvestmentStatus(investmentId: id) { [weak self] model, error in
+//            Loading.shared.hide()
+            
+            if let model = model {
+                tradesStates[1] = model.tradeState
+            }
+            else if let _ = error {
+            }
+            
+            self?.loadTrade3()
+        }
+    }
+    
+    func loadTrade3() {
+        
+        guard let id = bigMe?.tradeSlot3Id  else {
+            Loading.shared.hide()
+            goToNextScene()
+            return
+        }
+        
+        APIService.getInvestmentStatus(investmentId: id) { [weak self] model, error in
+            Loading.shared.hide()
+            
+            if let model = model {
+                tradesStates[2] = model.tradeState
+            }
+            else if let _ = error {
+            }
+            self?.goToNextScene()
         }
     }
     
@@ -130,11 +194,12 @@ class LoginViewController: UIViewController {
     
     @IBAction func didTapSignButton(sender: AnyObject) {
         signup(user: usernameTextField.text ?? "",
-              password: passwordTextField.text ?? "")
+               password: passwordTextField.text ?? "")
         view.endEditing(true)
     }
     
     @IBAction func didTapLoginButton(sender: AnyObject) {
+        
         login(user: usernameTextField.text ?? "",
               password: passwordTextField.text ?? "")
         view.endEditing(true)
@@ -142,9 +207,9 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func didTapTestButton(sender: AnyObject) {
-//        login(user: "jamal.zare@solidict.com", password: "j1234")
-//        login(user: "test3@test.com", password: "t1234")
-        login(user: "new@new.com", password: "t1234")
+        //        login(user: "jamal.zare@solidict.com", password: "j1234")
+                login(user: "new5@test.com", password: "t1234")
+//        login(user: "tester@test.com", password: "t1234")
         
         view.endEditing(true)
     }
@@ -159,7 +224,7 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController {
     
-
+    
 }
 
 

@@ -8,5 +8,5 @@
 import Foundation
 
 struct Balance: Decodable {
-    let balance: Int
+    let balance: Decimal
 }
