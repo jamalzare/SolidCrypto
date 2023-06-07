@@ -72,9 +72,9 @@ class TradeCell: UICollectionViewCell {
     var investment: AddInvestment? {
         didSet {
             if let investment = investment {
-                entryValueLabel.text = "\(String(format: "%.3f", investment.entryVal))"
-                winLimitLabel.text = "\(String(format: "%.3f", investment.winLimit))"
-                loseLimitLabel.text = "\(String(format: "%.3f", investment.loseLimit))"
+                entryValueLabel.text = "\(investment.entryVal)"
+                winLimitLabel.text = "\(investment.winLimit)"
+                loseLimitLabel.text = "\(investment.loseLimit)"
                 
                 calculatePossibles()
                 
@@ -100,12 +100,12 @@ class TradeCell: UICollectionViewCell {
         else { return }
         if let win = trade.win {
             let earning = investment.amount * win/100
-            possibleEarningLabel.text = "\(String(format: "%.3f", earning))"
+            possibleEarningLabel.text = earning.currenyFormat
         }
         
         if let lose = trade.lose {
             let lose = investment.amount * lose/100
-            possibleLoseLabel.text = "\(String(format: "%.3f", lose))"
+            possibleLoseLabel.text = lose.currenyFormat
         }
     }
     

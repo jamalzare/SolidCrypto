@@ -50,6 +50,7 @@ struct AddInvestment: Decodable {
         formmater.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         let time = String(entryTime.dropLast(7))
         if let date = formmater.date(from: time) {
+            let f = date.addingTimeInterval(-(3*60*60))
             return date.relativeDateAsString()
         }
 
