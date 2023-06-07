@@ -57,6 +57,12 @@ class TradesViewController: UIViewController {
         return bigMe?.tradeSlotId
     }
     
+    var balance: Double = 0.0 {
+        didSet {
+            tabBarController?.title = "Balance: \(balance.currenyFormat)"
+        }
+    }
+    
     @IBOutlet weak var buttonsView: UIView!
     @IBOutlet weak var trade1Button: Button!
     @IBOutlet weak var trade2Button: Button!
@@ -80,7 +86,7 @@ class TradesViewController: UIViewController {
         setNavigationBar()
         setup()
         let balance = bigMe?.balance ?? 0
-        tabBarController?.title = "Balance: \(String(format: "%.3f", balance))"
+        self.balance = balance
         tabBarController?.tabBar.isHidden = true
         
         loadSlotTrade()
@@ -430,7 +436,7 @@ extension TradesViewController {
             self?.timerLoop()
             
             if let model = model {
-                self?.tabBarController?.title = "Balance: \(String(format: "%.3f", model))"
+                self?.balance = model
             }
             
             else if let _ = error {

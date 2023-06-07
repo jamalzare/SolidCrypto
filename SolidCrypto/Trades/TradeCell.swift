@@ -75,7 +75,7 @@ class TradeCell: UICollectionViewCell {
                 entryValueLabel.text = "\(String(format: "%.3f", investment.entryVal))"
                 winLimitLabel.text = "\(String(format: "%.3f", investment.winLimit))"
                 loseLimitLabel.text = "\(String(format: "%.3f", investment.loseLimit))"
-
+                
                 calculatePossibles()
                 
                 entryTimeLabel.text = "\(investment.displayDate)"
@@ -117,7 +117,7 @@ class TradeCell: UICollectionViewCell {
         
         coinsList.title = "Choose Coin"
         coinsList.delegate = self
-//        coinsList.reload()
+        //        coinsList.reload()
         
         amountTextFiled.placeholder = "Choose Amount"
         amountTextFiled.keyboardType = .decimalPad
@@ -148,7 +148,7 @@ class TradeCell: UICollectionViewCell {
               let amount = Double(amountTextFiled.text ?? "") ,
               let tradeIndex = tradeList.selectedIndex,
               let trade = trades?[tradeIndex].tradeId else {
-           
+            
             delegate?.presentAlert(title: "Error", message: "Please enter inputs correctly!!")
             return
         }
@@ -202,7 +202,7 @@ class TradeCell: UICollectionViewCell {
               let winLimit = winLimit,
               let loseLimit = loseLimit else { return }
         
-       // print(entryValue, winLimit, loseLimit)
+        // print(entryValue, winLimit, loseLimit)
         
         let entryLimitLine = ChartLimitLine(limit: entryValue, label: "")
         entryLimitLine.lineColor = .lightGray
@@ -229,7 +229,7 @@ class TradeCell: UICollectionViewCell {
         
         lineChartView.leftAxis.axisMaximum = maximum + difrence
         lineChartView.leftAxis.axisMinimum = minimum - difrence
-      
+        
     }
     
     @objc func didTap() {
@@ -248,10 +248,10 @@ class TradeCell: UICollectionViewCell {
         if let _ = coinsList.selectedIndex,
            Double(amountTextFiled.text ?? "") ?? 0 > 0,
            let _ = tradeList.selectedIndex {
-//            startTradeButton.isEnabled = true
+            //            startTradeButton.isEnabled = true
             return
         }
-//        startTradeButton.isEnabled = false
+        //        startTradeButton.isEnabled = false
     }
 }
 
@@ -325,37 +325,43 @@ extension TradeCell: KDropDownListDelegate {
     
 }
 
+extension TradeCell: UITextFieldDelegate {
+    
+}
+
 
 extension String {
-
+    
     // formatting text for currency textField
     func currencyInputFormatting() -> String {
-    
+        
         var number: NSNumber!
         let formatter = NumberFormatter()
         formatter.numberStyle = .currencyAccounting
         formatter.currencySymbol = ""
         formatter.maximumFractionDigits = 2
         formatter.minimumFractionDigits = 2
-    
+        
         var amountWithPrefix = self
-    
+        
         // remove from String: "$", ".", ","
         let regex = try! NSRegularExpression(pattern: "[^0-9]", options: .caseInsensitive)
         amountWithPrefix = regex.stringByReplacingMatches(in: amountWithPrefix, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, self.count), withTemplate: "")
-    
+        
         let double = (amountWithPrefix as NSString).doubleValue
         number = NSNumber(value: (double / 100))
-    
+        
         // if first number is 0 or all numbers were deleted
         guard number != 0 as NSNumber else {
             return ""
         }
-    
+        
         return formatter.string(from: number)!
     }
 }
 
-extension TradeCell: UITextFieldDelegate {
-    
+extension Double {
+    var currenyFormat: String {
+        return String(format: "%.2f", self).currencyInputFormatting()
+    }
 }
