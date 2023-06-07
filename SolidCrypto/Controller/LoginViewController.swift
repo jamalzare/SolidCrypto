@@ -25,6 +25,10 @@ class LoginViewController: UIViewController {
         view.backgroundColor = .lightGrayBorder
         navigationController?.view.backgroundColor = .lightGrayBorder
         setup()
+        
+        if let _ = UserDefaults.standard.string(forKey: "token") {
+            getMeData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

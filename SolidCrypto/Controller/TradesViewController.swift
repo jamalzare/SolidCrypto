@@ -268,6 +268,7 @@ extension TradesViewController {
         Loading.shared.show(title: "Loading...")
         
         APIService.getInvestmentStatus(investmentId: id) { [weak self] model, error in
+            Loading.shared.hide()
             
             if let model = model {
                 self?.investment = model
@@ -279,6 +280,8 @@ extension TradesViewController {
                 self?.setButtonsActivation()
             }
             else if let _ = error {
+                self?.loadCoins()
+                self?.timerLoop()
             }
             
         }
