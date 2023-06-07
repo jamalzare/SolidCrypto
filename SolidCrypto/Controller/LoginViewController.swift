@@ -27,7 +27,8 @@ class LoginViewController: UIViewController {
         setup()
         
         if let _ = UserDefaults.standard.string(forKey: "token") {
-            getMeData()
+//            getMeData()
+            goToNextScene()
         }
     }
     
