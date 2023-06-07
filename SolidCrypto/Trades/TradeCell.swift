@@ -362,8 +362,8 @@ extension String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currencyAccounting
         formatter.currencySymbol = ""
-//        formatter.maximumFractionDigits = 2
-//        formatter.roundingMode = .ceiling
+        formatter.maximumFractionDigits = 3
+        formatter.minimumFractionDigits = 3
         
         if let number = formatter.number(from: self) {
             let amount = number.decimalValue
@@ -377,6 +377,21 @@ extension String {
 extension Double {
     var currenyFormat: String {
         return String(format: "%.2f", self).currencyInputFormatting()
+    }
+}
+
+extension Date
+{
+    func relativeDateAsString() -> String
+    {
+        let dcf: DateComponentsFormatter = DateComponentsFormatter()
+        dcf.includesApproximationPhrase = false
+        dcf.includesTimeRemainingPhrase = false
+        dcf.allowsFractionalUnits = false
+        dcf.maximumUnitCount = 2
+        dcf.unitsStyle = .full
+        dcf.allowedUnits = [.second, .minute, .hour, .day, .month, .year]
+        return dcf.string(from: self, to: Date()) ?? ""
     }
 }
 

@@ -38,7 +38,7 @@ struct AddInvestment: Decodable {
         formmater.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         let time = String(entryTime.dropLast(7))
         if let date = formmater.date(from: time) {
-            formmater.dateFormat = "yyyy/MM/dd HH:mm:ss"
+            formmater.dateFormat = "dd.MM.yyyy HH:mm:ss"
             return formmater.string(from: date)
         }
         
@@ -50,10 +50,7 @@ struct AddInvestment: Decodable {
         formmater.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         let time = String(entryTime.dropLast(7))
         if let date = formmater.date(from: time) {
-            let formatter = RelativeDateTimeFormatter()
-            formatter.unitsStyle = .full
-            let relativeDate = formatter.localizedString(for: date, relativeTo: Date())
-            return relativeDate
+            return date.relativeDateAsString()
         }
 
         return ""

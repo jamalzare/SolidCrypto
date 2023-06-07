@@ -9,7 +9,7 @@ import Foundation
 
 class APIService {
     
-    static var loggingEnabled = true
+    static var loggingEnabled = false
     
     static func signup(username: String, password: String, completion: @escaping (Login?, APIResponseError?) -> () ) {
         
@@ -84,7 +84,7 @@ class APIService {
         let params = [
             "slot": slot,
             "coin": coinCode,
-            "amount": amount,
+            "amount": amount + 0.0000001,
             "tradeId": tradeId
         ] as [String : Any]
         
@@ -93,7 +93,7 @@ class APIService {
                                             parameters: params,
                                             hasToken: true)
         req.identifier = "investments"
-        req.log = loggingEnabled
+        req.log = true
         req.completion = completion
         req.start()
     }
