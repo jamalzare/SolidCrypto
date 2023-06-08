@@ -79,12 +79,12 @@ class APIService {
         req.start()
     }
     
-    static func addInvestment(slot: String, coinCode: String, amount: Decimal, tradeId: Int, completion: @escaping (AddInvestment?, APIResponseError?) -> () ) {
+    static func addInvestment(slot: String, coinCode: String, amount: Int, tradeId: Int, completion: @escaping (AddInvestment?, APIResponseError?) -> () ) {
         
         let params = [
             "slot": slot,
             "coin": coinCode,
-            "amount": amount + 0.0000001,
+            "amount": amount,
             "tradeId": tradeId
         ] as [String : Any]
         

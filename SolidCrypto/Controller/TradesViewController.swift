@@ -211,7 +211,7 @@ extension TradesViewController: TradeCellDelegate, PageCellDelegate {
         presentAlert(title: title, message: message, compeletion: {})
     }
     
-    func didTapStartButton(slot: String, coinCode: String, amount: Decimal, tradeId: Int) {
+    func didTapStartButton(slot: String, coinCode: String, amount: Int, tradeId: Int) {
         addInvestment(slot: slot, coinCode: coinCode, amount: amount, tradeId: tradeId)
     }
     
@@ -278,7 +278,8 @@ extension TradesViewController {
             
             if let model = model {
                 self?.investment = model
-                self?.pageCell?.tradeCell?.amountTextFiled.preText = model.amount.currenyFormat
+                self?.pageCell?.tradeCell?.amountTextFiled.preText =
+                "\(model.amount)"
                 self?.pageCell?.tradeCell?.investment = model
                 self?.loadStatistics()
                 self?.loadCoins()
@@ -336,7 +337,7 @@ extension TradesViewController {
         }
     }
     
-    func addInvestment(slot: String, coinCode: String, amount: Decimal, tradeId: Int) {
+    func addInvestment(slot: String, coinCode: String, amount: Int, tradeId: Int) {
         
         Loading.shared.show(title: "Loading...")
         

@@ -21,7 +21,7 @@ struct AddInvestment: Decodable {
     let investmentId: Int
     let tradeId: Int
     let coinCode: String
-    let amount: Double
+    let amount: Int
     let entryVal: Double
     let winLimit: Double
     let loseLimit: Double
@@ -54,7 +54,7 @@ struct AddInvestment: Decodable {
             let f = date.addingTimeInterval(3*60*60)
             return f.relativeDateAsString()
         }
-
+        
         return ""
     }
     
@@ -90,6 +90,23 @@ struct AddInvestment: Decodable {
         }
         
         return .free
+    }
+    
+    var tradeStateColor: UIColor {
+        
+        switch tradeState {
+        case .ongoing:
+            return .appBlue
+            
+        case .succeded:
+            return .theme
+            
+        case .failed:
+            return .appPink
+            
+        case .free:
+            return .appBlackText
+        }
     }
     
     var description: String {

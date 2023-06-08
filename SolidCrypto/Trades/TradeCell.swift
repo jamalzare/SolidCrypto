@@ -9,7 +9,7 @@ import UIKit
 import Charts
 
 protocol TradeCellDelegate: AnyObject {
-    func didTapStartButton(slot: String, coinCode: String, amount: Decimal, tradeId: Int)
+    func didTapStartButton(slot: String, coinCode: String, amount: Int, tradeId: Int)
     func didTapClearButton()
     func didSelect(coin: String)
     func presentAlert(title: String, message: String)
@@ -81,6 +81,7 @@ class TradeCell: UICollectionViewCell {
                 entryTimeLabel.text = "\(investment.displayDate)"
                 investmentTimeLabel.text = "\(investment.duration)"
                 investmentStatusLabel.text = "\(investment.tradeState.rawValue)"
+                investmentStatusLabel.textColor = investment.tradeStateColor
             } else {
                 entryValueLabel.text = "0"
                 winLimitLabel.text = "0"
@@ -89,22 +90,26 @@ class TradeCell: UICollectionViewCell {
                 possibleLoseLabel.text = "0"
                 entryTimeLabel.text = ""
                 investmentTimeLabel.text = ""
-                investmentStatusLabel.text = "Unknow"
+                investmentStatusLabel.text = ""
+                investmentStatusLabel.textColor = .appBlackText
             }
         }
     }
     
     func calculatePossibles() {
         guard let investment = investment,
-              let trade = selectedTrade
+              let index = tradeList.selectedIndex,
+              let trade = trades?[index]
         else { return }
+        let amount = Double(investment.amount)
+        
         if let win = trade.win {
-            let earning = investment.amount * win/100
+            let earning = amount * win/100
             possibleEarningLabel.text = earning.currenyFormat
         }
         
         if let lose = trade.lose {
-            let lose = investment.amount * lose/100
+            let lose = amount * lose/100
             possibleLoseLabel.text = lose.currenyFormat
         }
     }
@@ -134,6 +139,8 @@ class TradeCell: UICollectionViewCell {
             label.apply(TextStyle(fontStyle: .poppinsMedium, size: 11), color: .appBlackText)
         }
         
+        investmentStatusLabel.apply(TextStyle(fontStyle: .poppinsSemiBold, size: 11), color: .appBlackText)
+        
         startTradeButton.isEnabled = true
         clearButton.isEnabled = false
         amountTextFiled.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
@@ -144,7 +151,7 @@ class TradeCell: UICollectionViewCell {
     @IBAction func didTapStartButton() {
         guard let coinIndex = coinsList.selectedIndex,
               let coin = coins?[coinIndex],
-              let amount = (amountTextFiled.text ?? "").currencyToDouble(),
+              let amount = Int(amountTextFiled.text ?? ""),
               let tradeIndex = tradeList.selectedIndex,
               let trade = trades?[tradeIndex].tradeId else {
             
@@ -236,9 +243,9 @@ class TradeCell: UICollectionViewCell {
     }
     
     @objc func editingChanged() {
-        if let amountString = amountTextFiled.text?.currencyInputFormatting() {
-            amountTextFiled.text = amountString
-        }
+        //        if let amountString = amountTextFiled.text?.currencyInputFormatting() {
+        //            amountTextFiled.text = amountString
+        //        }
         setButtonActivation()
     }
     
@@ -378,7 +385,12 @@ extension Double {
     
     var currenyFormat: String {
         
+        if self == 0 {
+            return "0,00"
+        }
+        
         let str = String(format: "%.2f", self).currencyInputFormatting()
+        
         if self < 0 {
             return "-\(str)"
         }
