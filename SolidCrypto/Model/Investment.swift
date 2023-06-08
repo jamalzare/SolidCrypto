@@ -32,10 +32,6 @@ struct AddInvestment: Decodable {
     let succeeded: Bool
     let finished: Bool
     
-    var currentProgressValue: Double {
-        return Double(amount) * ((currentVal / entryVal) - 1) * 100
-    }
-    
     var displayDate: String {
         
         let formmater = DateFormatter()
@@ -113,8 +109,24 @@ struct AddInvestment: Decodable {
         }
     }
     
-    var description: String {
-        return "Investment with entry value: \(entryVal), success state is \(succeeded) and finish state is \(finished)."
+    var currentProgressValue: Double {
+        return Double(amount) * ((currentVal / entryVal) - 1) * 100
     }
     
+    var progress: Double {
+        if currentVal == entryVal {
+            return 0.5
+            
+        } else if currentVal > entryVal {
+            return 0.5 + ((currentVal - entryVal) / (winLimit - entryVal) * 0.5)
+            
+        } else {
+            var f = 0.5 - ((entryVal - currentVal) / (entryVal - loseLimit) * 0.5)
+            if f < 0 {
+                f = f * -1
+            }
+            
+            return f
+        }
+    }
 }

@@ -112,7 +112,7 @@ class TradeCell: UICollectionViewCell {
         guard let investment = investment,
               let index = tradeList.selectedIndex,
               let trade = trades?[index]
-              
+                
         else { return }
         let amount = Double(investment.amount)
         
@@ -126,23 +126,11 @@ class TradeCell: UICollectionViewCell {
             possibleLoseLabel.text = lose.currenyFormat
         }
         
-        var progress: Double = 0.5
-        let current = investment.currentVal
-        let entry = investment.entryVal
-        startTradeButton.isHidden = true
+        let progress = investment.progress
         
-//        guard let win = trade.win, let lose = trade.lose else { return }
-        
-        if current == entry {
-            progress = 0.5
-            
-        } else if current > entry {
-            
-            progress = 0.5 + ((current - entry) / (investment.winLimit - entry) * 0.5)
+        if progress > 0.5 {
             progressView.backgroundColor = .theme
-            
-        } else if current < entry {
-            progress =  ((entry - current) / (entry - investment.loseLimit) * 0.5)
+        } else if progress < 0.5  {
             progressView.backgroundColor = .appRed
         }
         
