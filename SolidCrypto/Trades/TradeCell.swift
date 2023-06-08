@@ -375,8 +375,14 @@ extension String {
 }
 
 extension Double {
+    
     var currenyFormat: String {
-        return String(format: "%.2f", self).currencyInputFormatting()
+        
+        let str = String(format: "%.2f", self).currencyInputFormatting()
+        if self < 0 {
+            return "-\(str)"
+        }
+        return str
     }
 }
 

@@ -278,7 +278,7 @@ extension TradesViewController {
             
             if let model = model {
                 self?.investment = model
-                self?.pageCell?.tradeCell?.amountTextFiled.preText = "\(model.amount)"
+                self?.pageCell?.tradeCell?.amountTextFiled.preText = model.amount.currenyFormat
                 self?.pageCell?.tradeCell?.investment = model
                 self?.loadStatistics()
                 self?.loadCoins()
