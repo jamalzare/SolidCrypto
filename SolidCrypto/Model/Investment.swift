@@ -32,6 +32,10 @@ struct AddInvestment: Decodable {
     let succeeded: Bool
     let finished: Bool
     
+    var currentProgressValue: Double {
+        return Double(amount) * ((currentVal / entryVal) - 1) * 100
+    }
+    
     var displayDate: String {
         
         let formmater = DateFormatter()

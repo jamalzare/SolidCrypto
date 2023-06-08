@@ -26,6 +26,7 @@ class TradeCell: UICollectionViewCell {
     
     @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var entryValueLabel: UILabel!
+    @IBOutlet weak var currentValueLabel: UILabel!
     @IBOutlet weak var winLimitLabel: UILabel!
     @IBOutlet weak var possibleEarningLabel: UILabel!
     @IBOutlet weak var loseLimitLabel: UILabel!
@@ -34,6 +35,11 @@ class TradeCell: UICollectionViewCell {
     @IBOutlet weak var investmentTimeLabel: UILabel!
     @IBOutlet weak var investmentStatusLabel: UILabel!
     @IBOutlet var labesl: [UILabel]!
+    
+    @IBOutlet weak var progressContainer: UIView!
+    @IBOutlet weak var progressView: UIView!
+    @IBOutlet weak var progressWidth: NSLayoutConstraint!
+    @IBOutlet weak var progressLabel: UILabel!
     
     weak var delegate: TradeCellDelegate?
     private var enabledList: KDropDownList?
@@ -74,6 +80,7 @@ class TradeCell: UICollectionViewCell {
             if let investment = investment {
                 entryValueLabel.text = "\(investment.entryVal)"
                 winLimitLabel.text = "\(investment.winLimit)"
+                currentValueLabel.text = "\(investment.currentProgressValue)"
                 loseLimitLabel.text = "\(investment.loseLimit)"
                 
                 calculatePossibles()
@@ -82,8 +89,11 @@ class TradeCell: UICollectionViewCell {
                 investmentTimeLabel.text = "\(investment.duration)"
                 investmentStatusLabel.text = "\(investment.tradeState.rawValue)"
                 investmentStatusLabel.textColor = investment.tradeStateColor
+                startTradeButton.isHidden = true
+                progressContainer.isHidden = false
             } else {
                 entryValueLabel.text = "0"
+                currentValueLabel.text = "0"
                 winLimitLabel.text = "0"
                 possibleEarningLabel.text = "0"
                 loseLimitLabel.text = "0"
@@ -92,6 +102,8 @@ class TradeCell: UICollectionViewCell {
                 investmentTimeLabel.text = ""
                 investmentStatusLabel.text = ""
                 investmentStatusLabel.textColor = .appBlackText
+                startTradeButton.isHidden = false
+                progressContainer.isHidden = true
             }
         }
     }
@@ -100,6 +112,7 @@ class TradeCell: UICollectionViewCell {
         guard let investment = investment,
               let index = tradeList.selectedIndex,
               let trade = trades?[index]
+              
         else { return }
         let amount = Double(investment.amount)
         
@@ -111,6 +124,32 @@ class TradeCell: UICollectionViewCell {
         if let lose = trade.lose {
             let lose = amount * lose/100
             possibleLoseLabel.text = lose.currenyFormat
+        }
+        
+        var progress: Double = 0.5
+        let current = investment.currentVal
+        let entry = investment.entryVal
+        startTradeButton.isHidden = true
+        
+//        guard let win = trade.win, let lose = trade.lose else { return }
+        
+        if current == entry {
+            progress = 0.5
+            
+        } else if current > entry {
+            
+            progress = 0.5 + ((current - entry) / (investment.winLimit - entry) * 0.5)
+            progressView.backgroundColor = .theme
+            
+        } else if current < entry {
+            progress =  ((entry - current) / (entry - investment.loseLimit) * 0.5)
+            progressView.backgroundColor = .appRed
+        }
+        
+        progressLabel.text = String(format: "%.2f", investment.currentProgressValue)
+        progressWidth.constant = progressContainer.frame.width * progress
+        UIView.animate(withDuration: 0.5) {
+            self.progressContainer.layoutIfNeeded()
         }
     }
     
@@ -141,11 +180,17 @@ class TradeCell: UICollectionViewCell {
         
         investmentStatusLabel.apply(TextStyle(fontStyle: .poppinsSemiBold, size: 11), color: .appBlackText)
         
+        progressLabel.apply(TextStyle(fontStyle: .poppinsSemiBold, size: 14), color: .darkGray)
+        
         startTradeButton.isEnabled = true
         clearButton.isEnabled = false
         amountTextFiled.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         amountTextFiled.delegate = self
         self.investment = nil
+        
+        progressContainer.layer.cornerRadius = 8
+        progressContainer.clipsToBounds = true
+        progressContainer.isHidden = true
     }
     
     @IBAction func didTapStartButton() {
