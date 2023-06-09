@@ -70,6 +70,7 @@
 		8940359B2A0C341A008A5D78 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8940359A2A0C341A008A5D78 /* TextField.swift */; };
 		8940359F2A0C3C1F008A5D78 /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8940359D2A0C3C1F008A5D78 /* PageCell.swift */; };
 		894035A02A0C3C1F008A5D78 /* PageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8940359E2A0C3C1F008A5D78 /* PageCell.xib */; };
+		89863FC82A3320F500DFBE35 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89863FC72A3320F500DFBE35 /* DashboardViewController.swift */; };
 		898B91CA2A2F600C00DD8754 /* CirlceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B91C92A2F600C00DD8754 /* CirlceView.swift */; };
 		89E92C5E2A2A471A005447CF /* Me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E92C5D2A2A471A005447CF /* Me.swift */; };
 /* End PBXBuildFile section */
@@ -140,6 +141,7 @@
 		8940359A2A0C341A008A5D78 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		8940359D2A0C3C1F008A5D78 /* PageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
 		8940359E2A0C3C1F008A5D78 /* PageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PageCell.xib; sourceTree = "<group>"; };
+		89863FC72A3320F500DFBE35 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		898B91C92A2F600C00DD8754 /* CirlceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirlceView.swift; sourceTree = "<group>"; };
 		89E92C5D2A2A471A005447CF /* Me.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Me.swift; sourceTree = "<group>"; };
 		91C0B548E674CD3D612D9D18 /* Pods-SolidCrypto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidCrypto.release.xcconfig"; path = "Target Support Files/Pods-SolidCrypto/Pods-SolidCrypto.release.xcconfig"; sourceTree = "<group>"; };
@@ -173,8 +175,9 @@
 		8921652B2A19527800A3F3B9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				894035342A0BC5C8008A5D78 /* TradesViewController.swift */,
-				8921652C2A19529700A3F3B9 /* LoginViewController.swift */,
+				89863FCB2A33218E00DFBE35 /* Login */,
+				89863FCA2A33217700DFBE35 /* Treades */,
+				89863FC92A33216300DFBE35 /* Dashboard */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -207,8 +210,6 @@
 				894035302A0BC5C8008A5D78 /* AppDelegate.swift */,
 				894035322A0BC5C8008A5D78 /* SceneDelegate.swift */,
 				894035362A0BC5C8008A5D78 /* Main.storyboard */,
-				8940359C2A0C3C09008A5D78 /* PageCell */,
-				894035442A0BC6F6008A5D78 /* Trades */,
 				894035392A0BC5C9008A5D78 /* Assets.xcassets */,
 				8940353B2A0BC5C9008A5D78 /* LaunchScreen.storyboard */,
 				8940353E2A0BC5C9008A5D78 /* Info.plist */,
@@ -302,6 +303,32 @@
 				8940359E2A0C3C1F008A5D78 /* PageCell.xib */,
 			);
 			path = PageCell;
+			sourceTree = "<group>";
+		};
+		89863FC92A33216300DFBE35 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				89863FC72A3320F500DFBE35 /* DashboardViewController.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		89863FCA2A33217700DFBE35 /* Treades */ = {
+			isa = PBXGroup;
+			children = (
+				894035342A0BC5C8008A5D78 /* TradesViewController.swift */,
+				894035442A0BC6F6008A5D78 /* Trades */,
+				8940359C2A0C3C09008A5D78 /* PageCell */,
+			);
+			path = Treades;
+			sourceTree = "<group>";
+		};
+		89863FCB2A33218E00DFBE35 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8921652C2A19529700A3F3B9 /* LoginViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		AD1135E48C641D69F2C277F4 /* Pods */ = {
@@ -492,6 +519,7 @@
 				8921651C2A18AD8D00A3F3B9 /* CodeStrings.swift in Sources */,
 				894035472A0BC71B008A5D78 /* TradeCell.swift in Sources */,
 				892165172A18ABC800A3F3B9 /* APIRequest.swift in Sources */,
+				89863FC82A3320F500DFBE35 /* DashboardViewController.swift in Sources */,
 				892165222A18B06A00A3F3B9 /* Balance.swift in Sources */,
 				894035902A0BE859008A5D78 /* Button.swift in Sources */,
 				892165192A18ABD400A3F3B9 /* APIService.swift in Sources */,
