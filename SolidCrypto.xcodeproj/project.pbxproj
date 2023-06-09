@@ -71,6 +71,10 @@
 		8940359F2A0C3C1F008A5D78 /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8940359D2A0C3C1F008A5D78 /* PageCell.swift */; };
 		894035A02A0C3C1F008A5D78 /* PageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8940359E2A0C3C1F008A5D78 /* PageCell.xib */; };
 		89863FC82A3320F500DFBE35 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89863FC72A3320F500DFBE35 /* DashboardViewController.swift */; };
+		89863FCF2A33237800DFBE35 /* BalanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89863FCD2A33237800DFBE35 /* BalanceCell.swift */; };
+		89863FD02A33237800DFBE35 /* BalanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89863FCE2A33237800DFBE35 /* BalanceCell.xib */; };
+		89863FD52A33251B00DFBE35 /* InvestmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89863FD32A33251B00DFBE35 /* InvestmentCell.swift */; };
+		89863FD62A33251B00DFBE35 /* InvestmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89863FD42A33251B00DFBE35 /* InvestmentCell.xib */; };
 		898B91CA2A2F600C00DD8754 /* CirlceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B91C92A2F600C00DD8754 /* CirlceView.swift */; };
 		89E92C5E2A2A471A005447CF /* Me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E92C5D2A2A471A005447CF /* Me.swift */; };
 /* End PBXBuildFile section */
@@ -142,6 +146,10 @@
 		8940359D2A0C3C1F008A5D78 /* PageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
 		8940359E2A0C3C1F008A5D78 /* PageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PageCell.xib; sourceTree = "<group>"; };
 		89863FC72A3320F500DFBE35 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		89863FCD2A33237800DFBE35 /* BalanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceCell.swift; sourceTree = "<group>"; };
+		89863FCE2A33237800DFBE35 /* BalanceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BalanceCell.xib; sourceTree = "<group>"; };
+		89863FD32A33251B00DFBE35 /* InvestmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentCell.swift; sourceTree = "<group>"; };
+		89863FD42A33251B00DFBE35 /* InvestmentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvestmentCell.xib; sourceTree = "<group>"; };
 		898B91C92A2F600C00DD8754 /* CirlceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirlceView.swift; sourceTree = "<group>"; };
 		89E92C5D2A2A471A005447CF /* Me.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Me.swift; sourceTree = "<group>"; };
 		91C0B548E674CD3D612D9D18 /* Pods-SolidCrypto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SolidCrypto.release.xcconfig"; path = "Target Support Files/Pods-SolidCrypto/Pods-SolidCrypto.release.xcconfig"; sourceTree = "<group>"; };
@@ -309,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				89863FC72A3320F500DFBE35 /* DashboardViewController.swift */,
+				89863FCC2A33235500DFBE35 /* Cell */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -329,6 +338,33 @@
 				8921652C2A19529700A3F3B9 /* LoginViewController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		89863FCC2A33235500DFBE35 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				89863FD22A3324DF00DFBE35 /* Investment */,
+				89863FD12A3324D100DFBE35 /* Balance */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		89863FD12A3324D100DFBE35 /* Balance */ = {
+			isa = PBXGroup;
+			children = (
+				89863FCE2A33237800DFBE35 /* BalanceCell.xib */,
+				89863FCD2A33237800DFBE35 /* BalanceCell.swift */,
+			);
+			path = Balance;
+			sourceTree = "<group>";
+		};
+		89863FD22A3324DF00DFBE35 /* Investment */ = {
+			isa = PBXGroup;
+			children = (
+				89863FD32A33251B00DFBE35 /* InvestmentCell.swift */,
+				89863FD42A33251B00DFBE35 /* InvestmentCell.xib */,
+			);
+			path = Investment;
 			sourceTree = "<group>";
 		};
 		AD1135E48C641D69F2C277F4 /* Pods */ = {
@@ -416,6 +452,7 @@
 				8940357A2A0BE5CE008A5D78 /* Poppins-Black.ttf in Resources */,
 				894035602A0BE5C4008A5D78 /* Inter-Light.ttf in Resources */,
 				8940357C2A0BE5CE008A5D78 /* Poppins-MediumItalic.ttf in Resources */,
+				89863FD62A33251B00DFBE35 /* InvestmentCell.xib in Resources */,
 				8940353D2A0BC5C9008A5D78 /* LaunchScreen.storyboard in Resources */,
 				8940358D2A0BE61B008A5D78 /* Color.xcassets in Resources */,
 				894035872A0BE5CE008A5D78 /* Poppins-Medium.ttf in Resources */,
@@ -425,6 +462,7 @@
 				8940355E2A0BE5C4008A5D78 /* Inter-ExtraLight.ttf in Resources */,
 				894035782A0BE5CE008A5D78 /* Poppins-SemiBoldItalic.ttf in Resources */,
 				894035772A0BE5CE008A5D78 /* Poppins-ThinItalic.ttf in Resources */,
+				89863FD02A33237800DFBE35 /* BalanceCell.xib in Resources */,
 				894035482A0BC71B008A5D78 /* TradeCell.xib in Resources */,
 				8940357D2A0BE5CE008A5D78 /* Poppins-LightItalic.ttf in Resources */,
 				894035822A0BE5CE008A5D78 /* Poppins-Thin.ttf in Resources */,
@@ -512,10 +550,12 @@
 				894035922A0BEBCE008A5D78 /* KDropDownList.swift in Sources */,
 				894035992A0C3230008A5D78 /* Coin.swift in Sources */,
 				894035962A0BEBFD008A5D78 /* CheckBox.swift in Sources */,
+				89863FCF2A33237800DFBE35 /* BalanceCell.swift in Sources */,
 				8940359F2A0C3C1F008A5D78 /* PageCell.swift in Sources */,
 				8921651E2A18ADE700A3F3B9 /* App.swift in Sources */,
 				8921652F2A1954DB00A3F3B9 /* Loading.swift in Sources */,
 				892165282A18B2D100A3F3B9 /* Investment.swift in Sources */,
+				89863FD52A33251B00DFBE35 /* InvestmentCell.swift in Sources */,
 				8921651C2A18AD8D00A3F3B9 /* CodeStrings.swift in Sources */,
 				894035472A0BC71B008A5D78 /* TradeCell.swift in Sources */,
 				892165172A18ABC800A3F3B9 /* APIRequest.swift in Sources */,

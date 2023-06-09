@@ -71,7 +71,7 @@ class Button: UIButton {
         layer.cornerRadius = 14
         backgroundColor = .clear
         layer.borderColor =  UIColor.theme.cgColor
-        apply(TextStyle(fontStyle: .poppinsMedium, size: 14), color: .appTextColor)
+        apply(TextStyle(fontStyle: .poppinsMedium, size: 13), color: .appTextColor)
         isLightStyle = true
     }
 }

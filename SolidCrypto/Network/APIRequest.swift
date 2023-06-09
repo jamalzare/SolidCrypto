@@ -191,8 +191,7 @@ class APIRequest<T: Decodable> {
         guard let url = URL(string: url) else {
             fatalError("Can't create url request")
         }
-        
-        var urlRequest = URLRequest(url: url)
+        var urlRequest = URLRequest(url: url, timeoutInterval: 10)
         urlRequest.httpMethod = method.rawValue
         
         headers?.forEach { key, value in
@@ -205,10 +204,10 @@ class APIRequest<T: Decodable> {
     }
     
     func decodeToken(data: Data) {
-        let response = try? JSONDecoder().decode(ResponseToken.self, from: data)
-        if let token = response?.result?.token {
+//        let response = try? JSONDecoder().decode(ResponseToken.self, from: data)
+//        if let token = response?.result?.token {
 //            Persistence.token = token
-        }
+//        }
     }
     
     func decodeResponse(data: Data) {

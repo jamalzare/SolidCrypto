@@ -31,6 +31,7 @@ struct AddInvestment: Decodable {
     let resultDiff: Double
     let succeeded: Bool
     let finished: Bool
+    var name: String?
     
     var displayDate: String {
         

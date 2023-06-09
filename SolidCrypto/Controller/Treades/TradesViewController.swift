@@ -64,6 +64,7 @@ class TradesViewController: UIViewController {
     }
     
     @IBOutlet weak var buttonsView: UIView!
+    @IBOutlet weak var dashboardButton: Button!
     @IBOutlet weak var trade1Button: Button!
     @IBOutlet weak var trade2Button: Button!
     @IBOutlet weak var trade3Button: Button!
@@ -98,7 +99,7 @@ class TradesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        change(tab: index)
+        change(tab: index + 1)
         setColors()
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -133,26 +134,34 @@ class TradesViewController: UIViewController {
         change(tab: tag)
         print(index)
         tabBarController?.selectedIndex = tag
-        
     }
     
     func change(tab: Int) {
         if tab == 0 {
+            dashboardButton.unSelectedStyle = false
+            trade1Button.unSelectedStyle = true
+            trade2Button.unSelectedStyle = true
+            trade3Button.unSelectedStyle = true
+        }
+        if tab == 1 {
             trade1Button.unSelectedStyle = false
             trade2Button.unSelectedStyle = true
             trade3Button.unSelectedStyle = true
-        }
-        
-        if tab == 1 {
-            trade2Button.unSelectedStyle = false
-            trade1Button.unSelectedStyle = true
-            trade3Button.unSelectedStyle = true
+            dashboardButton.unSelectedStyle = true
         }
         
         if tab == 2 {
+            trade2Button.unSelectedStyle = false
+            trade1Button.unSelectedStyle = true
+            trade3Button.unSelectedStyle = true
+            dashboardButton.unSelectedStyle = true
+        }
+        
+        if tab == 3 {
             trade3Button.unSelectedStyle = false
             trade1Button.unSelectedStyle = true
             trade2Button.unSelectedStyle = true
+            dashboardButton.unSelectedStyle = true
         }
     }
     

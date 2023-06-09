@@ -10,6 +10,8 @@ import UIKit
 
 var bigMe: Me?
 
+var allInvestments: [AddInvestment?] = [nil, nil, nil]
+
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var usernameTextField: TextField!
@@ -40,7 +42,7 @@ class LoginViewController: UIViewController {
         super.viewDidAppear(animated)
         tabBarController?.title = "Welcome"
         title = "Welcome"
-        
+        goToNextScene()
     }
     
     private func setup() {
@@ -118,6 +120,7 @@ class LoginViewController: UIViewController {
             }
             
             else if let error = error {
+                Loading.shared.hide()
                 self?.presentAlert(title: "Error", message: "your username and passowrd is wrong: \(error.message)")
             }
             
@@ -138,6 +141,7 @@ class LoginViewController: UIViewController {
             
             if let model = model {
                 tradesStates[0] = model.tradeState
+                allInvestments[0] = model
             }
             else if let _ = error {
             }
@@ -159,6 +163,7 @@ class LoginViewController: UIViewController {
             
             if let model = model {
                 tradesStates[1] = model.tradeState
+                allInvestments[1] = model
             }
             else if let _ = error {
             }
@@ -180,6 +185,7 @@ class LoginViewController: UIViewController {
             
             if let model = model {
                 tradesStates[2] = model.tradeState
+                allInvestments[2] = model
             }
             else if let _ = error {
             }
