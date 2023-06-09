@@ -42,7 +42,7 @@ class LoginViewController: UIViewController {
         super.viewDidAppear(animated)
         tabBarController?.title = "Welcome"
         title = "Welcome"
-        goToNextScene()
+//        goToNextScene()
     }
     
     private func setup() {
